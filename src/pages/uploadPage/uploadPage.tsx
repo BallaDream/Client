@@ -1,5 +1,6 @@
 import UploadInstructionsHeader from '@/components/uploadPage/uploadInstructionsHeader/uploadInstructionsHeader';
 import UploadSection from '@/components/uploadPage/uploadSection/uploadSection';
+import UploadTipsSection from '@/components/uploadPage/uploadTipsSection/uploadTipsSection';
 
 import * as S from './uploadPage.style';
 
@@ -8,7 +9,7 @@ export default function UploadPage() {
     <S.Container>
       <UploadInstructionsHeader />
       <UploadSection />
-      <p>조심문구들</p>
+      <UploadTipsSection />
     </S.Container>
   );
 }
