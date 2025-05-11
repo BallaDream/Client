@@ -1,10 +1,11 @@
+import ImageUploadBox from '@/components/uploadPage/imageUploadBox/ImageUploadBox';
+
 import * as S from './uploadSection.style';
 
-export default function UploadInstructionsHeader() {
+export default function UploadSection() {
   return (
     <S.Container>
-      <S.GrayText>아래와 같은 방법으로</S.GrayText>
-      <S.BlackText>사진을 업로드해 주세요</S.BlackText>
+      <ImageUploadBox />
     </S.Container>
   );
 }
