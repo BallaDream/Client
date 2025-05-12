@@ -8,7 +8,9 @@ export default function UploadPage() {
   return (
     <S.Container>
       <UploadInstructionsHeader />
+
       <UploadSection />
+
       <UploadTipsSection />
     </S.Container>
   );

@@ -1,9 +1,9 @@
-import * as S from './ImageUploadBox.style';
+import * as S from './idleUploadBox.style';
 
 import ImgIcon from '@/assets/icons/img_icon.svg?react';
 import PlusIcon from '@/assets/icons/plus.svg?react';
 
-export default function ImageUploadBox() {
+export default function IdleUploadSection() {
   return (
     <S.Conatiner>
       <S.DottedContainer>

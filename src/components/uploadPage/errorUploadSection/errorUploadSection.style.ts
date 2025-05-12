@@ -32,7 +32,7 @@ export const Button = styled.button`
   align-items: center;
   padding: 12px 20px;
   gap: 8px;
-
+  font-weight: 600;
   height: 56px;
   background: #0f1f4b;
   border-radius: 8px;
