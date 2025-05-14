@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import uploadReducer from '@/slices/uploadSlice';
+import userReducer from '@/slices/userSlice';
 
 export const store = configureStore({
   reducer: {
-    upload: uploadReducer,
+    user: userReducer,
   },
 });
 
