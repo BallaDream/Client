@@ -4,9 +4,10 @@ import HeaderText from '../headerText/headerText';
 
 export default function DiagnosisSection() {
   return (
-    <S.Conatiner>
+    <S.Container>
       <HeaderText text="닉네임" />
+
       <FaceStatusMap />
-    </S.Conatiner>
+    </S.Container>
   );
 }

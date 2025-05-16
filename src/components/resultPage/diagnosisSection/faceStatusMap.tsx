@@ -2,16 +2,19 @@ import { useState } from 'react';
 
 import * as S from './diagnosisSection.style';
 
-import FaceImage from '/img/facemap.png'; // 원래 SVG의 PNG 원본
-
 export default function FaceStatusMap() {
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, text: '' });
 
   const handleMouseEnter = (e: MouseEvent, label: string) => {
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+
+    const tooltipX = rect.right + 12; // 오른쪽에 12px 간격
+    const tooltipY = rect.top + rect.height / 2; // 수직 중앙
+
     setTooltip({
       visible: true,
-      x: e.clientX,
-      y: e.clientY,
+      x: tooltipX,
+      y: tooltipY,
       text: label,
     });
   };
@@ -19,21 +22,62 @@ export default function FaceStatusMap() {
   const handleMouseLeave = () => {
     setTooltip((prev) => ({ ...prev, visible: false }));
   };
-
+  // cheek, lip, chin, forehead, glabellus, perocular
   return (
     <S.FaceStatusMapContainer>
-      <img src={FaceImage} alt="페이스맵" style={{ width: '100%' }} />
       {/* 이마 */}
       <S.Hotspot
-        style={{ top: '10%', left: '40%', width: '20%', height: '10%' }}
+        style={{ top: '20%', width: '155px', height: '65px', left: '50%', transform: 'translateX(-50%)' }}
         onMouseEnter={(e) => handleMouseEnter(e, '이마')}
         onMouseLeave={handleMouseLeave}
+        color="rgba(155, 222, 183, 0.7)"
       />
-      {/* 코 */}
+      {/* 미간 */}
       <S.Hotspot
-        style={{ top: '45%', left: '47%', width: '8%', height: '10%' }}
-        onMouseEnter={(e) => handleMouseEnter(e, '코')}
+        style={{ top: '33%', width: '105px', height: '45px', left: '50%', transform: 'translateX(-50%)' }}
+        onMouseEnter={(e) => handleMouseEnter(e, '미간')}
         onMouseLeave={handleMouseLeave}
+        color="rgba(155, 222, 183, 0.7)"
+      />
+      {/* 눈가 */}
+      <S.Hotspot
+        style={{ top: '37%', width: '44px', height: '55px', left: '35%', transform: 'translateX(-50%)' }}
+        onMouseEnter={(e) => handleMouseEnter(e, '오른쪽 눈가')}
+        onMouseLeave={handleMouseLeave}
+        color="rgba(155, 222, 183, 0.7)"
+      />
+      <S.Hotspot
+        style={{ top: '37%', width: '44px', height: '55px', left: '65%', transform: 'translateX(-50%)' }}
+        onMouseEnter={(e) => handleMouseEnter(e, '왼쪽 눈가')}
+        onMouseLeave={handleMouseLeave}
+        color="rgba(155, 222, 183, 0.7)"
+      />
+      {/* 볼 */}
+      <S.Hotspot
+        style={{ top: '50%', width: '75px', height: '77px', left: '38%', transform: 'translateX(-50%)' }}
+        onMouseEnter={(e) => handleMouseEnter(e, '오른쪽 볼')}
+        onMouseLeave={handleMouseLeave}
+        color="rgba(155, 222, 183, 0.7)"
+      />
+      <S.Hotspot
+        style={{ top: '50%', width: '75px', height: '77px', left: '62%', transform: 'translateX(-50%)' }}
+        onMouseEnter={(e) => handleMouseEnter(e, '왼쪽 볼')}
+        onMouseLeave={handleMouseLeave}
+        color="rgba(155, 222, 183, 0.7)"
+      />
+      {/* 입술 */}
+      <S.Hotspot
+        style={{ top: '58.5%', width: '125px', height: '55px', left: '50%', transform: 'translateX(-50%)' }}
+        onMouseEnter={(e) => handleMouseEnter(e, '입술')}
+        onMouseLeave={handleMouseLeave}
+        color="rgba(155, 222, 183, 0.7)"
+      />
+      {/* 턱밑 */}
+      <S.Hotspot
+        style={{ top: '68%', width: '85px', height: '37px', left: '50%', transform: 'translateX(-50%)' }}
+        onMouseEnter={(e) => handleMouseEnter(e, '턱밑')}
+        onMouseLeave={handleMouseLeave}
+        color="rgba(155, 222, 183, 0.7)"
       />
       {/* 툴팁 */}
       <S.Tooltip visible={tooltip.visible} top={tooltip.y} left={tooltip.x}>
