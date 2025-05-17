@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: auto minmax(720px, 1080px) auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 `;
