@@ -5,6 +5,7 @@ import ArrowDownIcon from '@/assets/icons/arrow_down.svg?react';
 import IntroSection from '@/components/homePage/introSection/introSection';
 import AiAnalysisSection from '@/components/homePage/aiAnalysisSection/aiAnalysisSection';
 import AiValiditySection from '@/components/homePage/aiVailditySection/aiVailditySection';
+import AiStepSection from '@/components/homePage/aiStepSection/aiStepSection';
 import * as S from './homePage.style';
 
 export default function HomePage() {
@@ -18,6 +19,7 @@ export default function HomePage() {
       <IntroSection />
       <AiAnalysisSection />
       <AiValiditySection />
+      <AiStepSection />
       <Footer />
     </S.Container>
   );
