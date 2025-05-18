@@ -4,6 +4,7 @@ import HeroSection from '@/components/homePage/heroSection/heroSection';
 import ArrowDownIcon from '@/assets/icons/arrow_down.svg?react';
 import IntroSection from '@/components/homePage/introSection/introSection';
 import AiAnalysisSection from '@/components/homePage/aiAnalysisSection/aiAnalysisSection';
+import AiValiditySection from '@/components/homePage/aiVailditySection/aiVailditySection';
 import * as S from './homePage.style';
 
 export default function HomePage() {
@@ -16,6 +17,7 @@ export default function HomePage() {
       </S.ArrowWrapper>
       <IntroSection />
       <AiAnalysisSection />
+      <AiValiditySection />
       <Footer />
     </S.Container>
   );
