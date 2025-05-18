@@ -46,13 +46,24 @@ export const Description = styled.p`
 export const Button = styled.button`
   background-color: #0f1f4b;
   color: white;
-  padding: 14px 24px;
+  padding: 16px 28px;
   border-radius: 12px;
   border: none;
   font-weight: 600;
+  font-size: 17px;
+  min-width: 240px;
+  text-align: center;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 
   &:hover {
     background-color: #2a3a7a;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    min-width: unset;
+    font-size: 16px;
+    padding: 14px 20px;
   }
 `;
