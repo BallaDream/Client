@@ -18,7 +18,7 @@ export const LogoIcon = styled(LogoIconSvg)`
 `;
 
 export const Title = styled.h2`
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   margin-bottom: 16px;
 `;

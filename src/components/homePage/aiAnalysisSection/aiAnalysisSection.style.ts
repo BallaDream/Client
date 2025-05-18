@@ -8,7 +8,7 @@ export const Container = styled.section`
 `;
 
 export const Title = styled.h2`
-  font-size: 28px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 25px;
 `;
@@ -20,9 +20,8 @@ export const TextGroup = styled.div`
 `;
 
 export const Description = styled.p`
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
+  font-size: 16px;
+  line-height: 1.4;
   margin-bottom: 60px;
 `;
 
@@ -46,7 +45,7 @@ export const Card = styled.div`
 `;
 
 export const CardTitle = styled.h3`
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
 `;
 

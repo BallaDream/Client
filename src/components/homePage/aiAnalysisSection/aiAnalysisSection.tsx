@@ -7,8 +7,8 @@ export default function AiAnalysisSection() {
       <S.TextGroup>
         <S.Description>
           사용자의 얼굴 사진을 기반으로 피부 상태를 분석하여 <br />
-          색소침착, 주름, 수분, 탄력, 모공 등 주요 지표별로 피부 등급을 산출합니다. <br />
-          분석 결과에 따라 예방/권고/필수 3단계로 나누어, 가장 필요한 화장품 성분과 제품을 추천합니다.
+          <b>색소침착, 주름, 수분, 탄력, 모공 등</b> 주요 지표별로 <b>피부 등급을 산출</b>합니다. <br />
+          <b>분석 결과에 따라 예방/권고/필수 3단계</b>로 나누어, 가장 필요한 <b>화장품 성분과 제품</b>을 추천합니다.
         </S.Description>
       </S.TextGroup>
       <S.CardContainer>

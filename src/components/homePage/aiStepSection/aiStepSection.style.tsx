@@ -9,7 +9,7 @@ export const Container = styled.section`
 `;
 
 export const SectionTitle = styled.h2`
-  font-size: 28px;
+  font-size: 30px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 48px;
