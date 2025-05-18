@@ -6,6 +6,7 @@ import IntroSection from '@/components/homePage/introSection/introSection';
 import AiAnalysisSection from '@/components/homePage/aiAnalysisSection/aiAnalysisSection';
 import AiValiditySection from '@/components/homePage/aiVailditySection/aiVailditySection';
 import AiStepSection from '@/components/homePage/aiStepSection/aiStepSection';
+import FaqSection from '@/components/homePage/faqSection/faqSection';
 import * as S from './homePage.style';
 
 export default function HomePage() {
@@ -20,6 +21,7 @@ export default function HomePage() {
       <AiAnalysisSection />
       <AiValiditySection />
       <AiStepSection />
+      <FaqSection />
       <Footer />
     </S.Container>
   );
