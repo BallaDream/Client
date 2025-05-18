@@ -85,6 +85,9 @@ export const LoginButton = styled.button`
   font-weight: bold;
   margin-bottom: 16px;
   cursor: pointer;
+  &:hover {
+    background-color: #2a3a7a;
+  }
 `;
 
 export const SignupWrap = styled.div`
@@ -106,6 +109,9 @@ export const SignupButton = styled.button`
   border-radius: 10px;
   border: none;
   cursor: pointer;
+  &:hover {
+    background-color: #2a3a7a;
+  }
 `;
 
 export const DividerWrap = styled.div`
