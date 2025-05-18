@@ -5,10 +5,6 @@ import FaceImg from '@/assets/icons/ai_model_img.svg?react';
 export default function HeroSection() {
   const navigate = useNavigate();
 
-  const handleStartClick = () => {
-    navigate('/upload');
-  };
-
   return (
     <S.Container>
       <S.ImageWrapper>
@@ -24,8 +20,7 @@ export default function HeroSection() {
           <br />
           <strong>BALLADREAM</strong>에서 AI 피부진단을 통해 나에게 맞는 화장품을 추천 받아보세요.
         </S.Description>
-
-        <S.Button onClick={handleStartClick}>AI 피부분석 시작하기 →</S.Button>
+        <S.Button onClick={() => navigate('/upload')}>AI 피부분석 시작하기 →</S.Button>
       </S.TextBlock>
     </S.Container>
   );

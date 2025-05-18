@@ -4,20 +4,23 @@ export const Container = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 100px 0;
+  gap: 60px;
+  margin: 40px auto 100px;
   width: 100%;
   max-width: 1080px;
-  margin: 0 auto;
+  padding: 0 16px;
 
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 32px;
+    margin: 32px auto 80px;
   }
 `;
 
 export const ImageWrapper = styled.div`
   position: relative;
   width: 460px;
+
   svg {
     width: 100%;
     height: auto;
