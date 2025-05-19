@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '@/layouts/main/mainLayout';
 import HomePage from '@/pages/homePage/homePage';
-import MyPage from '@/pages/myPage/myPage';
+import SignupPage from '@/pages/signupPage/signupPage';
 import ResultPage from '@/pages/resultPage/resultPage';
 import UploadPage from '@/pages/uploadPage/uploadPage';
 
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <MainLayout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'mypage', element: <MyPage /> },
+      { path: 'signup', element: <SignupPage /> },
       { path: 'result', element: <ResultPage /> },
       { path: 'upload', element: <UploadPage /> },
     ],

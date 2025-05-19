@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import * as S from './loginModal.style';
 import XIcon from '@/assets/icons/x_gray.svg?react';
 import EngLogo from '@/assets/icons/eng_logo.svg?react';
@@ -8,10 +9,17 @@ interface Props {
 }
 
 export default function LoginModal({ isOpen, onClose }: Props) {
+  const navigate = useNavigate();
+
   if (!isOpen) return null;
 
   const handleOverlayClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) onClose();
+  };
+
+  const handleSignup = () => {
+    onClose(); // 모달 닫고
+    navigate('/signup'); // 회원가입 페이지로 이동
   };
 
   return (
@@ -35,7 +43,7 @@ export default function LoginModal({ isOpen, onClose }: Props) {
 
         <S.SignupWrap>
           <span>아직 BALLADREAM의 회원이 아니신가요?</span>
-          <S.SignupButton>회원가입</S.SignupButton>
+          <S.SignupButton onClick={handleSignup}>회원가입</S.SignupButton>
         </S.SignupWrap>
 
         <S.DividerWrap>
