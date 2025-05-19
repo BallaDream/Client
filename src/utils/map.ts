@@ -21,7 +21,7 @@ const statusColorMap: Record<(typeof statusPriority)[number], string> = {
 };
 
 // 레이블 매핑
-function getArea(key: string): string {
+function getLabel(key: string): string {
   return labelKeyMap[key] || key;
 }
 
@@ -44,4 +44,4 @@ function getWorstStatusColor(areaStatus: Record<string, string>): string {
   return statusColorMap[worstStatus];
 }
 
-export { getArea, getStatus, getWorstStatusColor };
+export { getLabel, getStatus, getWorstStatusColor };

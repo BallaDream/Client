@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Xarrow from 'react-xarrows';
 
 import { getStatusIcon } from '@/utils/getStatusIcon';
-import { getArea, getStatus, getWorstStatusColor } from '@/utils/map';
+import { getLabel, getStatus, getWorstStatusColor } from '@/utils/map';
 
 import * as S from './diagnosisSection.style';
 
@@ -81,7 +81,7 @@ export default function FaceStatusMap() {
           <ul>
             {Object.entries(status[currentHotspotId]).map(([key, value]) => (
               <S.TooltipList key={key}>
-                <S.TooltipStatusArea>{getArea(key)}:&nbsp;</S.TooltipStatusArea>
+                <S.TooltipStatusLabel>{getLabel(key)}:&nbsp;</S.TooltipStatusLabel>
                 <S.TooltipStatusText>
                   {getStatus(value)}&nbsp;
                   {getStatusIcon(value.trim())}

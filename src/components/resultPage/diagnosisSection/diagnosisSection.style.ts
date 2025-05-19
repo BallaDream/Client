@@ -4,8 +4,8 @@ export const Container = styled.section`
   width: 100%;
   display: grid;
   grid-template-rows: auto auto auto;
-  padding: 48px 48px 0 48px;
-  gap: 56px;
+  padding: 2em 0 2em 0;
+  gap: 2em;
 `;
 
 export const HeaderConatiner = styled.div`
@@ -66,7 +66,7 @@ export const TooltipTitle = styled.p`
   font-weight: 700;
   font-size: 22px;
 `;
-export const TooltipStatusArea = styled.p`
+export const TooltipStatusLabel = styled.p`
   font-size: 18px;
   font-weight: 600;
 `;
