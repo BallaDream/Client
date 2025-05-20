@@ -1,12 +1,13 @@
-import { STATUS } from '@/enums/enums';
+import { LABEL, STATUS } from '@/enums/enums';
 
 // 라벨 변환
-const labelKeyMap: Record<string, string> = {
-  pigmentation: '색소침착',
-  wringkle: '주름',
-  dryness: '건조',
-  sagging: '처짐',
-  pore: '모공',
+const labelKeyMap: Record<LABEL, string> = {
+  [LABEL.PIGMENT]: '색소침착',
+  [LABEL.WRINKLE]: '주름',
+  [LABEL.DRY]: '건조',
+  [LABEL.ELASTIC]: '처짐',
+  [LABEL.PORE]: '모공',
+  [LABEL.ACNE]: '여드름',
 };
 
 // 상태 명칭 변환
@@ -26,13 +27,13 @@ const statusColorMap: Record<STATUS, string> = {
 };
 
 // 라벨 반환
-function getLabel(key: string): string {
+function getLabel(key: LABEL): string {
   return labelKeyMap[key] || key;
 }
 
 // 상태명 반환
-function getStatus(value: string): string {
-  return valueStatusMap[value as STATUS] || value;
+function getStatus(value: STATUS): string {
+  return valueStatusMap[value as STATUS];
 }
 
 // 최악 상태의 색상 반환

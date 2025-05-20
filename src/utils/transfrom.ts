@@ -1,33 +1,34 @@
 import type { IFaceStatus, TGetDiagnoseInfoResponse } from '@/types/resultPage/result';
+import { LABEL } from '@/enums/enums';
 
 export const transformToFaceStatus = (data: TGetDiagnoseInfoResponse['specificResult']): IFaceStatus => {
   return {
     forehead: {
-      pigmentation: data.pigmentForeheadLevel,
-      wringkle: data.wrinkleForeheadLevel,
+      [LABEL.PIGMENT]: data.pigmentForeheadLevel,
+      [LABEL.WRINKLE]: data.wrinkleForeheadLevel,
     },
     glabella: {
-      wringkle: data.wrinkleGlabellaLevel,
+      [LABEL.WRINKLE]: data.wrinkleGlabellaLevel,
     },
     lip: {
-      dryness: data.dryLipsLevel,
+      [LABEL.DRY]: data.dryLipsLevel,
     },
     chin: {
-      sagging: data.elasticJawlineSaggingLevel,
+      [LABEL.ELASTIC]: data.elasticJawlineSaggingLevel,
     },
     rightPerocular: {
-      wringkle: data.wrinkleRightEyeLevel,
+      [LABEL.WRINKLE]: data.wrinkleRightEyeLevel,
     },
     leftPerocular: {
-      wringkle: data.wrinkleLeftEyeLevel,
+      [LABEL.WRINKLE]: data.wrinkleLeftEyeLevel,
     },
     rightCheek: {
-      pigmentation: data.pigmentRightCheekLevel,
-      pore: data.poreRightCheekLevel,
+      [LABEL.PIGMENT]: data.pigmentRightCheekLevel,
+      [LABEL.PORE]: data.poreRightCheekLevel,
     },
     leftCheek: {
-      pigmentation: data.pigmentLeftCheekLevel,
-      pore: data.poreLeftCheekLevel,
+      [LABEL.PIGMENT]: data.pigmentLeftCheekLevel,
+      [LABEL.PORE]: data.poreLeftCheekLevel,
     },
   };
 };

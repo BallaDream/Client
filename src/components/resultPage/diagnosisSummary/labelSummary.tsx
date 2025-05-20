@@ -1,24 +1,39 @@
-import * as S from './diagnosisSummary.style';
-import SummaryBar from './SummaryBar';
+import type { TGetDiagnoseInfoResponse } from '@/types/resultPage/result';
+import type { STATUS } from '@/enums/enums';
 
-export default function LabelSummary() {
-  const data = [
-    { label: '색소침착', level: 'Recommended' },
-    { label: '주름', level: 'Preventive' },
-    { label: '모공', level: 'Recommended' },
-    { label: '수분', level: 'Recommended' },
-    { label: '탄력', level: 'Essential' },
-  ] as const;
+import { getStatus } from '@/utils/map';
+
+import * as S from './diagnosisSummary.style';
+import SummaryBar from './summaryBar';
+
+interface IProps {
+  data?: TGetDiagnoseInfoResponse['totalResult'];
+}
+
+// LABEL enum key → 한글 label 매핑
+const labelKeyMap: Record<string, string> = {
+  PIGMENT: '색소침착',
+  WRINKLE: '주름',
+  PORE: '모공',
+  DRY: '수분',
+  ELASTIC: '탄력',
+};
+
+export default function LabelSummary({ data }: IProps) {
+  if (!data) return null;
 
   return (
     <S.SummaryWrapper>
       <S.Title>피부 상태 요약</S.Title>
-      {data.map((item) => (
-        <div key={item.label}>
-          <div>{item.label}</div>
-          <SummaryBar value={item.level} />
-        </div>
-      ))}
+      {Object.entries(data).map(([key, status]) => {
+        const label = labelKeyMap[key] ?? key;
+        return (
+          <div key={key}>
+            <div>{label}</div>
+            <SummaryBar value={status} />
+          </div>
+        );
+      })}
     </S.SummaryWrapper>
   );
 }

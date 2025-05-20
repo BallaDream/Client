@@ -4,7 +4,7 @@ export enum STATUS {
   WARNING = 'WARNING',
 }
 
-export enum DEVICE {
+export enum LABEL {
   DRY = 'DRY',
   PIGMENT = 'PIGMENT',
   WRINKLE = 'WRINKLE',

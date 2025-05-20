@@ -1,14 +1,14 @@
-import type { STATUS } from '@/enums/enums';
+import type { LABEL, STATUS } from '@/enums/enums';
 //-- type
 export interface IFaceStatus {
-  forehead: { pigmentation: string; wringkle: string };
-  glabella: { wringkle: string };
-  lip: { dryness: string };
-  chin: { sagging: string };
-  rightPerocular: { wringkle: string };
-  leftPerocular: { wringkle: string };
-  rightCheek: { pigmentation: string; pore: string };
-  leftCheek: { pigmentation: string; pore: string };
+  forehead: { [LABEL.PIGMENT]: string; [LABEL.WRINKLE]: string };
+  glabella: { [LABEL.WRINKLE]: string };
+  lip: { [LABEL.DRY]: string };
+  chin: { [LABEL.ELASTIC]: string };
+  rightPerocular: { [LABEL.WRINKLE]: string };
+  leftPerocular: { [LABEL.WRINKLE]: string };
+  rightCheek: { [LABEL.PIGMENT]: string; [LABEL.PORE]: string };
+  leftCheek: { [LABEL.PIGMENT]: string; [LABEL.PORE]: string };
 }
 
 // ---value
@@ -31,10 +31,10 @@ export type TGetDiagnoseInfoResponse = {
     poreRightCheekLevel: STATUS;
   };
   totalResult: {
-    PIGMENT: STATUS;
-    ELASTIC: STATUS;
-    WRINKLE: STATUS;
-    PORE: STATUS;
-    DRY: STATUS;
+    [LABEL.PIGMENT]: STATUS;
+    [LABEL.ELASTIC]: STATUS;
+    [LABEL.WRINKLE]: STATUS;
+    [LABEL.PORE]: STATUS;
+    [LABEL.DRY]: STATUS;
   };
 };
