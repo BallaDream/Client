@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import * as S from './signupForm.style';
+
 import { TERMS_1, TERMS_2 } from '@/constants/terms';
+
+import * as S from './signupForm.style';
 
 export default function SignupForm() {
   const [form, setForm] = useState({
