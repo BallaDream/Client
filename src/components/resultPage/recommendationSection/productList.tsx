@@ -9,7 +9,7 @@ import RightCircleIcon from '@/assets/icons/right_circle.svg?react';
 export default function ProductList() {
   const { data } = useProductInfo({ diagnoseType: 'DRY', level: 'CLEAR', step: 0, minPrice: 3000, maxPrice: 15000, formulation: '립밤' });
   if (!data) return <></>;
-  console.log(data.data);
+
   return (
     <S.ProductList>
       <S.ProductListButton style={{ left: '20px' }} $enabled={false}>

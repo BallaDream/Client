@@ -1,22 +1,20 @@
+import type { STATUS } from '@/enums/enums';
+
+import { getStatus, statusColorMap } from '@/utils/map';
+
 import * as S from './recommendationSection.style';
 
-type TStatus = {
-  status: string;
-  description: string;
-};
-const Status: TStatus = {
-  status: '예방',
-  description: '설명',
-};
+import { useAppSelector } from '@/store/hooks';
+
 export default function Description() {
-  //const { data } = useDiagnoseInfo();
+  const selectedQuery = useAppSelector((state) => state.recommendation.selectedQuery);
   return (
     <S.DescriptionContainer>
       <S.DescriptionLabel>
-        <p>{Status.status}</p>
+        <p style={{ color: statusColorMap[selectedQuery.level as STATUS] }}>{getStatus(selectedQuery.level as STATUS)}</p>
         <p>단계</p>
       </S.DescriptionLabel>
-      <>{Status.description}</>
+      <>설명이요</>
     </S.DescriptionContainer>
   );
 }

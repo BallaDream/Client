@@ -16,14 +16,14 @@ export const Tabs = styled.div`
   padding: 6px 10px;
 `;
 
-export const Tab = styled.button<{ isActive: boolean }>`
+export const Tab = styled.button<{ $isActive: boolean }>`
   border: none;
-  background-color: ${({ isActive }) => (isActive ? '#162A6C' : '#a7b2e6')};
-  color: ${({ isActive }) => (isActive ? 'white' : 'black')};
+  background-color: ${({ $isActive }) => ($isActive ? '#162A6C' : '#a7b2e6')};
+  color: ${({ $isActive }) => ($isActive ? 'white' : 'black')};
   cursor: pointer;
   padding: 12px 16px;
   height: 43px;
-  box-shadow: ${({ isActive }) => (isActive ? '0px 2px 2px rgba(0, 0, 0, 0.2)' : '0px 4px 4px rgba(0, 0, 0, 0.25)')};
+  box-shadow: ${({ $isActive }) => ($isActive ? '0px 2px 2px rgba(0, 0, 0, 0.2)' : '0px 4px 4px rgba(0, 0, 0, 0.25)')};
   border-radius: 6px;
   font-weight: 500;
   font-size: 18px;

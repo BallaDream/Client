@@ -29,6 +29,7 @@ const recommendationSlice = createSlice({
   initialState,
   reducers: {
     setQuery: (state, action: PayloadAction<IRecommendationQuery>) => {
+      console.log(action.payload);
       state.selectedQuery = action.payload;
     },
   },
