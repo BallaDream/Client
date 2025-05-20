@@ -4,8 +4,8 @@ export const Container = styled.section`
   width: 100%;
   display: grid;
   grid-template-rows: auto auto auto;
-  padding: 48px 48px 0 48px;
-  gap: 56px;
+  padding: 2em 0 2em 0;
+  gap: 2em;
 `;
 
 export const HeaderConatiner = styled.div`
@@ -38,7 +38,7 @@ export const Hotspot = styled.div<{ color?: string }>`
   transform: translateX(-50%);
 `;
 
-export const Tooltip = styled.div<{ visible: boolean; top: number; left: number }>`
+export const Tooltip = styled.div<{ $visible: boolean; $top: number; $left: number }>`
   position: fixed;
   pointer-events: none;
   background: #a7b2e6;
@@ -46,12 +46,11 @@ export const Tooltip = styled.div<{ visible: boolean; top: number; left: number 
   gap: 5px;
   border-radius: 10px;
   border: none;
-  font-size: 18px;
-  font-weight: bold;
+
   color: black;
-  visibility: ${({ visible }) => (visible ? 'visible' : 'hidden')};
-  top: ${({ top }) => top}px;
-  left: ${({ left }) => left}px;
+  visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
+  top: ${({ $top }) => $top}px;
+  left: ${({ $left }) => $left}px;
   transform: translateY(-59px) translateX(70px);
   display: flex;
   flex-direction: column;
@@ -60,11 +59,19 @@ export const Tooltip = styled.div<{ visible: boolean; top: number; left: number 
   z-index: 999;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
-
+export const TooltipList = styled.li`
+  display: flex;
+`;
 export const TooltipTitle = styled.p`
   font-weight: 700;
   font-size: 22px;
 `;
-export const TooltipLabel = styled.p`
-  font-weight: 500;
+export const TooltipStatusLabel = styled.p`
+  font-size: 18px;
+  font-weight: 600;
+`;
+export const TooltipStatusText = styled.p`
+  font-size: 18px;
+  font-weight: 600;
+  opacity: 0.8;
 `;

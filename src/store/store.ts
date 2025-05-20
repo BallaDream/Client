@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import recommendationReducer from '@/slices/recommandationSlice';
 import uploadReducer from '@/slices/uploadSlice';
 
 export const store = configureStore({
   reducer: {
     upload: uploadReducer,
+    recommendation: recommendationReducer,
   },
 });
 
