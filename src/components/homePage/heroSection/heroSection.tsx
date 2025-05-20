@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
+
 import * as S from './heroSection.style';
+
 import FaceImg from '@/assets/icons/ai_model_img.svg?react';
 
 export default function HeroSection() {

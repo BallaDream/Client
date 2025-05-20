@@ -1,7 +1,10 @@
 import { useState } from 'react';
-import * as S from './header.style';
-import LogoIcon from '@/assets/icons/logo_header.svg?react';
+
 import LoginModal from '@/components/common/modal/loginModal';
+
+import * as S from './header.style';
+
+import LogoIcon from '@/assets/icons/logo_header.svg?react';
 
 export default function Header() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);

@@ -1,5 +1,7 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
+
 import * as S from './faqSection.style';
+
 import QuestionIcon from '@/assets/icons/question.svg?react';
 
 interface Props {

@@ -2,8 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '@/layouts/main/mainLayout';
 import HomePage from '@/pages/homePage/homePage';
-import SignupPage from '@/pages/signupPage/signupPage';
 import ResultPage from '@/pages/resultPage/resultPage';
+import SignupPage from '@/pages/signupPage/signupPage';
 import UploadPage from '@/pages/uploadPage/uploadPage';
 
 // 라우팅설정(이것도 바꿔야됨)
