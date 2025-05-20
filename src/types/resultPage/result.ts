@@ -1,20 +1,41 @@
 import type { LABEL, STATUS } from '@/enums/enums';
-//-- type
+// --- type
 export interface IFaceStatus {
-  forehead: { [LABEL.PIGMENT]: string; [LABEL.WRINKLE]: string };
-  glabella: { [LABEL.WRINKLE]: string };
-  lip: { [LABEL.DRY]: string };
-  chin: { [LABEL.ELASTIC]: string };
-  rightPerocular: { [LABEL.WRINKLE]: string };
-  leftPerocular: { [LABEL.WRINKLE]: string };
-  rightCheek: { [LABEL.PIGMENT]: string; [LABEL.PORE]: string };
-  leftCheek: { [LABEL.PIGMENT]: string; [LABEL.PORE]: string };
+  forehead: { [LABEL.PIGMENT]: STATUS; [LABEL.WRINKLE]: STATUS };
+  glabella: { [LABEL.WRINKLE]: STATUS };
+  lip: { [LABEL.DRY]: STATUS };
+  chin: { [LABEL.ELASTIC]: STATUS };
+  rightPerocular: { [LABEL.WRINKLE]: STATUS };
+  leftPerocular: { [LABEL.WRINKLE]: STATUS };
+  rightCheek: { [LABEL.PIGMENT]: STATUS; [LABEL.PORE]: STATUS };
+  leftCheek: { [LABEL.PIGMENT]: STATUS; [LABEL.PORE]: STATUS };
+}
+
+export interface IProduct {
+  productId: number;
+  productName: string;
+  formulation: string;
+  price: number;
+  salesLink: string;
+  imageLink: string;
+  element: string[];
+  interest: boolean;
 }
 
 // ---value
 export type TGetDiagnoseInfoValue = {
   diagnoseId: number;
 };
+
+export type TGetRecomendationValue = {
+  diagnoseType: string;
+  level: string;
+  step: number;
+  minPrice?: number;
+  maxPrice?: number;
+  formulation?: string;
+};
+
 // ---response
 export type TGetDiagnoseInfoResponse = {
   specificResult: {
@@ -38,3 +59,5 @@ export type TGetDiagnoseInfoResponse = {
     [LABEL.DRY]: STATUS;
   };
 };
+
+export type TGetRecommendationResponse = { data: IProduct[] };

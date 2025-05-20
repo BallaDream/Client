@@ -9,6 +9,7 @@ const Status: TStatus = {
   description: '설명',
 };
 export default function Description() {
+  //const { data } = useDiagnoseInfo();
   return (
     <S.DescriptionContainer>
       <S.DescriptionLabel>

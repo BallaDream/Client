@@ -197,6 +197,9 @@ export const ProductName = styled.div`
   font-weight: 500;
   font-size: 20px;
   line-height: 150%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const Price = styled.div`
@@ -208,8 +211,10 @@ export const Price = styled.div`
 
 export const Ingredients = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const IngredientTag = styled.div`

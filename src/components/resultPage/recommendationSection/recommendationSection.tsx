@@ -9,7 +9,7 @@ import HeaderText from '../headerText/headerText';
 export default function RecommendationSection() {
   return (
     <S.Container>
-      <HeaderText text="닉네임" />
+      <HeaderText text="닉네임 님의 추천 화장품" />
       {/* 카테고리 탭 */}
       <CategoryTabs />
 

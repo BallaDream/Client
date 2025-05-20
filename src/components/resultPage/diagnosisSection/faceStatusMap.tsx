@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Xarrow from 'react-xarrows';
 
 import type { IFaceStatus } from '@/types/resultPage/result';
+import type { LABEL, STATUS } from '@/enums/enums';
 
 import { getStatusIcon } from '@/utils/getStatusIcon';
 import { getLabel, getStatus, getWorstStatusColor } from '@/utils/map';
@@ -65,11 +66,11 @@ export default function FaceStatusMap() {
       {/* 툴팁 */}
       <S.Tooltip $visible={tooltip.visible} $top={tooltip.y} $left={tooltip.x} id="tooltip">
         <S.TooltipTitle>{tooltip.title}</S.TooltipTitle>
-        {currentHotspotId && status[currentHotspotId] && (
+        {currentHotspotId && (
           <ul>
-            {Object.entries(status[currentHotspotId]).map(([key, value]) => (
+            {Object.entries(status[currentHotspotId] as Record<LABEL, STATUS>).map(([key, value]) => (
               <S.TooltipList key={key}>
-                <S.TooltipStatusLabel>{getLabel(key)}:&nbsp;</S.TooltipStatusLabel>
+                <S.TooltipStatusLabel>{getLabel(key as LABEL)}:&nbsp;</S.TooltipStatusLabel>
                 <S.TooltipStatusText>
                   {getStatus(value)}&nbsp;
                   {getStatusIcon(value.trim())}
