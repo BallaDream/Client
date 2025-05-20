@@ -2,36 +2,19 @@ import type { CSSProperties } from 'react';
 import { useState } from 'react';
 import Xarrow from 'react-xarrows';
 
+import type { IFaceStatus } from '@/types/resultPage/result';
+
 import { getStatusIcon } from '@/utils/getStatusIcon';
 import { getLabel, getStatus, getWorstStatusColor } from '@/utils/map';
+import { transformToFaceStatus } from '@/utils/transfrom';
+
+import { useDiagnoseInfo } from '@/hooks/useDiagnoseInfo';
 
 import * as S from './diagnosisSection.style';
 
-// status 데이터
-interface IFaceStatus {
-  forehead: { pigmentation: string; wringkle: string };
-  gtitlelus: { pigmentation: string; wringkle: string };
-  lip: { dryness: string };
-  chin: { sagging: string };
-  rightPerocular: { wringkle: string };
-  leftPerocular: { wringkle: string };
-  rightCheek: { pigmentation: string; pore: string };
-  leftCheek: { pigmentation: string; pore: string };
-}
-
-const status: IFaceStatus = {
-  forehead: { pigmentation: 'Preventive', wringkle: 'Essential' },
-  gtitlelus: { pigmentation: 'Preventive', wringkle: 'Essential' },
-  lip: { dryness: 'Essential' },
-  chin: { sagging: 'Preventive' },
-  rightPerocular: { wringkle: 'Recommended' },
-  leftPerocular: { wringkle: 'Preventive' },
-  rightCheek: { pigmentation: 'Essential', pore: 'Recommended' },
-  leftCheek: { pigmentation: 'Preventive', pore: 'Recommended' },
-};
-
 // 메인 컴포넌트
 export default function FaceStatusMap() {
+  //마우스 툴팁
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, title: '' });
   const [currentHotspotId, setCurrentHotspotId] = useState<keyof IFaceStatus | null>(null);
 
@@ -52,7 +35,7 @@ export default function FaceStatusMap() {
   // Hotspot 설정
   const hotspots: { id: keyof IFaceStatus; Area: string; style: CSSProperties }[] = [
     { id: 'forehead', Area: '이마', style: { top: '20%', width: '155px', height: '65px', left: '50%' } },
-    { id: 'gtitlelus', Area: '미간', style: { top: '33%', width: '105px', height: '45px', left: '50%' } },
+    { id: 'glabella', Area: '미간', style: { top: '33%', width: '105px', height: '45px', left: '50%' } },
     { id: 'rightPerocular', Area: '오른쪽 눈가', style: { top: '37%', width: '44px', height: '55px', left: '35%' } },
     { id: 'leftPerocular', Area: '왼쪽 눈가', style: { top: '37%', width: '44px', height: '55px', left: '65%' } },
     { id: 'rightCheek', Area: '오른쪽 볼', style: { top: '50%', width: '75px', height: '77px', left: '38%' } },
@@ -61,6 +44,11 @@ export default function FaceStatusMap() {
     { id: 'chin', Area: '턱밑', style: { top: '68%', width: '85px', height: '37px', left: '50%' } },
   ];
 
+  // api 데이터
+  const { data, isLoading, isError, error } = useDiagnoseInfo({ diagnoseId: 1 });
+
+  if (isLoading || !data) return <div />;
+  const status: IFaceStatus = transformToFaceStatus(data.specificResult);
   return (
     <S.FaceStatusMapContainer>
       {hotspots.map(({ id, Area, style }) => (
