@@ -38,6 +38,7 @@ export default function RecommendationSection() {
       hasInitializedRef.current = true;
     }
   }, [data]);
+
   return (
     <S.Container>
       <HeaderText text="닉네임 님의 추천 화장품" />

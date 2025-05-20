@@ -78,7 +78,7 @@ export const FilterControlPiceSection = styled.div`
 export const FilterControlDropdownSection = styled.div`
   display: grid;
   gap: 12px;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto auto auto;
 `;
 
 export const RefreshButton = styled.button`
@@ -129,7 +129,7 @@ export const DescriptionLabel = styled.div`
   p:nth-child(1) {
     font-weight: 600;
     font-size: 24px;
-    color: #6fcf97;
+    opacity: 1;
   }
   p:nth-child(2) {
     font-weight: 500;
