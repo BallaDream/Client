@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import LoginIconSvg from '@/assets/icons/mypage_icon.svg?react';
 
 export const Container = styled.header`

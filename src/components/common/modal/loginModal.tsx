@@ -1,19 +1,22 @@
+import type { MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from './loginModal.style';
-import XIcon from '@/assets/icons/x_gray.svg?react';
-import EngLogo from '@/assets/icons/eng_logo.svg?react';
 
-interface Props {
+import * as S from './loginModal.style';
+
+import EngLogo from '@/assets/icons/eng_logo.svg?react';
+import XIcon from '@/assets/icons/x_gray.svg?react';
+
+interface IProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function LoginModal({ isOpen, onClose }: Props) {
+export default function LoginModal({ isOpen, onClose }: IProps) {
   const navigate = useNavigate();
 
   if (!isOpen) return null;
 
-  const handleOverlayClick = (e: React.MouseEvent) => {
+  const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) onClose();
   };
 
@@ -30,6 +33,7 @@ export default function LoginModal({ isOpen, onClose }: Props) {
         </S.CloseButton>
 
         <S.Title>로그인</S.Title>
+
         <S.LogoWrapper>
           <EngLogo />
         </S.LogoWrapper>

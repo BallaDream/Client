@@ -1,7 +1,11 @@
 import { useState } from 'react';
-import * as S from './header.style';
-import LogoIcon from '@/assets/icons/logo_header.svg?react';
+import { Link } from 'react-router-dom';
+
 import LoginModal from '@/components/common/modal/loginModal';
+
+import * as S from './header.style';
+
+import LogoIcon from '@/assets/icons/logo_header.svg?react';
 
 export default function Header() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -14,7 +18,9 @@ export default function Header() {
     <>
       <S.Container>
         <S.Content>
-          <LogoIcon />
+          <Link to="/">
+            <LogoIcon />
+          </Link>
           <S.LoginIcon onClick={handleLoginIconClick} />
         </S.Content>
       </S.Container>
@@ -23,19 +29,3 @@ export default function Header() {
     </>
   );
 }
-
-/* 원래 모달 없기 전 코드
-import * as S from './header.style';
-import LogoIcon from '@/assets/icons/logo_header.svg?react';
-
-export default function Header() {
-  return (
-    <S.Container>
-      <S.Content>
-        <LogoIcon />
-        <S.LoginIcon />
-      </S.Content>
-    </S.Container>
-  );
-}
-  */

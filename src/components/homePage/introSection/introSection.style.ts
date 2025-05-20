@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import LogoIconSvg from '@/assets/icons/logo.svg?react';
 
 export const Container = styled.section`

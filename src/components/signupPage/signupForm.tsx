@@ -1,78 +1,83 @@
-import { useState } from 'react';
+import type { SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import { TERMS_1, TERMS_2 } from '@/constants/terms';
 
+import { signupSchema } from './signupForm.schema';
 import * as S from './signupForm.style';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
+interface FormValues {
+  username: string;
+  password: string;
+  authNum: string;
+  terms1: boolean;
+  terms2: boolean;
+}
+
 export default function SignupForm() {
-  const [form, setForm] = useState({
-    id: '',
-    password: '',
-    email: '',
-    code: '',
+  const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm<FormValues>({
+    resolver: yupResolver(signupSchema),
+    mode: 'onChange',
   });
 
-  const [checked, setChecked] = useState({
-    terms1: false,
-    terms2: false,
-  });
-
-  const isFormValid =
-    form.id.trim() !== '' && form.password.trim() !== '' && form.email.trim() !== '' && form.code.trim() !== '' && checked.terms1 && checked.terms2;
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleCheckbox = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setChecked((prev) => ({ ...prev, [name]: checked }));
-  };
-
-  const handleSubmit = () => {
-    if (!isFormValid) return;
-    console.log('회원가입 정보:', form);
-    // 추후 API 연동
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log('회원가입 데이터:', data);
+    alert('회원가입이 완료되었습니다. 로그인 해주십시오.');
+    navigate('/');
   };
 
   return (
     <S.PageWrapper>
-      <S.Container>
+      <S.Container onSubmit={handleSubmit(onSubmit)}>
         <S.Title>일반 회원가입</S.Title>
 
         <S.InputGroup>
-          <S.Input name="id" placeholder="아이디" value={form.id} onChange={handleChange} />
-          <S.Input name="password" type="password" placeholder="비밀번호" value={form.password} onChange={handleChange} />
+          <S.InputWrapper>
+            <S.Input type="text" placeholder="아이디(이메일주소)" {...register('username')} />
+            <S.InputButton type="button">전송</S.InputButton>
+          </S.InputWrapper>
+          {errors.username && <S.ErrorMessage>{errors.username.message}</S.ErrorMessage>}
+        </S.InputGroup>
+
+        <S.InputGroup>
+          <S.Input type="password" placeholder="비밀번호" {...register('password')} />
+          {errors.password && <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>}
         </S.InputGroup>
 
         <S.InputGroup>
           <S.InputWrapper>
-            <S.Input name="email" placeholder="이메일주소" value={form.email} onChange={handleChange} />
-            <S.InputButton>전송</S.InputButton>
+            <S.Input type="text" placeholder="인증번호" {...register('authNum')} />
+            <S.InputButton type="button">확인</S.InputButton>
           </S.InputWrapper>
-
-          <S.InputWrapper>
-            <S.Input name="code" placeholder="인증번호" value={form.code} onChange={handleChange} />
-            <S.InputButton>확인</S.InputButton>
-          </S.InputWrapper>
+          {errors.authNum && <S.ErrorMessage>{errors.authNum.message}</S.ErrorMessage>}
         </S.InputGroup>
 
         <S.CheckboxWrap>
           <label>
-            <input type="checkbox" name="terms1" checked={checked.terms1} onChange={handleCheckbox} />
+            <input type="checkbox" {...register('terms1')} />
             <b>[필수] 이용약관 동의</b>
           </label>
+          {errors.terms1 && <S.ErrorMessage>{errors.terms1.message}</S.ErrorMessage>}
           <S.TermBox>{TERMS_1}</S.TermBox>
 
           <label>
-            <input type="checkbox" name="terms2" checked={checked.terms2} onChange={handleCheckbox} />
+            <input type="checkbox" {...register('terms2')} />
             <b>[필수] 개인정보 수집 이용 동의</b>
           </label>
+          {errors.terms2 && <S.ErrorMessage>{errors.terms2.message}</S.ErrorMessage>}
           <S.TermBox>{TERMS_2}</S.TermBox>
         </S.CheckboxWrap>
 
-        <S.SubmitButton disabled={!isFormValid} onClick={handleSubmit}>
+        <S.SubmitButton type="submit" disabled={!isValid}>
           약관동의 후 가입하기
         </S.SubmitButton>
       </S.Container>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import LogoSvg from '@/assets/icons/logo_footer.svg?react';
 
 export const Container = styled.footer`

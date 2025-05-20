@@ -5,24 +5,24 @@ export const PageWrapper = styled.div`
   padding: 30px 16px 100px;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
-export const Container = styled.div`
+export const Container = styled.form`
   width: 100%;
   max-width: 600px;
-  margin: 0 auto;
-  padding: 60px 20px 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 20px;
 `;
 
 export const Title = styled.h2`
   font-size: 32px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
+`;
+
+export const InputWrapper = styled.div`
+  position: relative;
 `;
 
 export const Input = styled.input`
@@ -31,15 +31,6 @@ export const Input = styled.input`
   border: 1.5px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
-
-  &::placeholder {
-    color: #bbb;
-  }
-
-  &:focus {
-    border: 2px solid #6c78c2;
-    outline: none;
-  }
 `;
 
 export const InputGroup = styled.div`
@@ -47,15 +38,7 @@ export const InputGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
-
-  &:not(:first-of-type) {
-    margin-top: 16px;
-  }
-`;
-
-export const InputWrapper = styled.div`
-  position: relative;
-  width: 100%;
+  margin-left: 2px;
 `;
 
 export const InputButton = styled.button`
@@ -63,11 +46,11 @@ export const InputButton = styled.button`
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
-  height: 32px;
-  padding: 0 12px;
+  height: 36px;
+  padding: 0 14px;
   background-color: #0f1f4b;
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -75,31 +58,19 @@ export const InputButton = styled.button`
   &:hover {
     background-color: #2a3a7a;
   }
+`;
 
-  &:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+export const ErrorMessage = styled.p`
+  font-size: 12px;
+  color: red;
+  margin-left: 2px;
 `;
 
 export const CheckboxWrap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 16px;
-
-  label {
-    font-size: 16px;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    input {
-      width: 16px;
-      height: 16px;
-    }
-  }
+  gap: 2px;
+  font-size: 16px;
 `;
 
 export const TermBox = styled.div`
@@ -123,7 +94,6 @@ export const SubmitButton = styled.button<{ disabled: boolean }>`
   color: white;
   border: none;
   border-radius: 10px;
-  margin-top: 20px;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
