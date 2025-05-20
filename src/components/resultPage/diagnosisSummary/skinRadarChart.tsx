@@ -1,46 +1,43 @@
 import { ResponsiveRadar } from '@nivo/radar';
 
+import type { TGetDiagnoseInfoResponse } from '@/types/resultPage/result';
+import { LABEL, STATUS } from '@/enums/enums';
+
 import * as S from './diagnosisSummary.style';
 
-type TLevel = '예방' | '권고' | '필수';
-
-const levelToScore: Record<TLevel, number> = {
-  예방: 33,
-  권고: 66,
-  필수: 100,
+// STATUS → 점수 매핑
+const levelToScore: Record<string, number> = {
+  [STATUS.CLEAR]: 33,
+  [STATUS.CAUTION]: 66,
+  [STATUS.WARNING]: 100,
+};
+// LABEL → 한글 라벨 매핑
+const labelKeyMap: Record<string, string> = {
+  [LABEL.PIGMENT]: '색소침착',
+  [LABEL.WRINKLE]: '주름',
+  [LABEL.PORE]: '모공',
+  [LABEL.DRY]: '수분',
+  [LABEL.ELASTIC]: '탄력',
 };
 
-const data = [
-  {
-    item: '색소침착',
-    사용자: levelToScore['권고'],
-  },
-  {
-    item: '주름',
-    사용자: levelToScore['예방'],
-  },
-  {
-    item: '모공',
-    사용자: levelToScore['권고'],
-  },
-  {
-    item: '수분',
-    사용자: levelToScore['권고'],
-  },
-  {
-    item: '탄력',
-    사용자: levelToScore['필수'],
-  },
-];
+interface IProps {
+  data?: TGetDiagnoseInfoResponse['totalResult'];
+}
 
-const keys = ['사용자'];
+export default function SkinRadarChart({ data }: IProps) {
+  if (!data) return null;
 
-export default function SkinRadarChart() {
+  // totalResult → nivo radar용 포맷으로 변환
+  const radarData = Object.entries(data).map(([label, status]) => ({
+    item: labelKeyMap[label] || label,
+    사용자: levelToScore[status],
+  }));
+
   return (
     <S.ChartContainer style={{ height: 400 }}>
       <ResponsiveRadar
-        data={data}
-        keys={keys}
+        data={radarData}
+        keys={['사용자']}
         indexBy="item"
         maxValue={100}
         margin={{ top: 70, right: 80, bottom: 40, left: 80 }}
