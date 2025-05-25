@@ -36,6 +36,11 @@ export type TGetRecomendationValue = {
   formulation?: string;
 };
 export type TPostInterestValue = {
+  productId: number;
+  diagnoseType: string;
+};
+export type TDeleteInterestValue = {
+  productId: number;
   diagnoseType: string;
 };
 // ---response
@@ -63,3 +68,8 @@ export type TGetDiagnoseInfoResponse = {
 };
 
 export type TGetRecommendationResponse = { data: IProduct[]; hasMore: boolean };
+
+export type TInterestResponse = {
+  status: number;
+  message: string;
+};

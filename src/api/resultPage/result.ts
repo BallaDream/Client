@@ -1,9 +1,10 @@
 import type {
+  TDeleteInterestValue,
   TGetDiagnoseInfoResponse,
   TGetDiagnoseInfoValue,
   TGetRecomendationValue,
   TGetRecommendationResponse,
-  TPostInterestResponse,
+  TInterestResponse,
   TPostInterestValue,
 } from '@/types/resultPage/result';
 
@@ -36,13 +37,19 @@ export const getRecommendation = async ({
   if (formulation) params.append('formulation', formulation);
 
   const { data } = await axiosInstance.get(`/recommendation?${params.toString()}`);
-  //console.log(data);
+  console.log(data);
   return data;
 };
 
 // 관심상품 등록
-export const postInterest = async (value: TPostInterestValue): Promise<TPostInterestResponse> => {
+export const postInterest = async (value: TPostInterestValue): Promise<TInterestResponse> => {
   const { data } = await axiosInstance.post('/interested-product', value);
+  console.log(data);
+  return data;
+};
+// 관심상품 등록 해제
+export const deleteInterest = async (value: TDeleteInterestValue): Promise<TInterestResponse> => {
+  const { data } = await axiosInstance.post(`/interested-product?productId=${value.productId}&diagnoseType=${value.diagnoseType}`, value);
   console.log(data);
   return data;
 };
