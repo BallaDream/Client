@@ -1,12 +1,21 @@
-import type { TGetDiagnoseInfoResponse, TGetDiagnoseInfoValue, TGetRecomendationValue, TGetRecommendationResponse } from '@/types/resultPage/result';
+import type {
+  TGetDiagnoseInfoResponse,
+  TGetDiagnoseInfoValue,
+  TGetRecomendationValue,
+  TGetRecommendationResponse,
+  TPostInterestResponse,
+  TPostInterestValue,
+} from '@/types/resultPage/result';
 
 import { axiosInstance } from '../axiosInstance';
 
+//진단결과 받긴
 export const getDiagnoseInfo = async ({ diagnoseId }: TGetDiagnoseInfoValue): Promise<TGetDiagnoseInfoResponse> => {
   const { data } = await axiosInstance.get(`/diagnose/${diagnoseId}`);
   return data;
 };
 
+//추천 화장품 받기
 export const getRecommendation = async ({
   diagnoseType,
   level,
@@ -27,5 +36,13 @@ export const getRecommendation = async ({
   if (formulation) params.append('formulation', formulation);
 
   const { data } = await axiosInstance.get(`/recommendation?${params.toString()}`);
+  //console.log(data);
+  return data;
+};
+
+// 관심상품 등록
+export const postInterest = async (value: TPostInterestValue): Promise<TPostInterestResponse> => {
+  const { data } = await axiosInstance.post('/interested-product', value);
+  console.log(data);
   return data;
 };

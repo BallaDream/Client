@@ -35,7 +35,9 @@ export type TGetRecomendationValue = {
   maxPrice?: number;
   formulation?: string;
 };
-
+export type TPostInterestValue = {
+  diagnoseType: string;
+};
 // ---response
 export type TGetDiagnoseInfoResponse = {
   specificResult: {
@@ -60,4 +62,4 @@ export type TGetDiagnoseInfoResponse = {
   };
 };
 
-export type TGetRecommendationResponse = { data: IProduct[] };
+export type TGetRecommendationResponse = { data: IProduct[]; hasMore: boolean };

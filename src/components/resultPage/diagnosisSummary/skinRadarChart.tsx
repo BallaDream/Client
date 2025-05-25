@@ -7,9 +7,9 @@ import * as S from './diagnosisSummary.style';
 
 // STATUS → 점수 매핑
 const levelToScore: Record<string, number> = {
-  [STATUS.CLEAR]: 33,
+  [STATUS.CLEAR]: 100,
   [STATUS.CAUTION]: 66,
-  [STATUS.WARNING]: 100,
+  [STATUS.WARNING]: 33,
 };
 // LABEL → 한글 라벨 매핑
 const labelKeyMap: Record<string, string> = {

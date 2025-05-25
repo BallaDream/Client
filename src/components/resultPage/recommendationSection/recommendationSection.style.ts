@@ -31,7 +31,9 @@ export const Tab = styled.button<{ $isActive: boolean }>`
 
 export const ProductList = styled.div`
   display: flex;
-  justify-content: center;
+  background-color: #f9f9fd;
+  box-shadow: '0px 4px 4px rgba(0, 0, 0, 0.25)';
+
   align-items: center;
   padding: 3px;
   gap: 10px;
@@ -41,9 +43,9 @@ export const ProductList = styled.div`
   border-radius: 6px;
   position: relative;
 `;
-export const ProductListButton = styled.div<{ $enabled: boolean }>`
+export const ProductListButton = styled.button<{ $enabled: boolean }>`
   position: absolute;
-  background-color: none;
+  background-color: transparent;
   cursor: pointer;
   z-index: 9999;
   opacity: ${({ $enabled }) => ($enabled ? 1 : 0.5)};
@@ -152,13 +154,21 @@ export const Card = styled.div`
 
 export const Badge = styled.div`
   position: absolute;
-  top: 6px;
-  left: 6px;
-  background-color: #e0e0e0;
-  padding: 2px 6px;
   font-size: 10px;
-  border-radius: 4px;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  font-size: 12px;
+  position: absolute;
+  height: 24px;
+  left: 0px;
+  top: 0px;
+
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6px 0px;
 `;
 
 export const ImageArea = styled.div`
