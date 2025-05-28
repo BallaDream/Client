@@ -25,7 +25,7 @@ export default function ProductList() {
 
   if (!data) return <></>;
   const isPrevEnabled = selectedQuery.step > 0;
-  const isNextEnabled = data.data.length > 0 && !isPlaceholderData;
+  const isNextEnabled = data?.data?.length > 0 && !isPlaceholderData;
   return (
     <S.ProductList>
       {/* 이전 */}
@@ -33,9 +33,7 @@ export default function ProductList() {
         <LeftCircleIcon />
       </S.ProductListButton>
       {/* 카드리스트 */}
-      {data.data.map((product, index) => (
-        <ProductCard key={index} {...product} />
-      ))}
+      {data?.data?.map((product, index) => <ProductCard key={index} {...product} />)}
       {/* 다음 */}
       <S.ProductListButton disabled={isPlaceholderData || !isNextEnabled} style={{ right: '20px' }} $enabled={isNextEnabled} onClick={handleNext}>
         <RightCircleIcon />

@@ -1,4 +1,4 @@
-import { LABEL } from '@/enums/enums';
+import { LABEL, STATUS } from '@/enums/enums';
 
 import { useDiagnoseInfo } from '@/hooks/useDiagnoseInfo';
 
@@ -23,10 +23,14 @@ export default function CategoryTabs() {
   const { data } = useDiagnoseInfo({ diagnoseId: 1 });
 
   const handleCategoryClick = (category: string) => {
+    console.log(category);
     const diagnoseType = categoryToDiagnoseType[category as keyof typeof categoryToDiagnoseType];
-    const level = data?.totalResult?.[diagnoseType];
+    const level = data?.totalResult?.[diagnoseType] || STATUS.CLEAR;
 
-    if (!diagnoseType || !level) return;
+    if (!diagnoseType || !level) {
+      console.log(diagnoseType, level);
+      return;
+    }
 
     dispatch(
       setQuery({
