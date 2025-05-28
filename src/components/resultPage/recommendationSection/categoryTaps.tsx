@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 import { LABEL, STATUS } from '@/enums/enums';
 
 import { useDiagnoseInfo } from '@/hooks/useDiagnoseInfo';
@@ -17,25 +19,28 @@ const categoryToDiagnoseType = {
   탄력: LABEL.ELASTIC,
 } as const;
 
+// 역 매핑
+const diagnoseTypeToCategory = Object.fromEntries(Object.entries(categoryToDiagnoseType).map(([kor, eng]) => [eng, kor])) as Record<LABEL, string>;
+
 export default function CategoryTabs() {
   const dispatch = useAppDispatch();
   const selectedQuery = useAppSelector((state) => state.recommendation.selectedQuery);
-  const { data } = useDiagnoseInfo({ diagnoseId: 1 });
+
+  const { diagnoseId = '0' } = useParams<{ diagnoseId: string }>();
+  const { data } = useDiagnoseInfo({ diagnoseId });
 
   const handleCategoryClick = (category: string) => {
-    console.log(category);
     const diagnoseType = categoryToDiagnoseType[category as keyof typeof categoryToDiagnoseType];
     const level = data?.totalResult?.[diagnoseType] || STATUS.CLEAR;
 
-    if (!diagnoseType || !level) {
-      console.log(diagnoseType, level);
-      return;
-    }
+    // 선택된 탭과 같으면 리턴
+    if (selectedQuery.diagnoseType === diagnoseType) return;
 
     dispatch(
       setQuery({
         ...selectedQuery,
         diagnoseType,
+        step: 0,
         level,
       }),
     );
@@ -44,7 +49,11 @@ export default function CategoryTabs() {
   return (
     <S.Tabs>
       {categories.map((category) => (
-        <S.Tab key={category} $isActive={selectedQuery.diagnoseType === categoryToDiagnoseType[category]} onClick={() => handleCategoryClick(category)}>
+        <S.Tab
+          key={category}
+          $isActive={diagnoseTypeToCategory[selectedQuery.diagnoseType as LABEL] === category}
+          onClick={() => handleCategoryClick(category)}
+        >
           {category}
         </S.Tab>
       ))}

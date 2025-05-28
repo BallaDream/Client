@@ -4,7 +4,7 @@ export const Container = styled.section`
   width: 100%;
   display: grid;
   grid-template-rows: auto auto auto;
-  padding: 2em 0 2em 0;
+  padding: 4em 0 2em 0;
   gap: 2em;
 `;
 
@@ -26,7 +26,6 @@ export const FaceStatusMapContainer = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
   justify-self: center;
 `;
 

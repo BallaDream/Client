@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { useDiagnoseInfo } from '@/hooks/useDiagnoseInfo';
 
@@ -14,7 +15,8 @@ import { setQuery } from '@/slices/recommandationSlice';
 import { useAppDispatch } from '@/store/hooks';
 
 export default function RecommendationSection() {
-  const { data } = useDiagnoseInfo({ diagnoseId: 2 });
+  const { diagnoseId = '0' } = useParams<{ diagnoseId: string }>();
+  const { data } = useDiagnoseInfo({ diagnoseId });
   const dispatch = useAppDispatch();
 
   const hasInitializedRef = useRef(false);

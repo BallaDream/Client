@@ -24,7 +24,7 @@ export interface IProduct {
 
 // ---value
 export type TGetDiagnoseInfoValue = {
-  diagnoseId: number;
+  diagnoseId: string;
 };
 
 export type TGetRecomendationValue = {

@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Xarrow from 'react-xarrows';
 
 import type { IFaceStatus } from '@/types/resultPage/result';
@@ -13,8 +14,9 @@ import { useDiagnoseInfo } from '@/hooks/useDiagnoseInfo';
 
 import * as S from './diagnosisSection.style';
 
-// 메인 컴포넌트
 export default function FaceStatusMap() {
+  const { diagnoseId = '0' } = useParams<{ diagnoseId: string }>();
+
   //마우스 툴팁
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, title: '' });
   const [currentHotspotId, setCurrentHotspotId] = useState<keyof IFaceStatus | null>(null);
@@ -46,10 +48,12 @@ export default function FaceStatusMap() {
   ];
 
   // api 데이터
-  const { data, isLoading, isError, error } = useDiagnoseInfo({ diagnoseId: 1 });
+  const { data, isLoading, isError, error } = useDiagnoseInfo({ diagnoseId });
 
+  // 로딩처리
   if (isLoading || !data) return <div />;
   const status: IFaceStatus = transformToFaceStatus(data.specificResult);
+
   return (
     <S.FaceStatusMapContainer>
       {hotspots.map(({ id, Area, style }) => (
