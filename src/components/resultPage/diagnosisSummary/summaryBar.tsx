@@ -15,7 +15,6 @@ const levelColorMap: Record<STATUS, string> = {
 };
 
 export default function SummaryBar({ value }: ISummaryBarProps) {
-  console.log(value);
   return (
     <S.Bar>
       {[STATUS.CLEAR, STATUS.CAUTION, STATUS.WARNING].map((status) => (

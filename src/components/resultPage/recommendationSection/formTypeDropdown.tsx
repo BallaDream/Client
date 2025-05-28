@@ -3,7 +3,12 @@ import 'react-dropdown/style.css';
 import Dropdown from 'react-dropdown';
 import styled from 'styled-components';
 
-const options = ['제형1', '제형2', '제형3', '기타'];
+import { filterOptions } from '@/constants/filter';
+
+type TProps = {
+  value?: string; // 현재 선택된 값
+  onChange: (value: string | undefined) => void; // 선택 변경 핸들러
+};
 
 const StyledDropdown = styled(Dropdown)`
   .Dropdown-control {
@@ -16,7 +21,6 @@ const StyledDropdown = styled(Dropdown)`
     justify-content: space-between;
     align-items: center;
     padding: 2px 12px;
-    gap: 177px;
     height: 28px;
     background: #a7b2e6;
     border-radius: 16px;
@@ -48,6 +52,16 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
-export default function FormTypeDropdown() {
-  return <StyledDropdown options={options} onChange={(option) => console.log(option)} value={options[0]} placeholder="제형을 선택해주세요" />;
+export default function FormTypeDropdown({ value, onChange }: TProps) {
+  return (
+    <StyledDropdown
+      options={filterOptions}
+      value={value ?? ''}
+      placeholder="제형을 선택해주세요"
+      onChange={(option) => {
+        // react-dropdown은 { value, label } 형태로 줌
+        onChange(option.value === '기타' ? undefined : option.value);
+      }}
+    />
+  );
 }

@@ -7,7 +7,7 @@ interface IHeaderTextProps {
 export default function HeaderText({ text }: IHeaderTextProps) {
   return (
     <S.Container>
-      <S.Text>{text} 님의 피부 진단 결과</S.Text>
+      <S.Text>{text}</S.Text>
     </S.Container>
   );
 }

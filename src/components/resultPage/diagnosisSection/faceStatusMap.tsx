@@ -1,8 +1,10 @@
 import type { CSSProperties } from 'react';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Xarrow from 'react-xarrows';
 
 import type { IFaceStatus } from '@/types/resultPage/result';
+import type { LABEL, STATUS } from '@/enums/enums';
 
 import { getStatusIcon } from '@/utils/getStatusIcon';
 import { getLabel, getStatus, getWorstStatusColor } from '@/utils/map';
@@ -12,8 +14,9 @@ import { useDiagnoseInfo } from '@/hooks/useDiagnoseInfo';
 
 import * as S from './diagnosisSection.style';
 
-// 메인 컴포넌트
 export default function FaceStatusMap() {
+  const { diagnoseId = '0' } = useParams<{ diagnoseId: string }>();
+
   //마우스 툴팁
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, title: '' });
   const [currentHotspotId, setCurrentHotspotId] = useState<keyof IFaceStatus | null>(null);
@@ -45,10 +48,12 @@ export default function FaceStatusMap() {
   ];
 
   // api 데이터
-  const { data, isLoading, isError, error } = useDiagnoseInfo({ diagnoseId: 1 });
+  const { data, isLoading, isError, error } = useDiagnoseInfo({ diagnoseId });
 
+  // 로딩처리
   if (isLoading || !data) return <div />;
   const status: IFaceStatus = transformToFaceStatus(data.specificResult);
+
   return (
     <S.FaceStatusMapContainer>
       {hotspots.map(({ id, Area, style }) => (
@@ -65,11 +70,11 @@ export default function FaceStatusMap() {
       {/* 툴팁 */}
       <S.Tooltip $visible={tooltip.visible} $top={tooltip.y} $left={tooltip.x} id="tooltip">
         <S.TooltipTitle>{tooltip.title}</S.TooltipTitle>
-        {currentHotspotId && status[currentHotspotId] && (
+        {currentHotspotId && (
           <ul>
-            {Object.entries(status[currentHotspotId]).map(([key, value]) => (
+            {Object.entries(status[currentHotspotId] as Record<LABEL, STATUS>).map(([key, value]) => (
               <S.TooltipList key={key}>
-                <S.TooltipStatusLabel>{getLabel(key)}:&nbsp;</S.TooltipStatusLabel>
+                <S.TooltipStatusLabel>{getLabel(key as LABEL)}:&nbsp;</S.TooltipStatusLabel>
                 <S.TooltipStatusText>
                   {getStatus(value)}&nbsp;
                   {getStatusIcon(value.trim())}

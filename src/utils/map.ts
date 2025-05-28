@@ -20,7 +20,7 @@ const valueStatusMap: Record<STATUS, string> = {
 // 상태 우선순위 및 색상
 const statusPriority: STATUS[] = [STATUS.CLEAR, STATUS.CAUTION, STATUS.WARNING];
 
-const statusColorMap: Record<STATUS, string> = {
+export const statusColorMap: Record<STATUS, string> = {
   [STATUS.CLEAR]: 'rgba(155, 222, 183, 0.7)', // 예방
   [STATUS.CAUTION]: 'rgba(255, 230, 128, 0.7)', // 권고
   [STATUS.WARNING]: 'rgba(255, 154, 154, 0.7)', // 필수
