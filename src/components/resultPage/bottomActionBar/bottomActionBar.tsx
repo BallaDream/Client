@@ -1,3 +1,3 @@
 export default function BottomActionBar() {
-  return <></>;
+  return <>hi</>;
 }

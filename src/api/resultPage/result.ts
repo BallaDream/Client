@@ -35,7 +35,7 @@ export const getRecommendation = async ({
   if (minPrice !== undefined) params.append('minPrice', minPrice.toString());
   if (maxPrice !== undefined) params.append('maxPrice', maxPrice.toString());
   if (formulation) params.append('formulation', formulation);
-
+  console.log(`/recommendation?${params.toString()}`);
   const { data } = await axiosInstance.get(`/recommendation?${params.toString()}`);
   console.log(data);
   return data;
@@ -49,7 +49,6 @@ export const postInterest = async (value: TPostInterestValue): Promise<TInterest
 };
 // 관심상품 등록 해제
 export const deleteInterest = async (value: TDeleteInterestValue): Promise<TInterestResponse> => {
-  const { data } = await axiosInstance.post(`/interested-product?productId=${value.productId}&diagnoseType=${value.diagnoseType}`, value);
-  console.log(data);
+  const { data } = await axiosInstance.delete(`/interested-product?productId=${value.productId}&diagnoseType=${value.diagnoseType}`, { data: value });
   return data;
 };

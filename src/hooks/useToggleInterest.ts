@@ -5,7 +5,7 @@ import { deleteInterest, postInterest } from '@/api/resultPage/result';
 type TToggleInterestParams = {
   productId: number;
   diagnoseType: string;
-  isInterest: boolean; // true: 관심상품 등록, false: 관심상품 해제
+  isInterest: boolean;
 };
 
 export const useToggleInterest = () => {
@@ -16,8 +16,32 @@ export const useToggleInterest = () => {
       const data = { productId, diagnoseType };
       return isInterest ? await deleteInterest(data) : await postInterest(data);
     },
-    onSuccess: () => {
-      // 관심상품 변경 후, products 다시 요청 (예: queryKey: ['product'])
+
+    // 1️ optimistic update
+    onMutate: async (variables) => {
+      await queryClient.cancelQueries({ queryKey: ['product'] });
+
+      const previousData = queryClient.getQueryData(['product']);
+      queryClient.setQueryData(['product'], (old: any) => {
+        if (!old) return old;
+        return {
+          ...old,
+          data: old.data.map((p: any) => (p.productId === variables.productId ? { ...p, interest: !variables.isInterest } : p)),
+        };
+      });
+
+      return { previousData };
+    },
+
+    // 2️ 에러나면 rollback
+    onError: (err, variables, context) => {
+      if (context?.previousData) {
+        queryClient.setQueryData(['product'], context.previousData);
+      }
+    },
+
+    // 3️ 성공시 최신화
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['product'] });
     },
   });

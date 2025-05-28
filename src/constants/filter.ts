@@ -1,4 +1,5 @@
-export const filterArray = [
+export const filterOptions = [
+  '전체',
   '젤',
   '미스트',
   '크림',
@@ -22,7 +23,6 @@ export const filterArray = [
   '스킨',
   '팩',
   '마스크',
-  '트리트먼트',
   '패치',
   '프라이머',
   '썬스크린',

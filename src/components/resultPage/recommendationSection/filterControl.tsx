@@ -23,7 +23,7 @@ export default function FilterControl() {
         ...selectedQuery,
         minPrice,
         maxPrice,
-        formulation,
+        formulation: formulation === '전체' ? undefined : formulation,
       }),
     );
   };
