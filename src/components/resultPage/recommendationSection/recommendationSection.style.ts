@@ -121,6 +121,10 @@ export const DescriptionContainer = styled.div`
   background: #f9f9fd;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
+  white-space: pre;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
 `;
 
 export const DescriptionLabel = styled.div`
