@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { postUpload } from '@/api/uploadPage/upload';
-import { uploadError, uploadSuccess } from '@/slices/uploadSlice';
+import { uploadError } from '@/slices/uploadSlice';
 import { useAppDispatch } from '@/store/hooks';
 
 export const useUpload = () => {
@@ -9,7 +9,8 @@ export const useUpload = () => {
   return useMutation({
     mutationFn: (file: File) => postUpload(file),
     onSuccess() {
-      dispatch(uploadSuccess());
+      console.log('성공');
+      //여기서 다시 백엔드로 전송해야함
     },
     onError() {
       dispatch(uploadError());
