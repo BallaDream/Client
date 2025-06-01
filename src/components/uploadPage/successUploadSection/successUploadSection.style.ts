@@ -15,6 +15,7 @@ export const ImagePreview = styled.img`
   height: 287px;
   border: 1px solid #000000;
   border-radius: 4px;
+  object-fit: contain;
 `;
 
 export const ButtonGroup = styled.div`

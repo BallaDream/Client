@@ -11,28 +11,30 @@ interface IUploadSliceState {
 
 const initialState: IUploadSliceState = {
   status: 'idle',
-  imageUrl: null,
+  imageUrl: 'null',
 };
 
 const uploadSlice = createSlice({
   name: 'upload',
   initialState,
   reducers: {
-    uploadSuccess(state, action: PayloadAction<string>) {
+    uploadSuccess(state) {
       state.status = 'success';
-      state.imageUrl = action.payload;
     },
-    uploadError(state, action: PayloadAction<string>) {
+    uploadError(state) {
       state.status = 'error';
-      state.errorMessage = action.payload;
     },
     resetUpload(state) {
       state.status = 'idle';
       state.imageUrl = null;
       state.errorMessage = undefined;
     },
+    setImage(state, action: PayloadAction<string>) {
+      console.log(action.payload);
+      state.imageUrl = action.payload;
+    },
   },
 });
 
-export const { uploadSuccess, uploadError, resetUpload } = uploadSlice.actions;
+export const { uploadSuccess, uploadError, resetUpload, setImage } = uploadSlice.actions;
 export default uploadSlice.reducer;
