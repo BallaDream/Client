@@ -8,7 +8,6 @@ import OnAnalyzeIcon from '@/assets/icons/onAnalyze.svg?react';
 import ReuploadIcon from '@/assets/icons/re_upload.svg?react';
 
 export default function SuccessUploadSection({ file, setFile }: { file: File | null; setFile: Dispatch<SetStateAction<File | null>> }) {
-  //const imgUrl = useAppSelector((state) => state.upload.imageUrl);
   const { mutate } = useUpload();
 
   const handleAnalyze = () => {
@@ -18,9 +17,6 @@ export default function SuccessUploadSection({ file, setFile }: { file: File | n
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setFile(e.target.files[0]);
-      //const file = e.target.files[0];
-      //const imageUrl = URL.createObjectURL(file);
-      //dispatch(setImage(imageUrl));
     }
   };
 

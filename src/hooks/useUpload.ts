@@ -1,16 +1,20 @@
 import { useMutation } from '@tanstack/react-query';
 
+import { usePostDiagnoseInfo } from './usePostDiagnoseInfo';
+
 import { postUpload } from '@/api/uploadPage/upload';
 import { uploadError } from '@/slices/uploadSlice';
 import { useAppDispatch } from '@/store/hooks';
 
 export const useUpload = () => {
   const dispatch = useAppDispatch();
+  const { mutate: postDiagnose } = usePostDiagnoseInfo();
+
   return useMutation({
     mutationFn: (file: File) => postUpload(file),
-    onSuccess() {
-      console.log('성공');
-      //여기서 다시 백엔드로 전송해야함
+    onSuccess: (uploadResponse) => {
+      console.log(1);
+      postDiagnose(uploadResponse.result);
     },
     onError() {
       dispatch(uploadError());

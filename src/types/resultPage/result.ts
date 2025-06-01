@@ -23,6 +23,21 @@ export interface IProduct {
 }
 
 // ---value
+
+export type TPostDiagnoseInfoValue = {
+  dryLipsScore: number;
+  pigmentForeheadScore: number;
+  pigmentLeftCheekScore: number;
+  pigmentRightCheekScore: number;
+  wrinkleForeheadScore: number;
+  wrinkleGlabellaScore: number;
+  wrinkleLeftEyeScore: number;
+  wrinkleRightEyeScore: number;
+  poreLeftCheekScore: number;
+  poreRightCheekScore: number;
+  elasticJawlineSaggingScore: number;
+};
+
 export type TGetDiagnoseInfoValue = {
   diagnoseId: string;
 };
@@ -44,6 +59,12 @@ export type TDeleteInterestValue = {
   diagnoseType: string;
 };
 // ---response
+export type TPostDiagnoseInfoResponse = {
+  status: number;
+  diagnoseId: number;
+  message: string;
+};
+
 export type TGetDiagnoseInfoResponse = {
   specificResult: {
     wrinkleForeheadLevel: STATUS;
