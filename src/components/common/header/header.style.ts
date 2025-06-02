@@ -25,3 +25,14 @@ export const LoginIcon = styled(LoginIconSvg)`
   cursor: pointer;
   display: block;
 `;
+
+export const LogoutText = styled.span`
+  color: #bbb;
+  font-size: 13px;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: #fff;
+  }
+`;
