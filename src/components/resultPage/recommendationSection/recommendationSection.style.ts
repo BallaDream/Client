@@ -16,14 +16,14 @@ export const Tabs = styled.div`
   padding: 6px 10px;
 `;
 
-export const Tab = styled.button<{ isActive: boolean }>`
+export const Tab = styled.button<{ $isActive: boolean }>`
   border: none;
-  background-color: ${({ isActive }) => (isActive ? '#162A6C' : '#a7b2e6')};
-  color: ${({ isActive }) => (isActive ? 'white' : 'black')};
+  background-color: ${({ $isActive }) => ($isActive ? '#162A6C' : '#a7b2e6')};
+  color: ${({ $isActive }) => ($isActive ? 'white' : 'black')};
   cursor: pointer;
   padding: 12px 16px;
   height: 43px;
-  box-shadow: ${({ isActive }) => (isActive ? '0px 2px 2px rgba(0, 0, 0, 0.2)' : '0px 4px 4px rgba(0, 0, 0, 0.25)')};
+  box-shadow: ${({ $isActive }) => ($isActive ? '0px 2px 2px rgba(0, 0, 0, 0.2)' : '0px 4px 4px rgba(0, 0, 0, 0.25)')};
   border-radius: 6px;
   font-weight: 500;
   font-size: 18px;
@@ -31,7 +31,9 @@ export const Tab = styled.button<{ isActive: boolean }>`
 
 export const ProductList = styled.div`
   display: flex;
-  justify-content: center;
+  background-color: #f9f9fd;
+  box-shadow: '0px 4px 4px rgba(0, 0, 0, 0.25)';
+
   align-items: center;
   padding: 3px;
   gap: 10px;
@@ -41,9 +43,9 @@ export const ProductList = styled.div`
   border-radius: 6px;
   position: relative;
 `;
-export const ProductListButton = styled.div<{ $enabled: boolean }>`
+export const ProductListButton = styled.button<{ $enabled: boolean }>`
   position: absolute;
-  background-color: none;
+  background-color: transparent;
   cursor: pointer;
   z-index: 9999;
   opacity: ${({ $enabled }) => ($enabled ? 1 : 0.5)};
@@ -78,7 +80,7 @@ export const FilterControlPiceSection = styled.div`
 export const FilterControlDropdownSection = styled.div`
   display: grid;
   gap: 12px;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto auto auto;
 `;
 
 export const RefreshButton = styled.button`
@@ -119,6 +121,10 @@ export const DescriptionContainer = styled.div`
   background: #f9f9fd;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px;
+  white-space: pre;
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
 `;
 
 export const DescriptionLabel = styled.div`
@@ -129,7 +135,7 @@ export const DescriptionLabel = styled.div`
   p:nth-child(1) {
     font-weight: 600;
     font-size: 24px;
-    color: #6fcf97;
+    opacity: 1;
   }
   p:nth-child(2) {
     font-weight: 500;
@@ -152,13 +158,21 @@ export const Card = styled.div`
 
 export const Badge = styled.div`
   position: absolute;
-  top: 6px;
-  left: 6px;
-  background-color: #e0e0e0;
-  padding: 2px 6px;
   font-size: 10px;
-  border-radius: 4px;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 8px;
+  font-size: 12px;
+  position: absolute;
+  height: 24px;
+  left: 0px;
+  top: 0px;
+
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 6px 0px;
 `;
 
 export const ImageArea = styled.div`
@@ -197,6 +211,9 @@ export const ProductName = styled.div`
   font-weight: 500;
   font-size: 20px;
   line-height: 150%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const Price = styled.div`
@@ -208,8 +225,10 @@ export const Price = styled.div`
 
 export const Ingredients = styled.div`
   display: flex;
-  flex-wrap: wrap;
   gap: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
 
 export const IngredientTag = styled.div`

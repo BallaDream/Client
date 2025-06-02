@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'signup', element: <SignupPage /> },
-      { path: 'result', element: <ResultPage /> },
+      { path: 'result/:diagnoseId', element: <ResultPage /> },
       { path: 'upload', element: <UploadPage /> },
     ],
   },

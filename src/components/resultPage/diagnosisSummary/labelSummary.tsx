@@ -1,7 +1,4 @@
 import type { TGetDiagnoseInfoResponse } from '@/types/resultPage/result';
-import type { STATUS } from '@/enums/enums';
-
-import { getStatus } from '@/utils/map';
 
 import * as S from './diagnosisSummary.style';
 import SummaryBar from './summaryBar';
