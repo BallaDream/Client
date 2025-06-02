@@ -1,4 +1,6 @@
-import IdleUploadSection from '@/components/uploadPage/idleUploadSection/idleUploadBox';
+import { useState } from 'react';
+
+import IdleUploadSection from '@/components/uploadPage/idleUploadSection/idleUploadSection';
 
 import * as S from './uploadSection.style';
 import ErrorUploadSection from '../errorUploadSection/errorUploadSection';
@@ -8,11 +10,13 @@ import { useAppSelector } from '@/store/hooks';
 
 export default function UploadSection() {
   const status = useAppSelector((state) => state.upload);
+  const [file, setFile] = useState<File | null>(null);
+
   console.log(status);
   return (
     <S.Container>
-      {status.status == 'idle' && <IdleUploadSection />}
-      {status.status == 'success' && <SuccessUploadSection />}
+      {status.status == 'idle' && <IdleUploadSection setFile={setFile} />}
+      {status.status == 'success' && <SuccessUploadSection file={file} setFile={setFile} />}
       {status.status == 'error' && <ErrorUploadSection />}
     </S.Container>
   );
