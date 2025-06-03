@@ -11,7 +11,7 @@ interface IUploadSliceState {
 
 const initialState: IUploadSliceState = {
   status: 'idle',
-  imageUrl: 'null',
+  imageUrl: null,
 };
 
 const uploadSlice = createSlice({
