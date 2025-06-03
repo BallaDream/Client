@@ -6,7 +6,6 @@ type TUploadState = 'idle' | 'success' | 'error';
 interface IUploadSliceState {
   status: TUploadState;
   imageUrl: string | null;
-  errorMessage?: string;
 }
 
 const initialState: IUploadSliceState = {
@@ -27,7 +26,6 @@ const uploadSlice = createSlice({
     resetUpload(state) {
       state.status = 'idle';
       state.imageUrl = null;
-      state.errorMessage = undefined;
     },
     setImage(state, action: PayloadAction<string>) {
       console.log(action.payload);

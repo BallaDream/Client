@@ -14,20 +14,21 @@ export default function ErrorUploadSection({ setFile }: { setFile: Dispatch<SetS
     if (e.target.files && e.target.files.length > 0) {
       setFile(e.target.files[0]);
       dispatch(uploadSuccess());
+      e.target.value = '';
     }
   };
   return (
-    <S.Conatiner>
+    <S.Container>
       <S.DottedContainer>
         <ReIcon />
-        <input type="file" accept="image/jpeg" id="fileInput" style={{ display: 'none', cursor: 'pointer' }} onChange={handleFileChange} />
-        <label htmlFor="fileInput">
-          <S.Button>
+        <input type="file" accept="image/jpeg" id="fileInput2" style={{ display: 'none', cursor: 'pointer' }} onChange={handleFileChange} />
+        <label htmlFor="fileInput2" style={{ cursor: 'pointer' }}>
+          <S.Button as="span">
             <p>다시 업로드</p>
             <RefreshIcon />
           </S.Button>
         </label>
       </S.DottedContainer>
-    </S.Conatiner>
+    </S.Container>
   );
 }

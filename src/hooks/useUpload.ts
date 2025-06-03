@@ -13,10 +13,10 @@ export const useUpload = () => {
   return useMutation({
     mutationFn: (file: File) => postUpload(file),
     onSuccess: (uploadResponse) => {
-      console.log(1);
+      console.log('업로드성공');
       postDiagnose(uploadResponse.result);
     },
-    onError() {
+    onError: () => {
       console.log('에러');
       dispatch(uploadError());
     },

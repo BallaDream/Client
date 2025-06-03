@@ -14,6 +14,7 @@ export default function IdleUploadSection({ setFile }: { setFile: Dispatch<SetSt
     if (e.target.files && e.target.files.length > 0) {
       setFile(e.target.files[0]);
       dispatch(uploadSuccess());
+      e.target.value = '';
     }
   };
 
@@ -22,7 +23,7 @@ export default function IdleUploadSection({ setFile }: { setFile: Dispatch<SetSt
       <S.DottedContainer>
         <ImgIcon />
         <input type="file" accept="image/jpeg" id="fileInput" style={{ display: 'none', cursor: 'pointer' }} onChange={handleFileChange} />
-        <label htmlFor="fileInput">
+        <label htmlFor="fileInput" style={{ cursor: 'pointer' }}>
           <S.Button as="span">
             <p>사진 추가</p>
             <PlusIcon />
