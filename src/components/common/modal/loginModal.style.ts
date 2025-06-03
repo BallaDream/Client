@@ -133,6 +133,12 @@ export const Or = styled.span`
   font-size: 12px;
 `;
 
+export const ErrorMessage = styled.div`
+  font-size: 13px;
+  color: #e74c3c;
+  margin: 4px 0 10px 4px;
+`;
+
 export const SnsLabel = styled.div`
   font-weight: bold;
   margin-bottom: 4px;
