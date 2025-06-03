@@ -5,10 +5,19 @@ import type {
   TGetRecomendationValue,
   TGetRecommendationResponse,
   TInterestResponse,
+  TPostDiagnoseInfoResponse,
+  TPostDiagnoseInfoValue,
   TPostInterestValue,
 } from '@/types/resultPage/result';
 
 import { axiosInstance } from '../axiosInstance';
+
+//진단결과 보내기
+export const postDiagnoseInfo = async (value: TPostDiagnoseInfoValue): Promise<TPostDiagnoseInfoResponse> => {
+  const { data } = await axiosInstance.post(`/diagnose`, value);
+  console.log(data);
+  return data;
+};
 
 //진단결과 받긴
 export const getDiagnoseInfo = async ({ diagnoseId }: TGetDiagnoseInfoValue): Promise<TGetDiagnoseInfoResponse> => {

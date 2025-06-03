@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 import { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Xarrow from 'react-xarrows';
 
@@ -21,7 +22,7 @@ export default function FaceStatusMap() {
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0, title: '' });
   const [currentHotspotId, setCurrentHotspotId] = useState<keyof IFaceStatus | null>(null);
 
-  const handleMouseEnter = (e: MouseEvent, title: string, id: keyof IFaceStatus) => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>, title: string, id: keyof IFaceStatus) => {
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const tooltipX = rect.right + 12;
     const tooltipY = rect.top + rect.height / 2;
@@ -48,7 +49,7 @@ export default function FaceStatusMap() {
   ];
 
   // api 데이터
-  const { data, isLoading, isError, error } = useDiagnoseInfo({ diagnoseId });
+  const { data, isLoading } = useDiagnoseInfo({ diagnoseId });
 
   // 로딩처리
   if (isLoading || !data) return <div />;
