@@ -17,6 +17,7 @@ export const useUpload = () => {
       postDiagnose(uploadResponse.result);
     },
     onError() {
+      console.log('에러');
       dispatch(uploadError());
     },
   });

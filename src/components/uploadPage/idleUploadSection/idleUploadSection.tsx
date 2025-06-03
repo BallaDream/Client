@@ -13,10 +13,7 @@ export default function IdleUploadSection({ setFile }: { setFile: Dispatch<SetSt
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setFile(e.target.files[0]);
-      //const file = e.target.files[0];
-      //const imageUrl = URL.createObjectURL(file);
       dispatch(uploadSuccess());
-      //dispatch(setImage(imageUrl));
     }
   };
 
