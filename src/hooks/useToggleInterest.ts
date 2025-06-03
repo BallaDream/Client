@@ -11,7 +11,7 @@ type TToggleInterestParams = {
 export const useToggleInterest = () => {
   const queryClient = useQueryClient();
 
-  return useMutation({
+  return useMutation<unknown, Error, TToggleInterestParams, { previousData: any }>({
     mutationFn: async ({ productId, diagnoseType, isInterest }: TToggleInterestParams) => {
       const data = { productId, diagnoseType };
       return isInterest ? await deleteInterest(data) : await postInterest(data);
@@ -34,8 +34,10 @@ export const useToggleInterest = () => {
     },
 
     // 2️ 에러나면 rollback
-    onError: (err, variables, context) => {
+    onError: (error, variables, context) => {
       if (context?.previousData) {
+        console.log(error);
+        console.log(variables);
         queryClient.setQueryData(['product'], context.previousData);
       }
     },

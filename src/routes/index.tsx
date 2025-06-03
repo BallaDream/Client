@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '@/layouts/main/mainLayout';
+import KakaoCallback from '@/pages/auth/kakaoCallback';
 import HomePage from '@/pages/homePage/homePage';
 import ResultPage from '@/pages/resultPage/resultPage';
 import SignupPage from '@/pages/signupPage/signupPage';
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
       { path: 'result/:diagnoseId', element: <ResultPage /> },
       { path: 'upload', element: <UploadPage /> },
     ],
+  },
+  {
+    path: '/auth/kakao/callback',
+    element: <KakaoCallback />,
   },
 ]);
 
