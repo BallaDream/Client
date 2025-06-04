@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Conatiner = styled.div`
+export const Container = styled.div`
   box-sizing: border-box;
 
   position: relative;

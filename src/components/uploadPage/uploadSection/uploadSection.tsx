@@ -17,7 +17,7 @@ export default function UploadSection() {
     <S.Container>
       {status.status == 'idle' && <IdleUploadSection setFile={setFile} />}
       {status.status == 'success' && <SuccessUploadSection file={file} setFile={setFile} />}
-      {status.status == 'error' && <ErrorUploadSection />}
+      {status.status == 'error' && <ErrorUploadSection setFile={setFile} />}
     </S.Container>
   );
 }

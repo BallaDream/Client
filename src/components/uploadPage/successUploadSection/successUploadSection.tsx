@@ -2,13 +2,15 @@ import type { ChangeEvent, Dispatch, SetStateAction } from 'react';
 
 import { useUpload } from '@/hooks/useUpload';
 
+import SpinnerOverlay from '@/components/common/overlay/SpinnerOverlay';
+
 import * as S from './successUploadSection.style';
 
 import OnAnalyzeIcon from '@/assets/icons/onAnalyze.svg?react';
 import ReuploadIcon from '@/assets/icons/re_upload.svg?react';
 
 export default function SuccessUploadSection({ file, setFile }: { file: File | null; setFile: Dispatch<SetStateAction<File | null>> }) {
-  const { mutate } = useUpload();
+  const { mutate, isPending } = useUpload();
 
   const handleAnalyze = () => {
     mutate(file as File);
@@ -25,6 +27,7 @@ export default function SuccessUploadSection({ file, setFile }: { file: File | n
 
   return (
     <S.Container>
+      {isPending && <SpinnerOverlay />}
       <S.ImagePreview src={previewUrl || '/'} alt="" />
       <S.ButtonGroup>
         <S.ActionButton onClick={handleAnalyze}>
