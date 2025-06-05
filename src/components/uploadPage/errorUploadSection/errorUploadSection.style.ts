@@ -38,3 +38,17 @@ export const Button = styled.button`
   border-radius: 8px;
   color: white;
 `;
+export const ErrorMessage = styled.div`
+  font-size: 18px;
+  font-weight: 600;
+  opacity: 0.8;
+  color: #eb5757;
+`;
+
+export const AllContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+`;
