@@ -43,6 +43,18 @@ export const ProductList = styled.div`
   border-radius: 6px;
   position: relative;
 `;
+
+export const EmptyText = styled.p`
+  font-weight: 600;
+  font-size: 18px;
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`;
 export const ProductListButton = styled.button<{ $enabled: boolean }>`
   position: absolute;
   background-color: transparent;
