@@ -24,6 +24,7 @@
     "react-dom": "^19.0.0",
     "react-dropdown": "^1.11.0",
     "react-hook-form": "^7.56.4",
+    "react-loading-skeleton": "^3.5.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.6.0",
     "react-spinners": "^0.17.0",
