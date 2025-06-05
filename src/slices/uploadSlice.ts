@@ -6,11 +6,13 @@ type TUploadState = 'idle' | 'success' | 'error';
 interface IUploadSliceState {
   status: TUploadState;
   imageUrl: string | null;
+  errorMsg: string | null;
 }
 
 const initialState: IUploadSliceState = {
   status: 'idle',
   imageUrl: null,
+  errorMsg: null,
 };
 
 const uploadSlice = createSlice({
@@ -20,12 +22,14 @@ const uploadSlice = createSlice({
     uploadSuccess(state) {
       state.status = 'success';
     },
-    uploadError(state) {
+    uploadError(state, action: PayloadAction<string>) {
       state.status = 'error';
+      state.errorMsg = action.payload;
     },
     resetUpload(state) {
       state.status = 'idle';
       state.imageUrl = null;
+      state.errorMsg = null;
     },
     setImage(state, action: PayloadAction<string>) {
       console.log(action.payload);

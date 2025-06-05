@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 
 import type { TPostDiagnoseInfoValue } from '@/types/resultPage/result';
 
@@ -18,9 +19,10 @@ export const usePostDiagnoseInfo = () => {
       dispatch(resetUpload());
       navigate(`/result/${data.diagnoseId}`);
     },
-    onError: () => {
+    onError: (error: unknown) => {
       dispatch(resetUpload());
-      dispatch(uploadError());
+      const errorMessage = (error as AxiosError<{ errorMessage?: string }>)?.response?.data?.errorMessage ?? '알 수 없는 오류가 발생했습니다.';
+      dispatch(uploadError(errorMessage));
     },
   });
 };
