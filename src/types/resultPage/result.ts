@@ -88,7 +88,7 @@ export type TGetDiagnoseInfoResponse = {
   };
 };
 
-export type TGetRecommendationResponse = { data: IProduct[]; hasMore: boolean };
+export type TGetRecommendationResponse = { data: IProduct[]; hasNextPage: boolean };
 
 export type TInterestResponse = {
   status: number;
