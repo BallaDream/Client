@@ -29,13 +29,14 @@ export default function Header() {
 
   const handleLogout = async () => {
     try {
-      await axiosInstance.post('/logout'); // 쿠키 기반 로그아웃
-      localStorage.removeItem('accessToken');
-      dispatch(logout());
+      await axiosInstance.post('/logout');
       alert('로그아웃 되었습니다.');
     } catch (error) {
       console.error('❌ 로그아웃 실패:', error);
       alert('로그아웃 중 오류가 발생했습니다.');
+    } finally {
+      // 성공하든 실패하든 클라이언트 상태는 무조건 초기화
+      dispatch(logout());
     }
   };
 

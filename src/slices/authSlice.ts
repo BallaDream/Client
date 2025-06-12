@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -9,8 +8,8 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  accessToken: null,
-  nickname: null,
+  accessToken: localStorage.getItem('accessToken'),
+  nickname: localStorage.getItem('nickname'),
 };
 
 const authSlice = createSlice({
@@ -19,13 +18,17 @@ const authSlice = createSlice({
   reducers: {
     setAccessToken(state, action: PayloadAction<string>) {
       state.accessToken = action.payload;
+      localStorage.setItem('accessToken', action.payload);
     },
     setNickname(state, action: PayloadAction<string>) {
       state.nickname = action.payload;
+      localStorage.setItem('nickname', action.payload);
     },
     logout(state) {
       state.accessToken = null;
       state.nickname = null;
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('nickname');
     },
   },
 });
