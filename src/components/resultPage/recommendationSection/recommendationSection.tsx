@@ -18,7 +18,7 @@ export default function RecommendationSection() {
   const { diagnoseId = '0' } = useParams<{ diagnoseId: string }>();
   const { data } = useDiagnoseInfo({ diagnoseId });
   const dispatch = useAppDispatch();
-
+  const nickname = localStorage.getItem('nickname');
   const hasInitializedRef = useRef(false);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function RecommendationSection() {
 
   return (
     <S.Container>
-      <HeaderText text="닉네임 님의 추천 화장품" />
+      <HeaderText text={`${nickname} 님의 추천 화장품`} />
       {/* 카테고리 탭 */}
       <CategoryTabs />
 
