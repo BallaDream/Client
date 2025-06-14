@@ -17,32 +17,47 @@ export const Title = styled.h2`
 
 export const Row = styled.div`
   display: flex;
-  align-items: center;
-  gap: 40px;
-  max-width: 960px;
+  align-items: flex-start;
+  gap: 48px;
+  max-width: 1080px;
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 
   @media (max-width: 768px) {
     flex-direction: column;
     text-align: center;
+    gap: 32px;
   }
 `;
 
 export const ImageBox = styled.div`
-  width: 160px;
-  height: 160px;
-  background-color: #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  color: #666;
+  flex-shrink: 0;
+  width: 260px; // 공통 가로 기준
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+
+  @media (max-width: 768px) {
+    width: 80%;
+    margin: 0 auto;
+  }
 `;
 
 export const Text = styled.p`
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
   flex: 1;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #333;
+  word-break: keep-all;
+  max-width: 600px;
+  text-align: justify;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;

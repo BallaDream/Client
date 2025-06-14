@@ -1,3 +1,4 @@
+// src/components/common/modal/loginModal.tsx
 import type { MouseEvent } from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -67,7 +68,6 @@ export default function LoginModal({ isOpen, onClose }: IProps) {
         try {
           const decoded: any = jwtDecode(accessToken);
           const nickname = decoded?.nickname || '사용자';
-          localStorage.setItem('accessToken', accessToken);
           dispatch(setAccessToken(accessToken));
           dispatch(setNickname(nickname));
           onClose();

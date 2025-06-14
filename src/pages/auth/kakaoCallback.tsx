@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import { axiosInstance } from '@/api/axiosInstance';
 import { setAccessToken, setNickname } from '@/slices/authSlice';
 
-let isCalled = false; // 중복 요청 방지용
+let isCalled = false;
 
 export default function KakaoCallback() {
   const [searchParams] = useSearchParams();
@@ -16,15 +16,12 @@ export default function KakaoCallback() {
 
   useEffect(() => {
     const fetchKakaoToken = async () => {
-      if (isCalled) return; // 두 번 실행 방지
+      if (isCalled) return;
       isCalled = true;
 
       try {
         const response = await axiosInstance.get(`/kakao/authenticate?code=${code}`);
         const token = response.headers['access'];
-        console.log('🔥 응답 전체:', response);
-        console.log('🔥 응답 헤더:', response.headers);
-        console.log('🔥 accessToken:', token);
 
         if (token) {
           dispatch(setAccessToken(token));
@@ -37,11 +34,7 @@ export default function KakaoCallback() {
         }
       } catch (error: any) {
         console.error('❌ 카카오 로그인 실패:', error);
-        if (error.response) {
-          console.log('🔥 error.response.status:', error.response.status);
-          console.log('🔥 error.response.data:', error.response.data);
-          console.log('🔥 error.response.headers:', error.response.headers);
-        }
+        alert('카카오 로그인 중 오류가 발생했습니다.');
       }
     };
 
