@@ -4,19 +4,20 @@ import LoginIconSvg from '@/assets/icons/mypage_icon.svg?react';
 
 export const Container = styled.header`
   width: 100%;
-  height: 54px;
+  height: 62px;
   background-color: #162a6c;
   display: flex;
   justify-content: center;
-`;
-
-export const Content = styled.div`
-  width: 100%;
-  max-width: 1080px;
-  display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 24px;
+`;
+export const LogoWrapper = styled.div`
+  padding-top: 5px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
 `;
 
 export const LoginIcon = styled(LoginIconSvg)`
