@@ -104,31 +104,39 @@ export default function SignupForm() {
       <S.Container onSubmit={handleSubmit(onSubmit)}>
         <S.Title>일반 회원가입</S.Title>
 
+        {/* 이메일 */}
         <S.InputGroup>
           <S.InputWrapper>
             <S.Input type="text" placeholder="아이디(이메일주소)" {...register('username')} />
-            <S.InputButton type="button" onClick={handleRequestCode} disabled={isSending}>
+            <S.InputButton type="button" onClick={handleRequestCode} disabled={!!errors.username || !getValues('username') || isSending}>
               전송
             </S.InputButton>
           </S.InputWrapper>
           {errors.username && <S.ErrorMessage>{errors.username.message}</S.ErrorMessage>}
         </S.InputGroup>
 
-        <S.InputGroup>
-          <S.Input type="password" placeholder="비밀번호" {...register('password')} />
-          {errors.password && <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>}
-        </S.InputGroup>
-
+        {/* 인증번호 */}
         <S.InputGroup>
           <S.InputWrapper>
             <S.Input type="text" placeholder="인증번호" {...register('authNum')} />
-            <S.InputButton type="button" onClick={handleCheckCode} disabled={isChecking}>
+            <S.InputButton
+              type="button"
+              onClick={handleCheckCode}
+              disabled={!!errors.username || !!errors.authNum || !getValues('username') || !getValues('authNum') || isChecking}
+            >
               확인
             </S.InputButton>
           </S.InputWrapper>
           {errors.authNum && <S.ErrorMessage>{errors.authNum.message}</S.ErrorMessage>}
         </S.InputGroup>
 
+        {/* 비밀번호 */}
+        <S.InputGroup>
+          <S.Input type="password" placeholder="비밀번호" {...register('password')} />
+          {errors.password && <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>}
+        </S.InputGroup>
+
+        {/* 약관 */}
         <S.CheckboxWrap>
           <label>
             <input type="checkbox" {...register('terms1')} />

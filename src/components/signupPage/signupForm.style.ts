@@ -58,6 +58,11 @@ export const InputButton = styled.button`
   &:hover {
     background-color: #2a3a7a;
   }
+  &:disabled {
+    background-color: #ccc;
+    color: #ffffff;
+    cursor: not-allowed;
+  }
 `;
 
 export const ErrorMessage = styled.p`
@@ -84,6 +89,7 @@ export const TermBox = styled.div`
   line-height: 1.5;
   border-radius: 6px;
   white-space: pre-wrap;
+  margin-bottom: 1em;
 `;
 
 export const SubmitButton = styled.button<{ disabled: boolean }>`
