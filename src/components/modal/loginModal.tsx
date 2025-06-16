@@ -1,5 +1,6 @@
 import type { MouseEvent } from 'react';
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -13,26 +14,26 @@ import * as S from './loginModal.style';
 import EngLogo from '@/assets/icons/eng_logo.svg?react';
 import XIcon from '@/assets/icons/x_gray.svg?react';
 import { setAccessToken, setNickname } from '@/slices/authSlice';
-import { useAppDispatch } from '@/store/hooks';
+import { closeModal } from '@/slices/modalSlice';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 const clientId = import.meta.env.VITE_KAKAO_CLIENT_ID;
 const redirectUri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
-
-interface IProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
 
 interface IFormValues {
   username: string;
   password: string;
 }
 
-export default function LoginModal({ isOpen, onClose }: IProps) {
-  const navigate = useNavigate();
+export default function LoginModal() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { mutate: loginMutate, isPending } = useLogin();
   const [errorMessage, setErrorMessage] = useState('');
+
+  const modalType = useAppSelector((state) => state.modal.modalType);
+  const modalRoot = document.getElementById('modal-root');
+  if (modalType !== 'login' || !modalRoot) return null;
 
   const {
     register,
@@ -43,19 +44,16 @@ export default function LoginModal({ isOpen, onClose }: IProps) {
     mode: 'onChange',
   });
 
-  if (!isOpen) return null;
-
   const handleOverlayClick = (e: MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) onClose();
+    if (e.target === e.currentTarget) dispatch(closeModal());
   };
 
   const handleSignup = () => {
-    onClose();
+    dispatch(closeModal());
     navigate('/signup');
   };
 
   const onSubmit = (data: IFormValues) => {
-    console.log(1);
     setErrorMessage('');
     loginMutate(data, {
       onSuccess: (res) => {
@@ -69,7 +67,7 @@ export default function LoginModal({ isOpen, onClose }: IProps) {
           const nickname = decoded?.nickname || '사용자';
           dispatch(setAccessToken(accessToken));
           dispatch(setNickname(nickname));
-          onClose();
+          dispatch(closeModal());
           alert('로그인 성공!');
         } catch {
           setErrorMessage('토큰 디코딩에 실패했습니다.');
@@ -82,10 +80,10 @@ export default function LoginModal({ isOpen, onClose }: IProps) {
     });
   };
 
-  return (
+  return createPortal(
     <S.Overlay onClick={handleOverlayClick}>
       <S.Modal onClick={(e) => e.stopPropagation()}>
-        <S.CloseButton onClick={onClose}>
+        <S.CloseButton onClick={() => dispatch(closeModal())}>
           <XIcon />
         </S.CloseButton>
         <S.Title>로그인</S.Title>
@@ -119,6 +117,7 @@ export default function LoginModal({ isOpen, onClose }: IProps) {
           }}
         />
       </S.Modal>
-    </S.Overlay>
+    </S.Overlay>,
+    modalRoot,
   );
 }

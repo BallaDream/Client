@@ -4,7 +4,8 @@ import { RouterProvider } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
 import router from './routes';
-import { setAccessToken, setNickname } from './slices/authSlice';
+
+import { setAccessToken, setNickname } from '@/slices/authSlice';
 
 function App() {
   const dispatch = useDispatch();

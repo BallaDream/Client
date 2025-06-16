@@ -1,26 +1,29 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface ModalState {
-  isLoginModalOpen: boolean;
+type TModalType = 'login' | 'confirm' | null;
+
+interface IModalState {
+  modalType: TModalType;
 }
 
-const initialState: ModalState = {
-  isLoginModalOpen: false,
+const initialState: IModalState = {
+  modalType: null,
 };
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openLoginModal(state) {
-      state.isLoginModalOpen = true;
+    openModal: (state, action: PayloadAction<TModalType>) => {
+      console.log(action.payload);
+      state.modalType = action.payload;
     },
-    closeLoginModal(state) {
-      state.isLoginModalOpen = false;
+    closeModal: (state) => {
+      state.modalType = null;
     },
   },
 });
 
-export const { openLoginModal, closeLoginModal } = modalSlice.actions;
+export const { openModal, closeModal } = modalSlice.actions;
 export default modalSlice.reducer;
