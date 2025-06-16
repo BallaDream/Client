@@ -31,7 +31,6 @@ axiosInstance.interceptors.response.use(
   (error) => {
     const status = error?.response?.status;
     if (status === 401 || status === 403) {
-      console.warn('❌ 인증 오류 → 로그인 모달 오픈');
       store.dispatch(logout());
       store.dispatch(openModal('login'));
     }
