@@ -3,7 +3,7 @@ import * as S from './aiVailditySection.style';
 export default function AiValiditySection() {
   return (
     <S.Section>
-      <S.Title>AI 피부분석 타당성설명</S.Title>
+      <S.Title>AI 피부분석 타당성</S.Title>
 
       <S.Row>
         <S.ImageBox>

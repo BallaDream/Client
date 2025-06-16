@@ -58,4 +58,6 @@ export const CardPlaceholder = styled.div`
   justify-content: center;
   color: #666;
   font-size: 14px;
+  overflow: hidden;
+  border-radius: 4px;
 `;

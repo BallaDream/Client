@@ -1,5 +1,3 @@
-import Footer from '@/components/common/footer/footer';
-import Header from '@/components/common/header/header';
 import AiAnalysisSection from '@/components/homePage/aiAnalysisSection/aiAnalysisSection';
 import AiStepSection from '@/components/homePage/aiStepSection/aiStepSection';
 import AiValiditySection from '@/components/homePage/aiVailditySection/aiVailditySection';
@@ -14,7 +12,6 @@ import ArrowDownIcon from '@/assets/icons/arrow_down.svg?react';
 export default function HomePage() {
   return (
     <S.Container>
-      <Header />
       <HeroSection />
       <S.ArrowWrapper>
         <ArrowDownIcon />
@@ -24,7 +21,6 @@ export default function HomePage() {
       <AiValiditySection />
       <AiStepSection />
       <FaqSection />
-      <Footer />
     </S.Container>
   );
 }

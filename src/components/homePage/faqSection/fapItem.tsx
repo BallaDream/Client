@@ -1,15 +1,16 @@
+import type { ReactNode } from 'react';
 import { useRef, useState } from 'react';
 
 import * as S from './faqSection.style';
 
 import QuestionIcon from '@/assets/icons/question.svg?react';
 
-interface Props {
+interface IProps {
   question: string;
-  answer: React.ReactNode;
+  answer: ReactNode;
 }
 
-export default function FaqItem({ question, answer }: Props) {
+export default function FaqItem({ question, answer }: IProps) {
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 

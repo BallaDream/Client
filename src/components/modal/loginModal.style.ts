@@ -99,19 +99,7 @@ export const SignupWrap = styled.div`
   font-size: 13px;
   color: #afb1b6;
   text-align: right;
-`;
-
-export const SignupButton = styled.button`
-  background: #0f1f4b;
-  color: white;
-  font-size: 13px;
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: none;
   cursor: pointer;
-  &:hover {
-    background-color: #2a3a7a;
-  }
 `;
 
 export const DividerWrap = styled.div`

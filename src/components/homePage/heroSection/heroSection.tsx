@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './heroSection.style';
 
 import FaceImg from '@/assets/icons/ai_model_img.svg?react';
-import { openLoginModal } from '@/slices/modalSlice';
+import { openModal } from '@/slices/modalSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 export default function HeroSection() {
@@ -13,7 +13,7 @@ export default function HeroSection() {
 
   const handleClick = () => {
     if (isLoggedIn) navigate('/upload');
-    else dispatch(openLoginModal());
+    else dispatch(openModal('login'));
   };
 
   return (

@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import ModalRenderer from '@/components/modal/modalRenderer';
+
 import MainLayout from '@/layouts/main/mainLayout';
 import KakaoCallback from '@/pages/auth/kakaoCallback';
 import HomePage from '@/pages/homePage/homePage';
@@ -11,7 +13,11 @@ import UploadPage from '@/pages/uploadPage/uploadPage';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: (
+      <MainLayout>
+        <ModalRenderer />
+      </MainLayout>
+    ),
     children: [
       { index: true, element: <HomePage /> },
       { path: 'signup', element: <SignupPage /> },

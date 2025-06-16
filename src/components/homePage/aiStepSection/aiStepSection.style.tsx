@@ -42,6 +42,8 @@ export const ImagePlaceholder = styled.div`
   align-items: center;
   justify-content: center;
   color: #999;
+  overflow: hidden;
+  border-radius: 4px;
 `;
 
 export const StepTitle = styled.h3`
