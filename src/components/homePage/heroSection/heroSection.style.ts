@@ -20,11 +20,12 @@ export const Container = styled.section`
 export const ImageWrapper = styled.div`
   position: relative;
   width: 460px;
-
+  overflow: hidden;
   svg {
     width: 100%;
     height: auto;
   }
+  border-radius: 4px;
 `;
 
 export const TextBlock = styled.div`
@@ -38,6 +39,7 @@ export const Title = styled.h2`
   font-size: 46px;
   font-weight: bold;
   text-align: center;
+
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
@@ -51,7 +53,7 @@ export const Button = styled.button`
   background-color: #0f1f4b;
   color: white;
   padding: 16px 28px;
-  border-radius: 12px;
+  border-radius: 8px;
   border: none;
   font-weight: 600;
   font-size: 17px;

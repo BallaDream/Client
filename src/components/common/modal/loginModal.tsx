@@ -1,4 +1,3 @@
-// src/components/common/modal/loginModal.tsx
 import type { MouseEvent } from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -24,8 +23,7 @@ interface IProps {
   onClose: () => void;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface FormValues {
+interface IFormValues {
   username: string;
   password: string;
 }
@@ -40,7 +38,7 @@ export default function LoginModal({ isOpen, onClose }: IProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<IFormValues>({
     resolver: yupResolver(loginSchema),
     mode: 'onChange',
   });
@@ -56,7 +54,8 @@ export default function LoginModal({ isOpen, onClose }: IProps) {
     navigate('/signup');
   };
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: IFormValues) => {
+    console.log(1);
     setErrorMessage('');
     loginMutate(data, {
       onSuccess: (res) => {
@@ -104,9 +103,8 @@ export default function LoginModal({ isOpen, onClose }: IProps) {
             로그인
           </S.LoginButton>
         </form>
-        <S.SignupWrap>
+        <S.SignupWrap onClick={handleSignup}>
           <span>아직 BALLADREAM의 회원이 아니신가요?</span>
-          <S.SignupButton onClick={handleSignup}>회원가입</S.SignupButton>
         </S.SignupWrap>
         <S.DividerWrap>
           <S.Line /> <S.Or>또는</S.Or> <S.Line />

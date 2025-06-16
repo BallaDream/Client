@@ -22,7 +22,6 @@ export const Title = styled.h2`
   font-size: 26px;
   font-weight: bold;
   margin-bottom: 16px;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const Description = styled.p`

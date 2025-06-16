@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+import { useState } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +10,9 @@ import { useCheckEmailCode, useRequestEmailCode, useSignup } from '@/hooks/useSi
 
 import { signupSchema } from './signupForm.schema';
 import * as S from './signupForm.style';
+import SpinnerOverlay from '../common/overlay/SpinnerOverlay';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface FormValues {
+interface IFormValues {
   username: string;
   password: string;
   authNum: string;
@@ -28,7 +28,7 @@ export default function SignupForm() {
     handleSubmit,
     getValues,
     formState: { errors, isValid },
-  } = useForm<FormValues>({
+  } = useForm<IFormValues>({
     resolver: yupResolver(signupSchema),
     mode: 'onChange',
   });
@@ -36,6 +36,8 @@ export default function SignupForm() {
   const { mutate: sendEmailCode, isPending: isSending } = useRequestEmailCode();
   const { mutate: signupMutate, isPending: isSigningUp } = useSignup();
   const { mutate: checkCode, isPending: isChecking } = useCheckEmailCode();
+  const [isVerified, setIsVerified] = useState(false);
+  const isLoading = isSending || isChecking || isSigningUp;
 
   // 인증번호 전송
   const handleRequestCode = () => {
@@ -50,6 +52,7 @@ export default function SignupForm() {
       {
         onSuccess: (res) => {
           alert(res.message || '인증번호가 전송되었습니다.');
+          setIsVerified(true);
         },
         onError: (err: any) => {
           alert(err.response?.data?.message || '인증번호 요청 실패');
@@ -80,7 +83,7 @@ export default function SignupForm() {
   };
 
   // 회원가입 제출
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
+  const onSubmit: SubmitHandler<IFormValues> = (data) => {
     signupMutate(
       {
         username: data.username,
@@ -101,13 +104,14 @@ export default function SignupForm() {
 
   return (
     <S.PageWrapper>
+      {isLoading && <SpinnerOverlay />}
       <S.Container onSubmit={handleSubmit(onSubmit)}>
         <S.Title>일반 회원가입</S.Title>
 
         {/* 이메일 */}
         <S.InputGroup>
           <S.InputWrapper>
-            <S.Input type="text" placeholder="아이디(이메일주소)" {...register('username')} />
+            <S.Input type="text" placeholder="아이디(이메일주소)" {...register('username')} autoComplete="off" />
             <S.InputButton type="button" onClick={handleRequestCode} disabled={!!errors.username || !getValues('username') || isSending}>
               전송
             </S.InputButton>
@@ -153,7 +157,8 @@ export default function SignupForm() {
           <S.TermBox>{TERMS_2}</S.TermBox>
         </S.CheckboxWrap>
 
-        <S.SubmitButton type="submit" disabled={!isValid || isSigningUp}>
+        {/* 약관 */}
+        <S.SubmitButton type="submit" disabled={!isValid || isSigningUp || !isVerified}>
           약관동의 후 가입하기
         </S.SubmitButton>
       </S.Container>

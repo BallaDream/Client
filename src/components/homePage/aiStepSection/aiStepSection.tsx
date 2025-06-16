@@ -3,7 +3,7 @@ import * as S from './aiStepSection.style';
 export default function AiStepSection() {
   return (
     <S.Container>
-      <S.SectionTitle>Ai 피부분석 진행단계 설명</S.SectionTitle>
+      <S.SectionTitle>Ai 피부분석 진행단계</S.SectionTitle>
       <S.StepWrapper>
         <S.StepBox>
           <S.ImagePlaceholder>이미지 자리</S.ImagePlaceholder>
