@@ -4,6 +4,7 @@ export default function AiAnalysisSection() {
   return (
     <S.Container>
       <S.Title>AI 피부분석이란?</S.Title>
+
       <S.TextGroup>
         <S.Description>
           사용자의 얼굴 사진을 기반으로 피부 상태를 분석하여 <br />
@@ -11,18 +12,27 @@ export default function AiAnalysisSection() {
           <b>분석 결과에 따라 예방/권고/필수 3단계</b>로 나누어, 가장 필요한 <b>화장품 성분과 제품</b>을 추천합니다.
         </S.Description>
       </S.TextGroup>
+
       <S.CardContainer>
         <S.Card>
           <S.CardTitle>피부 분석 결과 예시</S.CardTitle>
-          <S.CardPlaceholder>이미지 자리</S.CardPlaceholder>
+          <S.ImageWrapper>
+            <S.CardImage src="/img/descript1.png" alt="피부 분석 결과 예시" />
+          </S.ImageWrapper>
         </S.Card>
-        <S.Card>
+
+        <S.Card $center $wide>
           <S.CardTitle>피부 고민 부위 설명</S.CardTitle>
-          <S.CardPlaceholder>이미지 자리</S.CardPlaceholder>
+          <S.ImageWrapper>
+            <S.CardImage src="/img/descript2.png" alt="피부 고민 부위 설명" />
+          </S.ImageWrapper>
         </S.Card>
+
         <S.Card>
           <S.CardTitle>화장품 추천 예시</S.CardTitle>
-          <S.CardPlaceholder>이미지 자리</S.CardPlaceholder>
+          <S.ImageWrapper>
+            <S.CardImage src="/img/descript3.png" alt="화장품 추천 예시" />
+          </S.ImageWrapper>
         </S.Card>
       </S.CardContainer>
     </S.Container>
