@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  padding: 50px 0;
+  padding: 16px;
   background-color: #ffffff;
   width: 100%;
   max-width: 1080px;

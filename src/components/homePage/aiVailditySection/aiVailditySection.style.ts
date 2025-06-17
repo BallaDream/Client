@@ -35,7 +35,7 @@ export const ImageBox = styled.div`
   width: 260px; // 공통 가로 기준
   height: auto;
   border-radius: 4px;
-  overflow: hidden;
+
   img {
     width: 100%;
     height: auto;

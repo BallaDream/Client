@@ -28,7 +28,6 @@ export const LoginIcon = styled(LoginIconSvg)`
 `;
 
 export const Text = styled.span`
-  cursor: pointer;
   font-weight: 500;
   font-size: 16px;
   color: white;
