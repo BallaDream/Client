@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useKakaoAuth } from '@/hooks/useKakaoAuth';
@@ -9,8 +10,11 @@ import * as S from './kakaoCallback.style';
 export default function KakaoCallback() {
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
+  const { mutate } = useKakaoAuth();
 
-  useKakaoAuth(code);
+  useEffect(() => {
+    if (code) mutate(code);
+  }, [code]);
 
   return (
     <S.Container>

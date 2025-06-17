@@ -31,12 +31,13 @@ export default function Header() {
   const handleLogout = async () => {
     try {
       await axiosInstance.post('/logout');
-      alert('로그아웃 되었습니다.');
+      console.log('로그아웃 되었습니다.');
     } catch (error) {
       console.error('❌ 로그아웃 실패:', error);
-      alert('로그아웃 중 오류가 발생했습니다.');
+      console.log('로그아웃 중 오류가 발생했습니다.');
     } finally {
       dispatch(logout());
+      navigate('/');
     }
   };
 
