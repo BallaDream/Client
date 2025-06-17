@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
+import type { AxiosError } from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 import { kakaoLogin } from '@/api/auth/kakaoLogin';
@@ -25,9 +26,16 @@ export const useKakaoAuth = () => {
         console.log('AccessToken이 응답 헤더에 없습니다.');
       }
     },
-    onError: (error) => {
-      console.error('❌ 카카오 로그인 실패:', error);
-      console.log('카카오 로그인 중 문제가 발생했습니다.');
+    onError: (error: unknown) => {
+      const err = error as AxiosError;
+
+      if (err.response?.status === 400 || err?.status === 400) {
+        console.log('이미 존재하는 이메일입니다.');
+        alert('이미 존재하는 이메일입니다.');
+      } else {
+        console.error('❌ 카카오 로그인 실패:', error);
+        alert('카카오 로그인 중 문제가 발생했습니다.');
+      }
     },
   });
 };

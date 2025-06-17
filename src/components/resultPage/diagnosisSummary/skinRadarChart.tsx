@@ -1,9 +1,11 @@
+import type { RadarSliceTooltipProps } from '@nivo/radar';
 import { ResponsiveRadar } from '@nivo/radar';
 
 import type { TGetDiagnoseInfoResponse } from '@/types/resultPage/result';
 import { LABEL, STATUS } from '@/enums/enums';
 
 import * as S from './diagnosisSummary.style';
+import { scoreToStatus } from '@/utils/scoreToStatus';
 
 // STATUS → 점수 매핑
 const levelToScore: Record<string, number> = {
@@ -33,6 +35,27 @@ export default function SkinRadarChart({ data }: IProps) {
     사용자: levelToScore[status],
   }));
 
+  function CustomTooltip({ index, data: res }: RadarSliceTooltipProps) {
+    return (
+      <div
+        style={{
+          background: '#fff',
+          padding: '6px 12px',
+          border: '1px solid #ccc',
+          borderRadius: '4px',
+          width: 'fit-content',
+          whiteSpace: 'nowrap', // 줄바꿈 방지 (옵션)
+        }}
+      >
+        {res.map((d) => (
+          <div key={d.id}>
+            <strong>{index}</strong>: {scoreToStatus(d.value)}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
     <S.ChartContainer style={{ height: 400 }}>
       <ResponsiveRadar
@@ -52,7 +75,7 @@ export default function SkinRadarChart({ data }: IProps) {
         dotColor={{ theme: 'background' }}
         dotBorderWidth={2}
         dotBorderColor={{ from: 'color' }}
-        colors={{ scheme: 'set2' }}
+        colors={(d) => (d.key === '사용자' ? '#3A4B9A' : '#ccc')}
         fillOpacity={0.4}
         blendMode="multiply"
         motionConfig="wobbly"
@@ -69,6 +92,25 @@ export default function SkinRadarChart({ data }: IProps) {
             symbolShape: 'circle',
           },
         ]}
+        theme={{
+          legends: {
+            text: {
+              fontSize: 14,
+              fontWeight: 300,
+              fontFamily: 'Pretendard',
+            },
+          },
+          axis: {
+            ticks: {
+              text: {
+                fontSize: 16,
+                fontWeight: 400,
+                fontFamily: 'Pretendard',
+              },
+            },
+          },
+        }}
+        sliceTooltip={CustomTooltip}
       />
     </S.ChartContainer>
   );

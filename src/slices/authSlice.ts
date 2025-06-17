@@ -1,13 +1,12 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface AuthState {
+interface IAuthState {
   accessToken: string | null;
   nickname: string | null;
 }
 
-const initialState: AuthState = {
+const initialState: IAuthState = {
   accessToken: localStorage.getItem('accessToken'),
   nickname: localStorage.getItem('nickname'),
 };
