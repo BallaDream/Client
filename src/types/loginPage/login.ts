@@ -1,11 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface TLoginRequest {
+export interface ILoginRequest {
   username: string;
   password: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface TLoginResponse {
+export interface ILoginResponse {
   status: number;
   message: string;
   accessToken?: string;

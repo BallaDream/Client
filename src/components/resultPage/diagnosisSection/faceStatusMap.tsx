@@ -1,6 +1,5 @@
 import type { CSSProperties } from 'react';
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Xarrow from 'react-xarrows';
 

@@ -57,7 +57,7 @@ export default function LoginModal() {
     setErrorMessage('');
     loginMutate(data, {
       onSuccess: (res) => {
-        const accessToken = res.headers['access'];
+        const accessToken = res.headers.access;
         if (!accessToken) {
           setErrorMessage('accessToken이 존재하지 않습니다.');
           return;

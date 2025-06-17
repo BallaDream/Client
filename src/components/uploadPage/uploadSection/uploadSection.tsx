@@ -12,7 +12,6 @@ export default function UploadSection() {
   const status = useAppSelector((state) => state.upload);
   const [file, setFile] = useState<File | null>(null);
 
-  console.log(status);
   return (
     <S.Container>
       {status.status == 'idle' && <IdleUploadSection setFile={setFile} />}

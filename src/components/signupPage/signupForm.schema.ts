@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import * as yup from 'yup';
 
 export const signupSchema = yup.object({

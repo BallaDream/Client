@@ -29,7 +29,7 @@ export const useKakaoAuth = () => {
     onError: (error: unknown) => {
       const err = error as AxiosError;
 
-      if (err.response?.status === 400) {
+      if (err.response?.status === 400 || err?.status === 400) {
         console.log('이미 존재하는 이메일입니다.');
         alert('이미 존재하는 이메일입니다.');
       } else {

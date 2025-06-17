@@ -27,6 +27,8 @@ export const FaceStatusMapContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   justify-self: center;
+  border: 4px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
 `;
 
 export const Hotspot = styled.div<{ color?: string }>`
