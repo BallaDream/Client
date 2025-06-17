@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
         letter-spacing: 0.02em;
     }
 
-    html, body {
+    html, body,#root{
         height: 100%;
         overflow-x: hidden;
     }

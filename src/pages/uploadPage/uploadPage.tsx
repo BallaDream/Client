@@ -7,11 +7,13 @@ import * as S from './uploadPage.style';
 export default function UploadPage() {
   return (
     <S.Container>
-      <UploadInstructionsHeader />
+      <S.ContentWrapper>
+        <UploadInstructionsHeader />
 
-      <UploadSection />
+        <UploadSection />
 
-      <UploadTipsSection />
+        <UploadTipsSection />
+      </S.ContentWrapper>
     </S.Container>
   );
 }
