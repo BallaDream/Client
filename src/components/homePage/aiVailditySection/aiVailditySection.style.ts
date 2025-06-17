@@ -53,7 +53,9 @@ export const Block = styled.div`
 
 export const ImageBox = styled.div`
   flex-shrink: 0;
-  width: 260px;
+  width: 260px; // 공통 가로 기준
+  height: auto;
+  border-radius: 4px;
 
   img {
     width: 100%;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  padding: 100px 16px;
+  padding: 4em 16px;
   background-color: #a7b2e640;
   display: flex;
   flex-direction: column;
