@@ -104,7 +104,7 @@ export default function SignupForm() {
 
   return (
     <S.PageWrapper>
-      {isLoading && <SpinnerOverlay />}
+      {isLoading && <SpinnerOverlay text="잠시만 기다려 주세요" />}
       <S.Container onSubmit={handleSubmit(onSubmit)}>
         <S.Title>일반 회원가입</S.Title>
 

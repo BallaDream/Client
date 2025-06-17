@@ -1,45 +1,24 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { useSearchParams } from 'react-router-dom';
 
-import { axiosInstance } from '@/api/axiosInstance';
-import { setAccessToken, setNickname } from '@/slices/authSlice';
+import { useKakaoAuth } from '@/hooks/useKakaoAuth';
 
-let isCalled = false;
+import SpinnerOverlay from '@/components/common/overlay/SpinnerOverlay';
+
+import * as S from './kakaoCallback.style';
 
 export default function KakaoCallback() {
   const [searchParams] = useSearchParams();
   const code = searchParams.get('code');
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { mutate } = useKakaoAuth();
 
   useEffect(() => {
-    const fetchKakaoToken = async () => {
-      if (isCalled || !code) return;
-      isCalled = true;
+    if (code) mutate(code);
+  }, [code]);
 
-      try {
-        const response = await axiosInstance.get(`/kakao/authenticate?code=${code}`);
-        const token = response.headers['access'];
-
-        if (token) {
-          dispatch(setAccessToken(token));
-          const decoded: any = jwtDecode(token);
-          dispatch(setNickname(decoded.nickname));
-          alert('카카오 로그인에 성공했습니다!');
-          navigate('/');
-        } else {
-          alert('AccessToken이 응답 헤더에 없습니다.');
-        }
-      } catch (error: any) {
-        console.error('❌ 카카오 로그인 실패:', error);
-        alert('카카오 로그인 중 문제가 발생했습니다. 다시 시도해주세요.');
-      }
-    };
-
-    fetchKakaoToken();
-  }, [code, dispatch, navigate]);
-
-  return <div>카카오 로그인 처리 중입니다...</div>;
+  return (
+    <S.Container>
+      <SpinnerOverlay text="잠시만 기다려주세요" />
+    </S.Container>
+  );
 }
