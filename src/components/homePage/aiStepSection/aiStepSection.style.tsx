@@ -4,7 +4,7 @@ export const Container = styled.section`
   padding: 16px;
   background-color: #ffffff;
   width: 100%;
-  max-width: 1080px;
+  max-width: 1140px;
   margin: 0 auto;
 `;
 
@@ -17,42 +17,46 @@ export const SectionTitle = styled.h2`
 
 export const StepWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 24px;
+  flex-wrap: nowrap;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
+  @media (max-width: 1024px) {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 `;
 
 export const StepBox = styled.div`
-  width: 100%;
-  max-width: 300px;
+  flex: 0 0 320px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+export const StepTop = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-export const ImagePlaceholder = styled.div`
+export const StepImage = styled.img`
   width: 100%;
-  height: 320px;
-  background-color: #e0e0e0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #999;
-  overflow: hidden;
+  height: 300px;
+  object-fit: contain;
   border-radius: 4px;
 `;
 
 export const StepTitle = styled.h3`
   font-size: 22px;
   font-weight: bold;
-  margin: 16px 0 8px;
+  text-align: center;
 `;
 
 export const StepDescription = styled.p`
   font-size: 16px;
   color: #666;
+  line-height: 1.4;
+  text-align: left;
 `;

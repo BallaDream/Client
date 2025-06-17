@@ -37,27 +37,39 @@ export const CardContainer = styled.div`
   }
 `;
 
-export const Card = styled.div`
-  width: 300px;
+export const Card = styled.div<{ $center?: boolean; $wide?: boolean }>`
+  width: ${({ $wide }) => ($wide ? '340px' : '300px')};
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
+
+  ${({ $center }) =>
+    $center &&
+    `
+    align-self: center;
+  `}
 `;
 
 export const CardTitle = styled.h3`
   font-size: 20px;
   font-weight: bold;
-`;
-
-export const CardPlaceholder = styled.div`
-  width: 100%;
-  height: 300px;
-  background-color: #e3e3e3;
+  height: 28px; /* 모든 제목을 같은 높이로 고정 */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #666;
-  font-size: 14px;
-  overflow: hidden;
-  border-radius: 4px;
+`;
+
+export const ImageWrapper = styled.div`
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const CardImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 `;
