@@ -39,7 +39,7 @@ export default function ProductCard({ productId, formulation, productName, price
 
       <S.Info>
         <S.ProductName>{productName}</S.ProductName>
-        <S.Price>{price.toLocaleString()}원</S.Price>
+        <S.Price>{Number(price).toLocaleString()}원</S.Price>
         <S.Ingredients>
           {element
             .filter((i) => allowedIngredients.includes(i))
