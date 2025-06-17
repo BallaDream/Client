@@ -4,6 +4,7 @@ import * as S from './recommendationSection.style';
 
 import HeartIcon from '@/assets/icons/white_heart.svg?react';
 import { useAppSelector } from '@/store/hooks';
+import { allowedIngredients } from '@/constants/terms';
 
 type TProductCardProps = {
   productId: number;
@@ -40,9 +41,12 @@ export default function ProductCard({ productId, formulation, productName, price
         <S.ProductName>{productName}</S.ProductName>
         <S.Price>{price.toLocaleString()}원</S.Price>
         <S.Ingredients>
-          {element.slice(0, 3).map((i) => (
-            <S.IngredientTag key={i}>{i}</S.IngredientTag>
-          ))}
+          {element
+            .filter((i) => allowedIngredients.includes(i))
+            .slice(0, 3)
+            .map((i) => (
+              <S.IngredientTag key={i}>{i}</S.IngredientTag>
+            ))}
         </S.Ingredients>
       </S.Info>
     </S.Card>
