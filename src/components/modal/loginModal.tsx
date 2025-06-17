@@ -68,7 +68,7 @@ export default function LoginModal() {
           dispatch(setAccessToken(accessToken));
           dispatch(setNickname(nickname));
           dispatch(closeModal());
-          alert('로그인 성공!');
+          console.log('로그인 성공!');
         } catch {
           setErrorMessage('토큰 디코딩에 실패했습니다.');
         }
