@@ -16,7 +16,7 @@ export default function KakaoCallback() {
 
   useEffect(() => {
     const fetchKakaoToken = async () => {
-      if (isCalled) return;
+      if (isCalled || !code) return;
       isCalled = true;
 
       try {
@@ -27,19 +27,19 @@ export default function KakaoCallback() {
           dispatch(setAccessToken(token));
           const decoded: any = jwtDecode(token);
           dispatch(setNickname(decoded.nickname));
-          alert('로그인 성공!');
+          alert('카카오 로그인에 성공했습니다!');
           navigate('/');
         } else {
           alert('AccessToken이 응답 헤더에 없습니다.');
         }
       } catch (error: any) {
         console.error('❌ 카카오 로그인 실패:', error);
-        alert('카카오 로그인 중 오류가 발생했습니다.');
+        alert('카카오 로그인 중 문제가 발생했습니다. 다시 시도해주세요.');
       }
     };
 
     fetchKakaoToken();
-  }, [code]);
+  }, [code, dispatch, navigate]);
 
   return <div>카카오 로그인 처리 중입니다...</div>;
 }
