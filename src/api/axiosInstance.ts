@@ -25,15 +25,24 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-// ✅ 응답 시 401/403 처리
+// 실패시 모달 띄우기
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     const status = error?.response?.status;
-    if (status === 401 || status === 403) {
+    const url = error?.config?.url ?? '';
+    const path = url.split('?')[0];
+
+    const excludedPaths = ['/login', '/verify-email', '/join', '/join/auth-number/check', '/kakao/authenticate', '/logout', '/user', '/reissue'];
+
+    const isExcluded = excludedPaths.includes(path);
+
+    if (!isExcluded && (status === 401 || status === 403)) {
+      console.log(' 인증 오류, 로그인 모달 호출:', path);
       store.dispatch(logout());
       store.dispatch(openModal('login'));
     }
+
     return Promise.reject(error);
   },
 );
