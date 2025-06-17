@@ -27,13 +27,19 @@ export const LoginIcon = styled(LoginIconSvg)`
   display: block;
 `;
 
-export const LogoutText = styled.span`
-  color: #bbb;
-  font-size: 13px;
+export const Text = styled.span`
   cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+`;
 
-  &:hover {
-    text-decoration: underline;
-    color: #fff;
-  }
+export const LogoutText = styled(Text)`
+  cursor: pointer;
+`;
+
+export const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
 `;

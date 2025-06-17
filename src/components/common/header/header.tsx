@@ -18,7 +18,7 @@ export default function Header() {
 
   const handleLoginIconClick = () => {
     if (isLoggedIn) {
-      navigate('/mypage');
+      //navigate('/mypage');
     } else {
       dispatch(openModal('login'));
     }
@@ -42,19 +42,23 @@ export default function Header() {
 
   return (
     <S.Container>
+      {/* 왼쪽(로고) */}
       <S.LogoWrapper onClick={handleLogoIconClick}>
         <LogoIcon />
       </S.LogoWrapper>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-        {isLoggedIn && (
-          <>
-            <span style={{ color: 'white', fontSize: '14px' }}>{nickname}님</span>
-            <S.LogoutText onClick={handleLogout}>로그아웃</S.LogoutText>
-          </>
-        )}
+      {/* 오른쪽 */}
+      {isLoggedIn ? (
+        <S.RightSection>
+          <div style={{ display: 'flex', gap: '2px', cursor: 'pointer' }} onClick={handleLoginIconClick}>
+            <S.LoginIcon />
+            <S.Text>{nickname}님</S.Text>
+          </div>
+          <S.LogoutText onClick={handleLogout}>로그아웃</S.LogoutText>
+        </S.RightSection>
+      ) : (
         <S.LoginIcon onClick={handleLoginIconClick} />
-      </div>
+      )}
     </S.Container>
   );
 }

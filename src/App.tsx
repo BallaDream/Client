@@ -22,7 +22,7 @@ function App() {
       }
 
       try {
-        const res = await auth(); // POST /user
+        await auth();
         const decoded: any = jwtDecode(token);
         dispatch(setAccessToken(token));
         dispatch(setNickname(decoded.nickname));
