@@ -10,5 +10,5 @@ export const Container = styled.div`
   align-items: center;
 
   gap: 2em 1em;
-  padding: 8em 1.5em 0 1.5em;
+  padding: 6em 1.5em 6em 1.5em;
 `;

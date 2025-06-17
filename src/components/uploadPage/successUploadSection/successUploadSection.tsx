@@ -27,7 +27,7 @@ export default function SuccessUploadSection({ file, setFile }: { file: File | n
 
   return (
     <S.Container>
-      {isPending && <SpinnerOverlay />}
+      {isPending && <SpinnerOverlay text="분석 중입니다..." />}
       <S.ImagePreview src={previewUrl || '/'} alt="" />
       <S.ButtonGroup>
         <S.ActionButton onClick={handleAnalyze}>

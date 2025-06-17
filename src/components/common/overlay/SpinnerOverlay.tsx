@@ -2,11 +2,15 @@ import { SyncLoader } from 'react-spinners';
 
 import * as S from './SpinnerOverlay.style.ts';
 
-export default function SpinnerOverlay() {
+interface ISpinnerOverlayProps {
+  text: string;
+}
+
+export default function SpinnerOverlay({ text }: ISpinnerOverlayProps) {
   return (
     <S.Overlay>
       <SyncLoader size={15} margin={6} color="#ffffff" speedMultiplier={1} />
-      <S.Message>분석 중입니다...</S.Message>
+      {text && <S.Message>{text}</S.Message>}
     </S.Overlay>
   );
 }
