@@ -3,14 +3,16 @@ import { createBrowserRouter } from 'react-router-dom';
 import ModalRenderer from '@/components/modal/modalRenderer';
 
 import MainLayout from '@/layouts/main/mainLayout';
+import MyPageLayout from '@/layouts/my/myPageLayout';
 import KakaoCallback from '@/pages/auth/kakaoCallback';
 import HomePage from '@/pages/homePage/homePage';
+import MyPage from '@/pages/myPage/myPage';
 import ResultPage from '@/pages/resultPage/resultPage';
 import SignupPage from '@/pages/signupPage/signupPage';
 import UploadPage from '@/pages/uploadPage/uploadPage';
 
-// 라우팅설정(이것도 바꿔야됨)
 const router = createBrowserRouter([
+  // 메인페이지
   {
     path: '/',
     element: (
@@ -25,6 +27,21 @@ const router = createBrowserRouter([
       { path: 'upload', element: <UploadPage /> },
     ],
   },
+  // 마이페이지
+  {
+    path: '/my',
+    element: (
+      <MyPageLayout>
+        <ModalRenderer />
+      </MyPageLayout>
+    ),
+    children: [
+      { index: true, element: <MyPage /> },
+      { path: ':tabIndex', element: <MyPage /> },
+    ],
+  },
+
+  // 카카오 로그인 콜백
   {
     path: '/auth/kakao/callback',
     element: <KakaoCallback />,

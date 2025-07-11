@@ -18,7 +18,7 @@ export default function Header() {
 
   const handleLoginIconClick = () => {
     if (isLoggedIn) {
-      //navigate('/mypage');
+      navigate('/my');
     } else {
       dispatch(openModal('login'));
     }

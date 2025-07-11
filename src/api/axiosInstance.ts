@@ -51,7 +51,7 @@ axiosInstance.interceptors.response.use(
     const isExcluded = excludedPaths.includes(path);
 
     // ✅ accessToken 만료 상태이며, 아직 재시도 전인 경우
-    if (!isExcluded && (status === 401 || status === 403) && !originalRequest._retry) {
+    if (!isExcluded && (status === 401 || status === 403 || status === 406) && !originalRequest._retry) {
       originalRequest._retry = true;
 
       // 이미 다른 요청이 refresh 중이면 큐에 등록해서 나중에 실행
