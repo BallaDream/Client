@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 import ModalRenderer from '@/components/modal/modalRenderer';
 
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       </MyPageLayout>
     ),
     children: [
-      { index: true, element: <MyPage /> },
+      { index: true, element: <Navigate to="/my/0" replace /> },
       { path: ':tabIndex', element: <MyPage /> },
     ],
   },
