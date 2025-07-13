@@ -13,7 +13,7 @@ import * as S from './loginModal.style';
 
 import EngLogo from '@/assets/icons/eng_logo.svg?react';
 import XIcon from '@/assets/icons/x_gray.svg?react';
-import { setAccessToken, setNickname } from '@/slices/authSlice';
+import { setLogin } from '@/slices/authSlice';
 import { closeModal } from '@/slices/modalSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
@@ -65,8 +65,8 @@ export default function LoginModal() {
         try {
           const decoded: any = jwtDecode(accessToken);
           const nickname = decoded?.nickname || '사용자';
-          dispatch(setAccessToken(accessToken));
-          dispatch(setNickname(nickname));
+
+          dispatch(setLogin({ accessToken, nickname }));
           dispatch(closeModal());
           console.log('로그인 성공!');
         } catch {

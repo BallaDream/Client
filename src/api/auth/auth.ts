@@ -11,3 +11,9 @@ export const refresh = async () => {
   console.log(response);
   return response;
 };
+
+export const logout = async () => {
+  const response = await axiosInstance.post('/logout');
+  console.log(response);
+  return response;
+};
