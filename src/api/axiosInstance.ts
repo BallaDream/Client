@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { refresh } from '@/api/auth/auth';
-import { logout } from '@/slices/authSlice';
+import { setLogout } from '@/slices/authSlice';
 import { openModal } from '@/slices/modalSlice';
 import { store } from '@/store/store';
 
@@ -82,7 +82,7 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest);
       } catch (refreshError) {
         // ❌ refreshToken까지 만료 → 로그아웃 처리
-        store.dispatch(logout());
+        store.dispatch(setLogout());
         store.dispatch(openModal('login'));
         return Promise.reject(refreshError);
       } finally {
@@ -92,7 +92,7 @@ axiosInstance.interceptors.response.use(
 
     // ❌ 재발급 대상이 아니거나 재시도 실패 → 로그아웃 처리
     if (!isExcluded && (status === 401 || status === 403)) {
-      store.dispatch(logout());
+      store.dispatch(setLogout());
       store.dispatch(openModal('login'));
     }
 

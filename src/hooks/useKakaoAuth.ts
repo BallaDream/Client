@@ -5,7 +5,7 @@ import type { AxiosError } from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
 import { kakaoLogin } from '@/api/auth/kakaoLogin';
-import { setAccessToken, setNickname } from '@/slices/authSlice';
+import { setLogin } from '@/slices/authSlice';
 
 export const useKakaoAuth = () => {
   const dispatch = useDispatch();
@@ -17,9 +17,9 @@ export const useKakaoAuth = () => {
       const token = response.headers.access;
 
       if (token) {
-        dispatch(setAccessToken(token));
         const decoded: any = jwtDecode(token);
-        dispatch(setNickname(decoded?.nickname ?? '익명'));
+
+        dispatch(setLogin({ accessToken: token, nickname: decoded?.nickname ?? '익명' }));
         console.log('카카오 로그인에 성공했습니다!');
         navigate('/');
       } else {

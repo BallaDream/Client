@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 
+import ProtectedRoute from '@/components/common/protectedRoute/protectedRoute';
 import ModalRenderer from '@/components/modal/modalRenderer';
 
 import MainLayout from '@/layouts/main/mainLayout';
@@ -23,21 +24,37 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'signup', element: <SignupPage /> },
-      { path: 'result/:diagnoseId', element: <ResultPage /> },
-      { path: 'upload', element: <UploadPage /> },
+      // 인증이 필요한 라우트들
+      {
+        path: 'upload',
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <UploadPage /> }],
+      },
+      {
+        path: 'result/:diagnoseId',
+        element: <ProtectedRoute />,
+        children: [{ index: true, element: <ResultPage /> }],
+      },
     ],
   },
-  // 마이페이지
+  // 마이페이지 (인증 필요)
   {
     path: '/my',
-    element: (
-      <MyPageLayout>
-        <ModalRenderer />
-      </MyPageLayout>
-    ),
+    element: <ProtectedRoute />,
     children: [
-      { index: true, element: <Navigate to="/my/0" replace /> },
-      { path: ':tabIndex', element: <MyPage /> },
+      {
+        index: true,
+        element: <Navigate to="/my/0" replace />,
+      },
+      {
+        path: ':tabIndex',
+        element: (
+          <MyPageLayout>
+            <ModalRenderer />
+          </MyPageLayout>
+        ),
+        children: [{ index: true, element: <MyPage /> }],
+      },
     ],
   },
 

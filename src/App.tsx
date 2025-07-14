@@ -3,10 +3,9 @@ import { useDispatch } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
-import router from './routes';
-
 import { auth } from '@/api/auth/auth';
-import { logout, setAccessToken, setNickname } from '@/slices/authSlice';
+import router from '@/routes';
+import { setLogin, setLogout } from '@/slices/authSlice';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,7 +15,7 @@ function App() {
     const verifyUser = async () => {
       const token = localStorage.getItem('accessToken');
       if (!token) {
-        dispatch(logout());
+        dispatch(setLogout());
         setIsAuthChecked(true);
         return;
       }
@@ -24,11 +23,10 @@ function App() {
       try {
         await auth();
         const decoded: any = jwtDecode(token);
-        dispatch(setAccessToken(token));
-        dispatch(setNickname(decoded.nickname));
+        dispatch(setLogin({ accessToken: token, nickname: decoded.nickname }));
       } catch (error) {
         console.error('❌ 인증 실패:', error);
-        dispatch(logout());
+        dispatch(setLogout());
       } finally {
         setIsAuthChecked(true);
       }

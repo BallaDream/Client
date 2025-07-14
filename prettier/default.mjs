@@ -5,8 +5,8 @@ export default {
   printWidth: 160,
   singleQuote: true,
   bracketSpacing: true,
-  endOfLine: 'lf',
   trailingComma: 'all',
   arrowParens: 'always',
   quoteProps: 'consistent',
+  endOfLine: 'auto',
 };
