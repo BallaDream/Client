@@ -7,3 +7,9 @@ export const login = async (data: ILoginRequest) => {
   console.log(response);
   return response; // response.data 아님. 전체 응답 필요
 };
+
+export const logout = async () => {
+  const response = await axiosInstance.post('/logout');
+  console.log(response);
+  return response;
+};

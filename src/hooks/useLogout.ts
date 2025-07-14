@@ -6,12 +6,12 @@ import type { AxiosError } from 'axios';
 import { logout } from '@/api/auth/auth';
 import { setLogout } from '@/slices/authSlice';
 
-interface UseLogoutOptions {
+interface IUseLogoutOptions {
   onSuccess?: () => void;
   onError?: (error: string) => void;
 }
 
-export const useLogout = (options?: UseLogoutOptions) => {
+export const useLogout = (options?: IUseLogoutOptions) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ export const useLogout = (options?: UseLogoutOptions) => {
       options?.onSuccess?.();
     },
     onError: (error: unknown) => {
-      const err = error as AxiosError;
+      //const err = error as AxiosError;
       console.error('❌ 로그아웃 실패:', error);
 
       // 서버 로그아웃이 실패해도 클라이언트에서는 로그아웃 처리
