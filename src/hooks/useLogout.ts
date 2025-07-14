@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
 
-import { logout } from '@/api/auth/auth';
+//import type { AxiosError } from 'axios';
+import { logout } from '@/api/loginPage/login';
 import { setLogout } from '@/slices/authSlice';
 
 interface IUseLogoutOptions {
