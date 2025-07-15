@@ -1,3 +1,3 @@
 export default function HistorySection() {
-  return <div>historySection</div>;
+  return <div>historySections</div>;
 }
