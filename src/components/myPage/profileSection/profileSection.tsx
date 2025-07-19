@@ -1,12 +1,12 @@
 import { LABEL, STATUS } from '@/enums/enums';
 
+import LabelSummary from '@/components/resultPage/diagnosisSummary/labelSummary';
 import SkinRadarChart from '@/components/resultPage/diagnosisSummary/skinRadarChart';
 
 import * as S from './profileSection.style';
 
 import AvatarIcon from '@/assets/icons/avatar.svg?react';
 import LockIcon from '@/assets/icons/lock.svg?react';
-import LabelSummary from '@/components/resultPage/diagnosisSummary/labelSummary';
 
 const data = {
   [LABEL.PIGMENT]: STATUS.CLEAR,
@@ -20,8 +20,10 @@ function ProfileSection() {
   return (
     <S.Container>
       {/* 회원 정보 */}
+      <span style={{ fontSize: 30, fontWeight: 700 }}>회원 정보</span>
+
       <S.Card>
-        <S.SectionTitle>회원 정보</S.SectionTitle>
+        <S.SectionTitle>기본 정보</S.SectionTitle>
 
         <S.InfoBox>
           <S.InfoContent>
