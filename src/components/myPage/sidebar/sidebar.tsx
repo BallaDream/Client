@@ -1,11 +1,12 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { useLogout } from '@/hooks/useLogout';
+
 import Profile from './profile';
 import * as S from './sidebar.style';
 
 import ArrowRightIcon from '@/assets/icons/arrow_right.svg?react';
 import LogoEng from '@/assets/icons/eng_logo.svg?react';
-import { useLogout } from '@/hooks/useLogout';
 
 type TMenuItem = {
   name: string;

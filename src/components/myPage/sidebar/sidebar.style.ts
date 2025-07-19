@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 35%;
-  max-width: 346px;
-  min-width: 240px;
-  height: 100%;
+  width: 346px;
+  // max-width: 346px;
+  //min-width: 240px;
+  height: calc(100vh - 62px);
   background: linear-gradient(90deg, rgba(167, 178, 230, 0.5) 0%, #ffffff 100%);
   box-shadow: 10px 0px 10px rgba(27, 45, 117, 0.1);
   padding: 60px 48px 32px 48px;
@@ -12,7 +12,6 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 120px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 `;
 
