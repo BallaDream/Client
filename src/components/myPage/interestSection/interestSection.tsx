@@ -4,6 +4,8 @@ import ProductCard from '@/components/resultPage/recommendationSection/productCa
 
 import * as S from './interestSection.style';
 
+import HeartTextIcon from '@/assets/icons/HeartText.svg?react';
+
 const mockData = [
   {
     productId: 1,
@@ -74,7 +76,10 @@ const mockData = [
 export default function InterestSection() {
   return (
     <S.Container>
-      <span style={{ fontSize: 30, fontWeight: 700 }}>관심 제품</span>
+      <span style={{ fontSize: 30, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
+        <HeartTextIcon />
+        관심 제품
+      </span>
       <S.CardList>
         {mockData.map((data) => (
           <ProductCard key={data.productId} {...data} />

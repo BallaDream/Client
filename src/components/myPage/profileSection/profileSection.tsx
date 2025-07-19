@@ -7,6 +7,7 @@ import * as S from './profileSection.style';
 
 import AvatarIcon from '@/assets/icons/avatar.svg?react';
 import LockIcon from '@/assets/icons/lock.svg?react';
+import ProfileIcon from '@/assets/icons/profileText.svg?react';
 
 const data = {
   [LABEL.PIGMENT]: STATUS.CLEAR,
@@ -20,7 +21,10 @@ function ProfileSection() {
   return (
     <S.Container>
       {/* 회원 정보 */}
-      <span style={{ fontSize: 30, fontWeight: 700 }}>회원 정보</span>
+      <span style={{ fontSize: 30, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
+        <ProfileIcon />
+        회원 정보
+      </span>
 
       <S.Card>
         <S.SectionTitle>기본 정보</S.SectionTitle>
