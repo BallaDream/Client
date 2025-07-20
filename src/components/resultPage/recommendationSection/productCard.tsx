@@ -23,7 +23,7 @@ type TProductCardProps = {
   diagnoseType?: LABEL[];
 };
 
-export default function ProductCard({ productId, formulation, productName, price, element, imageLink, interest = false, diagnoseType }: TProductCardProps) {
+export default function ProductCard({ productId, formulation, productName, price, element, imageLink, interest = true, diagnoseType }: TProductCardProps) {
   // 좋아요 토글 훅
   const { mutate: toggleInterest } = useToggleInterest();
   const nDiagnoseType = useAppSelector((state) => state.recommendation.selectedQuery.diagnoseType);
