@@ -5,6 +5,7 @@ import ProductCard from '@/components/resultPage/recommendationSection/productCa
 import * as S from './interestSection.style';
 
 import HeartTextIcon from '@/assets/icons/HeartText.svg?react';
+import { useInterestedProducts } from '@/hooks/useInterestedProducts';
 
 const mockData = [
   {
@@ -74,6 +75,7 @@ const mockData = [
   },
 ];
 export default function InterestSection() {
+  const { data: interestedProducts } = useInterestedProducts();
   return (
     <S.Container>
       <span style={{ fontSize: 30, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
