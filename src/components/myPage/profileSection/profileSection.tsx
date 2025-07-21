@@ -1,5 +1,3 @@
-import { LABEL, STATUS } from '@/enums/enums';
-
 import { useResentDiagnose } from '@/hooks/useDiagnoseInfo';
 
 import LabelSummary from '@/components/resultPage/diagnosisSummary/labelSummary';
@@ -54,13 +52,17 @@ function ProfileSection() {
             <span>닉네임</span>
             <span>님의 피부 현재 피부상태</span>
           </div>
-          <S.DateButton>최근 진단일 | {resentDiagnose?.diagnoseDate} | ▶</S.DateButton>
+          {resentDiagnose?.data && <S.DateButton>최근 진단일 | {resentDiagnose?.diagnoseDate} | ▶</S.DateButton>}
         </S.SectionHeader>
 
-        <S.ChartAndLegend>
-          <SkinRadarChart data={resentDiagnose?.data} />
-          <LabelSummary data={resentDiagnose?.data} />
-        </S.ChartAndLegend>
+        {resentDiagnose?.data ? (
+          <S.ChartAndLegend>
+            <SkinRadarChart data={resentDiagnose?.data} />
+            <LabelSummary data={resentDiagnose?.data} />
+          </S.ChartAndLegend>
+        ) : (
+          <S.EmptyText>💡 진단 이력이 아직 없습니다. 피부 분석을 통해 나에게 꼭 맞는 제품을 찾아보세요!</S.EmptyText>
+        )}
       </S.Card>
     </S.Container>
   );

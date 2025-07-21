@@ -1,4 +1,4 @@
-import type { STATUS } from '@/enums/enums';
+import type { LABEL, STATUS } from '@/enums/enums';
 
 export interface IProduct {
   productId: number;
@@ -7,7 +7,7 @@ export interface IProduct {
   salesLink: string;
   imageLink: string;
   element: string[];
-  diagnoseType: string[];
+  diagnoseType: LABEL[];
 }
 
 // response

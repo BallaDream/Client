@@ -3,13 +3,15 @@ import { useEffect, useRef } from 'react';
 import { useInterestedProducts } from '@/hooks/useInterestedProducts';
 
 import ProductCard from '@/components/resultPage/recommendationSection/productCard';
+import ProductCardSkeleton from '@/components/resultPage/recommendationSection/ProductCardSkeleton';
 
 import * as S from './interestSection.style';
 
 import HeartTextIcon from '@/assets/icons/HeartText.svg?react';
 
 export default function InterestSection() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInterestedProducts();
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useInterestedProducts();
+
   const observerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -40,14 +42,22 @@ export default function InterestSection() {
         관심 제품
       </span>
 
-      <S.CardList>
-        {allProducts.map((product) => (
-          <ProductCard key={product.productId} {...product} />
-        ))}
-      </S.CardList>
-
-      {/* 무한 스크롤 감지용 div */}
-      <div ref={observerRef} style={{ height: 1 }} />
+      {isLoading ? (
+        <S.CardList>
+          {Array.from({ length: 5 }).map((_, index) => (
+            <ProductCardSkeleton key={index} />
+          ))}
+        </S.CardList>
+      ) : allProducts.length === 0 ? (
+        <S.EmptyText>💡 아직 저장한 관심 화장품이 없어요! 추천제품에서 하트를 눌러 저장해보세요.</S.EmptyText>
+      ) : (
+        <S.CardList>
+          {allProducts.map((product) => (
+            <ProductCard key={product.productId} {...product} formulation="api가 없음" />
+          ))}
+          <div ref={observerRef} style={{ height: 1 }} />
+        </S.CardList>
+      )}
     </S.Container>
   );
 }
