@@ -1,5 +1,6 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
+import { queryClient } from '@/api/queryClient';
 import { deleteInterest, postInterest } from '@/api/resultPage/result';
 
 type TToggleInterestParams = {
@@ -9,8 +10,6 @@ type TToggleInterestParams = {
 };
 
 export const useToggleInterest = () => {
-  const queryClient = useQueryClient();
-
   return useMutation<unknown, Error, TToggleInterestParams, { previousData: any }>({
     mutationFn: async ({ productId, diagnoseType, isInterest }: TToggleInterestParams) => {
       const data = { productId, diagnoseType };
@@ -45,6 +44,7 @@ export const useToggleInterest = () => {
     // 3️ 성공시 최신화
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['product'] });
+      queryClient.invalidateQueries({ queryKey: ['interestedProducts'] });
     },
   });
 };

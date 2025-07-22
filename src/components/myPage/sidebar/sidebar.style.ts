@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 346px;
-  // max-width: 346px;
-  //min-width: 240px;
-  height: calc(100vh - 62px);
+  height: 100%;
   background: linear-gradient(90deg, rgba(167, 178, 230, 0.5) 0%, #ffffff 100%);
   box-shadow: 10px 0px 10px rgba(27, 45, 117, 0.1);
   padding: 60px 48px 32px 48px;

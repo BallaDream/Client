@@ -1,4 +1,4 @@
-import { LABEL, STATUS } from '@/enums/enums';
+import { useResentDiagnose } from '@/hooks/useDiagnoseInfo';
 
 import LabelSummary from '@/components/resultPage/diagnosisSummary/labelSummary';
 import SkinRadarChart from '@/components/resultPage/diagnosisSummary/skinRadarChart';
@@ -9,26 +9,20 @@ import AvatarIcon from '@/assets/icons/avatar.svg?react';
 import LockIcon from '@/assets/icons/lock.svg?react';
 import ProfileIcon from '@/assets/icons/profileText.svg?react';
 
-const data = {
-  [LABEL.PIGMENT]: STATUS.CLEAR,
-  [LABEL.WRINKLE]: STATUS.CAUTION,
-  [LABEL.PORE]: STATUS.WARNING,
-  [LABEL.DRY]: STATUS.WARNING,
-  [LABEL.ELASTIC]: STATUS.CLEAR,
-};
-
 function ProfileSection() {
+  const { data: resentDiagnose } = useResentDiagnose();
+
   return (
     <S.Container>
-      {/* 회원 정보 */}
+      {/* 타이틀 */}
       <span style={{ fontSize: 30, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
         <ProfileIcon />
         회원 정보
       </span>
 
       <S.Card>
+        {/* 기본 정보 */}
         <S.SectionTitle>기본 정보</S.SectionTitle>
-
         <S.InfoBox>
           <S.InfoContent>
             <AvatarIcon style={{ width: 100, height: 100, flexShrink: 0 }} />
@@ -38,7 +32,6 @@ function ProfileSection() {
             </div>
             <S.ActionButton>정보 수정</S.ActionButton>
           </S.InfoContent>
-
           <S.InfoBoxFooter>
             <S.InfoBoxFooterText>
               <LockIcon style={{ width: 16, height: 16 }} />
@@ -59,13 +52,17 @@ function ProfileSection() {
             <span>닉네임</span>
             <span>님의 피부 현재 피부상태</span>
           </div>
-          <S.DateButton>최근 진단일 | {new Date().toLocaleDateString()} | ▶</S.DateButton>
+          {resentDiagnose?.data && <S.DateButton>최근 진단일 | {resentDiagnose?.diagnoseDate} | ▶</S.DateButton>}
         </S.SectionHeader>
 
-        <S.ChartAndLegend>
-          <SkinRadarChart data={data} />
-          <LabelSummary data={data} />
-        </S.ChartAndLegend>
+        {resentDiagnose?.data ? (
+          <S.ChartAndLegend>
+            <SkinRadarChart data={resentDiagnose?.data} />
+            <LabelSummary data={resentDiagnose?.data} />
+          </S.ChartAndLegend>
+        ) : (
+          <S.EmptyText>💡 진단 이력이 아직 없습니다. 피부 분석을 통해 나에게 꼭 맞는 제품을 찾아보세요!</S.EmptyText>
+        )}
       </S.Card>
     </S.Container>
   );

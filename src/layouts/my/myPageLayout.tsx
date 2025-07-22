@@ -13,8 +13,12 @@ export default function MyPageLayout({ children }: { children: ReactNode }) {
       <S.Container>
         <Header />
         <S.Content>
-          <Sidebar />
-          <Outlet />
+          <S.SidebarWrapper>
+            <Sidebar />
+          </S.SidebarWrapper>
+          <S.OutletWrapper>
+            <Outlet />
+          </S.OutletWrapper>
         </S.Content>
       </S.Container>
     </>

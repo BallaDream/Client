@@ -158,3 +158,14 @@ export const ColorBox = styled.div<{ $level: number }>`
   border-radius: 4px;
   background-color: ${({ $level }) => ['#4CAF50', '#8BC34A', '#FFC107', '#FF5722', '#F44336'][$level]};
 `;
+
+export const EmptyText = styled.div`
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 16px;
+`;
