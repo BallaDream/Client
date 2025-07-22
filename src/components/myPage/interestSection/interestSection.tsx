@@ -10,7 +10,7 @@ import * as S from './interestSection.style';
 import HeartTextIcon from '@/assets/icons/HeartText.svg?react';
 
 export default function InterestSection() {
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } = useInterestedProducts();
+  const { data, fetchNextPage, hasNextPage, isLoading } = useInterestedProducts();
 
   const observerRef = useRef<HTMLDivElement | null>(null);
 
