@@ -12,7 +12,7 @@ import HeartTextIcon from '@/assets/icons/HeartText.svg?react';
 export default function InterestSection() {
   const { data, fetchNextPage, hasNextPage, isLoading } = useInterestedProducts();
 
-  const observerRef = useRef<HTMLDivElement | null>(null);
+  const observerRef = useRef<HTMLDivElement | null>(null); //무한 스크롤
 
   useEffect(() => {
     if (!observerRef.current || !hasNextPage) return;

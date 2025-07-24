@@ -14,6 +14,9 @@ export const Content = styled.main`
 
 export const SidebarWrapper = styled.div`
   flex-shrink: 0;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const OutletWrapper = styled.div`

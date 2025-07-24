@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 
+import { useLogout } from '@/hooks/useLogout';
+
 import * as S from './header.style';
 
-import { axiosInstance } from '@/api/axiosInstance';
 import LogoIcon from '@/assets/icons/Logo_blue.svg?react';
-import { setLogout } from '@/slices/authSlice';
 import { openModal } from '@/slices/modalSlice';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
@@ -16,6 +16,7 @@ export default function Header() {
   const nickname = useAppSelector((state) => state.auth.nickname);
   const isLoggedIn = !!accessToken;
 
+  const { mutate: logout } = useLogout();
   const handleLoginIconClick = () => {
     if (isLoggedIn) {
       navigate('/my');
@@ -29,16 +30,7 @@ export default function Header() {
   };
 
   const handleLogout = async () => {
-    try {
-      await axiosInstance.post('/logout');
-      console.log('로그아웃 되었습니다.');
-    } catch (error) {
-      console.error('❌ 로그아웃 실패:', error);
-      console.log('로그아웃 중 오류가 발생했습니다.');
-    } finally {
-      dispatch(setLogout());
-      navigate('/');
-    }
+    logout();
   };
 
   return (

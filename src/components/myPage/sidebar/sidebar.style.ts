@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 346px;
+  width: 300px;
   height: 100%;
   background: linear-gradient(90deg, rgba(167, 178, 230, 0.5) 0%, #ffffff 100%);
   box-shadow: 10px 0px 10px rgba(27, 45, 117, 0.1);
