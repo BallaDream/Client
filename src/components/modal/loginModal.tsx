@@ -64,9 +64,12 @@ export default function LoginModal() {
         }
         try {
           const decoded: any = jwtDecode(accessToken);
-          const nickname = decoded?.nickname || '사용자';
+          console.log(decoded);
+          const nickname = decoded?.nickname;
+          const loginType = decoded?.loginType;
+          const username = decoded?.username;
 
-          dispatch(setLogin({ accessToken, nickname }));
+          dispatch(setLogin({ accessToken, nickname, loginType, username }));
           dispatch(closeModal());
           console.log('로그인 성공!');
         } catch {

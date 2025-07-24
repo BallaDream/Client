@@ -4,12 +4,16 @@ import { createSlice } from '@reduxjs/toolkit';
 interface IAuthState {
   accessToken: string | null;
   nickname: string | null;
+  loginType: string | null;
+  username: string | null;
   isLogin: boolean;
 }
 
 const initialState: IAuthState = {
   accessToken: localStorage.getItem('accessToken'),
-  nickname: localStorage.getItem('nickname'),
+  nickname: null,
+  loginType: null,
+  username: null,
   isLogin: false,
 };
 
@@ -17,11 +21,12 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setLogin(state, action: PayloadAction<{ accessToken: string; nickname: string }>) {
+    setLogin(state, action: PayloadAction<{ accessToken: string; nickname: string | null; loginType: string | null; username: string | null }>) {
       state.accessToken = action.payload.accessToken;
       state.nickname = action.payload.nickname;
+      state.loginType = action.payload.loginType;
+      state.username = action.payload.username;
       localStorage.setItem('accessToken', action.payload.accessToken);
-      localStorage.setItem('nickname', action.payload.nickname);
       state.isLogin = true;
     },
     setLogout(state) {

@@ -121,14 +121,19 @@ export const DateButton = styled.button`
 export const ChartAndLegend = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-columns: minmax(280px, 600px);
+
   gap: 2rem;
   align-items: center;
   justify-content: center;
   width: 100%;
   padding: 16px;
-  min-width: 740px;
   max-width: 1200px;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-auto-columns: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
 `;
 
 export const RadarChartBox = styled.div`

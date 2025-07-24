@@ -25,7 +25,16 @@ export const statusColorMap: Record<STATUS, string> = {
   [STATUS.CAUTION]: 'rgba(255, 230, 128, 0.7)', // 권고
   [STATUS.WARNING]: 'rgba(255, 154, 154, 0.7)', // 필수
 };
+// 로그인 방식
+export const LOGIN_TYPE_LABELS: Record<string, string> = {
+  WEB: '웹',
+  KAKAO: '카카오',
+};
 
+// 로그인 방식 변환
+function getLoginTypeLabel(type: string | null | undefined): string {
+  return LOGIN_TYPE_LABELS[type ?? ''] ?? '기타';
+}
 // 라벨 반환
 function getLabel(key: LABEL): string {
   return labelKeyMap[key] || key;
@@ -50,4 +59,4 @@ function getWorstStatusColor(areaStatus: Record<string, string>): string {
   return statusColorMap[worstStatus];
 }
 
-export { getLabel, getStatus, getWorstStatusColor };
+export { getLabel, getLoginTypeLabel, getStatus, getWorstStatusColor };

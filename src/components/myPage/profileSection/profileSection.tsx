@@ -1,5 +1,8 @@
+import { getLoginTypeLabel } from '@/utils/map';
+
 import { useResentDiagnose } from '@/hooks/useDiagnoseInfo';
 
+import SpinnerOverlay from '@/components/common/overlay/SpinnerOverlay';
 import LabelSummary from '@/components/resultPage/diagnosisSummary/labelSummary';
 import SkinRadarChart from '@/components/resultPage/diagnosisSummary/skinRadarChart';
 
@@ -8,9 +11,13 @@ import * as S from './profileSection.style';
 import AvatarIcon from '@/assets/icons/avatar.svg?react';
 import LockIcon from '@/assets/icons/lock.svg?react';
 import ProfileIcon from '@/assets/icons/profileText.svg?react';
+import { useAppSelector } from '@/store/hooks';
 
 function ProfileSection() {
-  const { data: resentDiagnose } = useResentDiagnose();
+  const { data: resentDiagnose, isLoading } = useResentDiagnose();
+  const nickname = useAppSelector((state) => state.auth.nickname);
+  const loginType = useAppSelector((state) => state.auth.loginType);
+  const username = useAppSelector((state) => state.auth.username);
 
   return (
     <S.Container>
@@ -27,8 +34,8 @@ function ProfileSection() {
           <S.InfoContent>
             <AvatarIcon style={{ width: 100, height: 100, flexShrink: 0 }} />
             <div>
-              <S.NameText>닉네임</S.NameText>
-              <S.EmailText>abcd1234@naver.com</S.EmailText>
+              <S.NameText>{nickname}</S.NameText>
+              <S.EmailText>{username}</S.EmailText>
             </div>
             <S.ActionButton>정보 수정</S.ActionButton>
           </S.InfoContent>
@@ -38,8 +45,8 @@ function ProfileSection() {
               <span>로그인방식</span>
             </S.InfoBoxFooterText>
             <div>
-              <span>카카오</span>
-              <span>로 로그인</span>
+              <span>{getLoginTypeLabel(loginType)}</span>
+              <span>{loginType == 'WEB' ? '으' : ''}로 로그인</span>
             </div>
           </S.InfoBoxFooter>
         </S.InfoBox>
@@ -47,9 +54,11 @@ function ProfileSection() {
 
       {/* 피부 상태 */}
       <S.Card>
+        {isLoading && <SpinnerOverlay text="로딩중" />}
+
         <S.SectionHeader>
           <div style={{ display: 'flex', gap: 4, whiteSpace: 'nowrap', alignItems: 'center' }}>
-            <span>닉네임</span>
+            <span>{nickname}</span>
             <span>님의 피부 현재 피부상태</span>
           </div>
           {resentDiagnose?.data && <S.DateButton>최근 진단일 | {resentDiagnose?.diagnoseDate} | ▶</S.DateButton>}

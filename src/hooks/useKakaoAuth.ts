@@ -19,7 +19,7 @@ export const useKakaoAuth = () => {
       if (token) {
         const decoded: any = jwtDecode(token);
 
-        dispatch(setLogin({ accessToken: token, nickname: decoded?.nickname ?? '익명' }));
+        dispatch(setLogin({ accessToken: token, nickname: decoded?.nickname, loginType: decoded?.loginType, username: decoded?.username }));
         console.log('카카오 로그인에 성공했습니다!');
         navigate('/');
       } else {
