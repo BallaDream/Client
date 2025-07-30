@@ -216,10 +216,11 @@ export const LikeButton = styled.button<{ $isLiked: boolean }>`
 
 export const Info = styled.div`
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const ProductName = styled.div`
-  margin-bottom: 4px;
   font-weight: 500;
   font-size: 20px;
   line-height: 150%;
@@ -229,7 +230,7 @@ export const ProductName = styled.div`
 `;
 
 export const Price = styled.div`
-  margin-bottom: 6px;
+  margin-bottom: 2px;
   font-weight: 500;
   font-size: 18px;
   opacity: 0.7;
@@ -250,4 +251,8 @@ export const IngredientTag = styled.div`
   white-space: nowrap;
   font-weight: 500;
   font-size: 12px;
+`;
+export const ColoredIngredients = styled(IngredientTag)`
+  background-color: #1b2d75;
+  color: white;
 `;

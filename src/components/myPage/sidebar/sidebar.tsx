@@ -24,7 +24,7 @@ function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
-  const { mutate: logoutMutate, isPending: isLoggingOut } = useLogout();
+  const { mutate: logoutMutate } = useLogout();
 
   const handleMenuItemClick = (index: number) => {
     if (index === 3) {
@@ -42,7 +42,6 @@ function Sidebar() {
         <S.MenuContainer>
           {menuItems.map((item, index) => {
             const isActive = currentPath === item.route;
-            const isLogoutItem = index === 3;
 
             return (
               <S.MenuItemWrapper key={item.route} onClick={() => handleMenuItemClick(index)}>
@@ -51,7 +50,7 @@ function Sidebar() {
                     <ArrowRightIcon />
                   </S.Icon>
                 )}
-                <S.MenuItem $isActive={isActive}>{isLogoutItem && isLoggingOut ? '로그아웃 중...' : item.name}</S.MenuItem>
+                <S.MenuItem $isActive={isActive}>{item.name}</S.MenuItem>
                 {isActive && <S.Underline />}
               </S.MenuItemWrapper>
             );

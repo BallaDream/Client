@@ -4,8 +4,9 @@ import { ResponsiveRadar } from '@nivo/radar';
 import type { TGetDiagnoseInfoResponse } from '@/types/resultPage/result';
 import { LABEL, STATUS } from '@/enums/enums';
 
-import * as S from './diagnosisSummary.style';
 import { scoreToStatus } from '@/utils/scoreToStatus';
+
+import * as S from './diagnosisSummary.style';
 
 // STATUS → 점수 매핑
 const levelToScore: Record<string, number> = {

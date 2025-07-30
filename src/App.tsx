@@ -23,7 +23,8 @@ function App() {
       try {
         await auth();
         const decoded: any = jwtDecode(token);
-        dispatch(setLogin({ accessToken: token, nickname: decoded.nickname }));
+        console.log(decoded);
+        dispatch(setLogin({ accessToken: token, nickname: decoded.nickname, loginType: decoded.loginType, username: decoded.username }));
       } catch (error) {
         console.error('❌ 인증 실패:', error);
         dispatch(setLogout());

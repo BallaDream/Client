@@ -12,13 +12,13 @@ import * as S from './recommendationSection.style';
 import HeaderText from '../headerText/headerText';
 
 import { setQuery } from '@/slices/recommandationSlice';
-import { useAppDispatch } from '@/store/hooks';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 
 export default function RecommendationSection() {
   const { diagnoseId = '0' } = useParams<{ diagnoseId: string }>();
   const { data } = useDiagnoseInfo({ diagnoseId });
   const dispatch = useAppDispatch();
-  const nickname = localStorage.getItem('nickname');
+  const nickname = useAppSelector((state) => state.auth.nickname);
   const hasInitializedRef = useRef(false);
 
   useEffect(() => {

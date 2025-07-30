@@ -31,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
     button {
         cursor: pointer;
         border: none;
+        white-space: nowrap;
     }
 
     li, ul {
