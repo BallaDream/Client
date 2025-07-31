@@ -1,15 +1,21 @@
+// src/pages/leavePage/leavePage.tsx
+
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import SimpleHeader from '@/components/common/header/simpleHeader';
 
+import axiosInstance from '@/api/axiosInstance';
 import CheckerIcon from '@/assets/icons/checker_icon.svg?react';
 import * as S from '@/pages/leavePage/leavePage.style';
+import { setLogout } from '@/slices/authSlice';
 
 export default function LeavePage() {
   const [agreed, setAgreed] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleAgreementChange = () => {
     setAgreed((prev) => !prev);
@@ -23,15 +29,17 @@ export default function LeavePage() {
     setShowModal(true);
   };
 
-  const handleConfirmWithdraw = () => {
-    setShowModal(false);
-
-    // TODO: 회원 탈퇴 API 요청 후 성공 시 아래 처리 수행
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('nickname');
-    // TODO: Redux 상태 초기화(dispatch(logout()) 등)
-
-    navigate('/leave-complete'); // ✅ 탈퇴 완료 페이지 이동
+  const handleConfirmWithdraw = async () => {
+    try {
+      await axiosInstance.delete('/user');
+      dispatch(setLogout());
+      navigate('/leave-complete');
+    } catch (error) {
+      console.error('회원탈퇴 실패:', error);
+      alert('회원탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요.');
+    } finally {
+      setShowModal(false);
+    }
   };
 
   const handleCancelWithdraw = () => {
@@ -46,7 +54,7 @@ export default function LeavePage() {
         <S.Subtitle>회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.</S.Subtitle>
 
         <S.Box>
-          {/* 1번 항목 */}
+          {/* 1 */}
           <S.TextGroup>
             <S.ListItem>
               <CheckerIcon />
@@ -58,7 +66,7 @@ export default function LeavePage() {
             </S.Text>
           </S.TextGroup>
 
-          {/* 2번 항목 */}
+          {/* 2 */}
           <S.TextGroup>
             <S.ListItem>
               <CheckerIcon />
@@ -70,7 +78,7 @@ export default function LeavePage() {
             </S.Text>
           </S.TextGroup>
 
-          {/* 3번 항목 */}
+          {/* 3 */}
           <S.TextGroup>
             <S.ListItem>
               <CheckerIcon />
@@ -113,7 +121,7 @@ export default function LeavePage() {
             <S.WarningText>진단 리포트나 추천 이력을 추후 참고할 계획이라면 반드시 사전에 백업해 주세요.</S.WarningText>
           </S.TextGroup>
 
-          {/* 4번 항목 */}
+          {/* 4 */}
           <S.TextGroup>
             <S.ListItem>
               <CheckerIcon />
