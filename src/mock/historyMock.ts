@@ -1,4 +1,5 @@
 // src/mock/historyMock.ts
+/*
 export const mockHistoryData = [
   {
     date: '2025-04-01',
@@ -71,3 +72,4 @@ export const mockHistoryData = [
     ],
   },
 ];
+*/

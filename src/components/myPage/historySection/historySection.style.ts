@@ -74,3 +74,13 @@ export const PageButton = styled.button<{ $active: boolean }>`
     color: white;
   }
 `;
+export const EmptyMessage = styled.div`
+  height: 100%;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 16px;
+`;
