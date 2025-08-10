@@ -15,12 +15,14 @@ import AvatarIcon from '@/assets/icons/avatar.svg?react';
 import LockIcon from '@/assets/icons/lock.svg?react';
 import ProfileIcon from '@/assets/icons/profileText.svg?react';
 import { useAppSelector } from '@/store/hooks';
+import { useNavigate } from 'react-router-dom';
 
 function ProfileSection() {
   const { data: resentDiagnose, isLoading } = useResentDiagnose();
   const nickname = useAppSelector((state) => state.auth.nickname);
   const loginType = useAppSelector((state) => state.auth.loginType);
   const username = useAppSelector((state) => state.auth.username);
+  const navigate = useNavigate();
 
   const [input, setInput] = useState({
     state: false,
@@ -36,6 +38,10 @@ function ProfileSection() {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({ ...input, nickname: e.target.value });
+  };
+
+  const handleNavigate = () => {
+    navigate('/');
   };
 
   return (
@@ -80,7 +86,7 @@ function ProfileSection() {
             <span>{nickname}</span>
             <span>님의 피부 현재 피부상태</span>
           </div>
-          {resentDiagnose?.data && <S.DateButton>최근 진단일 | {resentDiagnose?.diagnoseDate} | ▶</S.DateButton>}
+          {resentDiagnose?.data && <S.DateButton onClick={handleNavigate}>최근 진단일 | {resentDiagnose?.diagnoseDate} | ▶</S.DateButton>}
         </S.SectionHeader>
 
         {resentDiagnose?.data ? (
