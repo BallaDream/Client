@@ -19,7 +19,7 @@ export const ProfileContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 4px;
 `;
 
 export const EmailText = styled.p`
