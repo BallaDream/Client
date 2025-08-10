@@ -1,6 +1,9 @@
+import React, { useState } from 'react';
+
 import { getLoginTypeLabel } from '@/utils/map';
 
 import { useResentDiagnose } from '@/hooks/useDiagnoseInfo';
+import { useEditNickname } from '@/hooks/useEditInfo';
 
 import SpinnerOverlay from '@/components/common/overlay/SpinnerOverlay';
 import LabelSummary from '@/components/resultPage/diagnosisSummary/labelSummary';
@@ -19,6 +22,22 @@ function ProfileSection() {
   const loginType = useAppSelector((state) => state.auth.loginType);
   const username = useAppSelector((state) => state.auth.username);
 
+  const [input, setInput] = useState({
+    state: false,
+    nickname: nickname || '',
+  });
+
+  const { mutate } = useEditNickname(() => {
+    setInput(() => ({ ...input, state: false }));
+  });
+  const handleEdit = () => {
+    input.state ? mutate(input.nickname) : setInput({ ...input, state: !input.state });
+  };
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput({ ...input, nickname: e.target.value });
+  };
+
   return (
     <S.Container>
       {/* 타이틀 */}
@@ -34,10 +53,10 @@ function ProfileSection() {
           <S.InfoContent>
             <AvatarIcon style={{ width: 100, height: 100, flexShrink: 0 }} />
             <div>
-              <S.NameText>{nickname}</S.NameText>
+              {input.state ? <S.NameInput type="text" value={input.nickname} onChange={onChange} /> : <S.NameText>{nickname}</S.NameText>}
               <S.EmailText>{username}</S.EmailText>
             </div>
-            <S.ActionButton>정보 수정</S.ActionButton>
+            {input.state ? <S.ActionButton onClick={handleEdit}>확인</S.ActionButton> : <S.ActionButton onClick={handleEdit}>정보 수정</S.ActionButton>}
           </S.InfoContent>
           <S.InfoBoxFooter>
             <S.InfoBoxFooterText>

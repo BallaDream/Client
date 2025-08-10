@@ -22,3 +22,10 @@ export const getInterestedProducts = async (page: number): Promise<TGetIntereste
   console.log(data);
   return data;
 };
+
+// 이름 수정
+export const putUserNickname = async (name: string) => {
+  const { data } = await axiosInstance.put(`/user`, { changeNickname: name });
+  console.log(data);
+  return data;
+};
