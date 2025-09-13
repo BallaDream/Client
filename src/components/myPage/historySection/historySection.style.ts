@@ -60,7 +60,9 @@ export const Pagination = styled.div`
   margin-top: 24px;
 `;
 
-export const PageButton = styled.button<{ $active: boolean }>`
+export const PageButton = styled.button.attrs({
+  type: 'button',
+})<PageButtonProps>`
   padding: 6px 12px;
   border: 1px solid #ccc;
   background-color: ${({ $active }) => ($active ? '#0f1f4b' : '#fff')};
@@ -74,6 +76,7 @@ export const PageButton = styled.button<{ $active: boolean }>`
     color: white;
   }
 `;
+
 export const EmptyMessage = styled.div`
   height: 100%;
   min-height: 400px;

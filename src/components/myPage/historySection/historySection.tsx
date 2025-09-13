@@ -1,4 +1,3 @@
-// components/myPage/historySection/HistorySection.tsx
 import { useState } from 'react';
 
 import { useDiagnosisHistory } from '@/hooks/useDiagnosisHistory';
@@ -21,11 +20,10 @@ export default function HistorySection() {
 
   const historyList = Array.isArray(data?.list) ? data.list : [];
   const totalCount = data?.totalCount || 0;
-
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
   const latestDate = historyList[0]?.diagnoseDate ?? '-';
 
-  if (isLoading) return <SpinnerOverlay text="불러오는 중..." />;
+  if (isLoading) return <SpinnerOverlay text={'로딩중'} />;
 
   if (totalCount === 0) {
     return (
@@ -72,7 +70,7 @@ export default function HistorySection() {
           value={sortOrder}
           onChange={(e) => {
             setSortOrder(e.target.value as 'latest' | 'oldest');
-            setCurrentPage(1); // 정렬 변경 시 페이지 초기화
+            setCurrentPage(1);
           }}
         >
           <option value="latest">최신순</option>
@@ -95,11 +93,11 @@ export default function HistorySection() {
       </S.CardList>
 
       <S.Pagination>
-        {Array.from({ length: totalPages }, (_, i) => (
-          <S.PageButton key={i} $active={currentPage === i + 1} onClick={() => setCurrentPage(i + 1)}>
-            {i + 1}
-          </S.PageButton>
-        ))}
+        {currentPage > 1 && <S.PageButton onClick={() => setCurrentPage(currentPage - 1)}>{'<'}</S.PageButton>}
+
+        <S.PageButton $active>{currentPage}</S.PageButton>
+
+        {currentPage < totalPages && <S.PageButton onClick={() => setCurrentPage(currentPage + 1)}>{'>'}</S.PageButton>}
       </S.Pagination>
     </S.Container>
   );
