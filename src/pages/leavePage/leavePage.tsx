@@ -32,8 +32,12 @@ export default function LeavePage() {
   const handleConfirmWithdraw = async () => {
     try {
       await axiosInstance.delete('/user');
-      dispatch(setLogout());
-      navigate('/leave-complete');
+
+      // 로그아웃 전 navigate 실행을 유도하기 위해 setTimeout 사용
+      setTimeout(() => {
+        dispatch(setLogout());
+        navigate('/leave-complete');
+      }, 300);
     } catch (error) {
       console.error('회원탈퇴 실패:', error);
       alert('회원탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요.');
