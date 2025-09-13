@@ -1,24 +1,22 @@
-// HistoryCard.tsx
+// src/components/myPage/historySection/historyCard.tsx
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './historyCard.style';
 
 import deleteIcon from '@/assets/icons/delete_icon.svg';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface DiagnosisStatus {
+interface IDiagnosisStatus {
   name: string;
   level: '예방' | '권고' | '필수';
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-interface HistoryCardProps {
+interface IHistoryCardProps {
   date: string;
-  statusList?: DiagnosisStatus[];
+  statusList?: IDiagnosisStatus[];
   diagnoseId: number;
 }
 
-export default function HistoryCard({ date, statusList = [], diagnoseId }: HistoryCardProps) {
+export default function HistoryCard({ date, statusList = [], diagnoseId }: IHistoryCardProps) {
   const navigate = useNavigate();
 
   const handleDelete = () => {
