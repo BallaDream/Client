@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { useDiagnosisHistory } from '@/hooks/useDiagnosisHistory';
 
+import SpinnerOverlay from '@/components/common/overlay/SpinnerOverlay';
 import HistoryCard from '@/components/myPage/historySection/historyCard';
 import * as S from '@/components/myPage/historySection/historySection.style';
 
@@ -24,7 +25,7 @@ export default function HistorySection() {
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
   const latestDate = historyList[0]?.diagnoseDate ?? '-';
 
-  if (isLoading) return <S.Container>불러오는 중...</S.Container>;
+  if (isLoading) return <SpinnerOverlay text="불러오는 중..." />;
 
   if (totalCount === 0) {
     return (
