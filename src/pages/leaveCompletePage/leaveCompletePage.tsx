@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Footer from '@/components/common/footer/footer';
-import LeaveHeader from '@/components/common/header/simpleHeader';
+import LeaveHeader from '@/components/common/header/header';
 
 import Logo from '@/assets/icons/logo.svg?react';
 import * as S from '@/pages/leaveCompletePage/leaveCompletePage.style';

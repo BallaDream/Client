@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import useWithdraw from '@/hooks/useWithdraw';
 
-import SimpleHeader from '@/components/common/header/simpleHeader';
+import Header from '@/components/common/header/header';
 
 import CheckerIcon from '@/assets/icons/checker_icon.svg?react';
 import * as S from '@/pages/leavePage/leavePage.style';
@@ -42,7 +42,7 @@ export default function LeavePage() {
 
   return (
     <>
-      <SimpleHeader />
+      <Header />
       <S.Container>
         <S.Title>회원탈퇴 유의사항</S.Title>
         <S.Subtitle>회원탈퇴를 신청하기 전에 안내 사항을 꼭 확인해주세요.</S.Subtitle>
