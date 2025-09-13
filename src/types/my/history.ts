@@ -1,15 +1,13 @@
 import type { STATUS } from '@/enums/enums';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface DiagnosisStatus {
+export interface IDiagnosisStatus {
   name: string;
   level: STATUS;
 }
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
-export interface DiagnosisHistoryItem {
+export interface IDiagnosisHistoryItem {
   date: string;
-  statusList: DiagnosisStatus[];
+  statusList: IDiagnosisStatus[];
 }
 
-export type TGetDiagnosisHistoryResponse = DiagnosisHistoryItem[];
+export type TGetDiagnosisHistoryResponse = IDiagnosisHistoryItem[];
