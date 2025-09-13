@@ -17,8 +17,7 @@ export default function HistorySection() {
   const [sortOrder, setSortOrder] = useState<'latest' | 'oldest'>('latest');
   const [currentPage, setCurrentPage] = useState(1);
 
-  const isLatest = sortOrder === 'latest';
-  const { data, isLoading } = useDiagnosisHistory(currentPage - 1, isLatest);
+  const { data, isLoading } = useDiagnosisHistory(currentPage - 1, sortOrder);
 
   const historyList = Array.isArray(data?.list) ? data.list : [];
   const totalCount = data?.totalCount || 0;

@@ -1,4 +1,3 @@
-import type { TGetDiagnosisHistoryResponse } from '@/types/my/history';
 import type { TGetDiagnoseInfoResponse, TGetInterestedProductsResponse } from '@/types/my/my';
 
 import { axiosInstance } from '@/api/axiosInstance';
@@ -25,13 +24,15 @@ export const getInterestedProducts = async (page: number): Promise<TGetIntereste
 };
 
 // 추천 이력
-export const getDiagnosisHistory = (page: number, isLatest: boolean) => {
-  return axiosInstance
-    .get('/mypage/diagnoses', {
-      params: {
-        page,
-        isLatest: isLatest.toString(),
-      },
-    })
-    .then((res) => res.data);
+export const getDiagnosisHistory = async (page: number, sort: 'latest' | 'oldest') => {
+  const isLatest = sort === 'latest';
+
+  const response = await axiosInstance.get('/mypage/diagnoses', {
+    params: {
+      page,
+      isLatest,
+    },
+  });
+
+  return response.data;
 };
