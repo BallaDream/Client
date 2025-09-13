@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { getStatusFromUnknown } from '@/utils/map';
+
 import { useDiagnosisHistory } from '@/hooks/useDiagnosisHistory';
 
 import SpinnerOverlay from '@/components/common/overlay/SpinnerOverlay';
@@ -85,7 +87,7 @@ export default function HistorySection() {
             result?.skinStatusList ??
             Object.entries(result || {}).map(([key, value]) => ({
               name: convertSkinKeyToName(key),
-              level: convertLevelToKor(value),
+              level: getStatusFromUnknown(value),
             }));
 
           return <HistoryCard key={index} date={item.diagnoseDate} statusList={statusList} diagnoseId={item.diagnoseId} />;
@@ -112,18 +114,4 @@ function convertSkinKeyToName(key: string): string {
     PORE: '모공',
   };
   return map[key] || key;
-}
-
-function convertLevelToKor(value: string): '예방' | '권고' | '필수' {
-  if (value === '예방' || value === '권고' || value === '필수') return value;
-
-  const map: Record<string, '예방' | '권고' | '필수'> = {
-    CLEAR: '예방',
-    WARNING: '권고',
-    CAUTION: '권고',
-    DANGER: '필수',
-    REQUIRED: '필수',
-  };
-
-  return map[value] || '예방';
 }
