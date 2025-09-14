@@ -43,7 +43,7 @@ function ProfileSection() {
   };
 
   const handleNavigate = () => {
-    navigate(`/result/${diagnoseHistory.list[0].diagnoseId}`);
+    navigate(`/result/${diagnoseHistory?.list[0].diagnoseId}`);
   };
 
   return (
