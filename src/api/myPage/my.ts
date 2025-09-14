@@ -29,3 +29,17 @@ export const putUserNickname = async (name: string) => {
   console.log(data);
   return data;
 };
+
+// 추천 이력
+export const getDiagnosisHistory = async (page: number, sort: 'latest' | 'oldest') => {
+  const isLatest = sort === 'latest';
+
+  const response = await axiosInstance.get('/mypage/diagnoses', {
+    params: {
+      page,
+      isLatest,
+    },
+  });
+
+  return response.data;
+};
