@@ -1,13 +1,25 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 100%;
+  height: auto;
   min-height: 100vh;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100vw;
 `;
 export const Content = styled.main`
   display: flex;
   flex: 1;
+`;
+
+export const SidebarWrapper = styled.div`
+  flex-shrink: 0;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+export const OutletWrapper = styled.div`
+  flex: 1;
+  min-height: 100%;
 `;

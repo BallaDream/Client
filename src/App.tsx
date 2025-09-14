@@ -3,10 +3,16 @@ import { useDispatch } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
-import router from './routes';
-
 import { auth } from '@/api/auth/auth';
-import { logout, setAccessToken, setNickname } from '@/slices/authSlice';
+import router from '@/routes';
+import { setLogin, setLogout } from '@/slices/authSlice';
+
+interface IDecodedToken {
+  nickname: string;
+  loginType: string;
+  username: string;
+  exp: number;
+}
 
 function App() {
   const dispatch = useDispatch();
@@ -16,26 +22,26 @@ function App() {
     const verifyUser = async () => {
       const token = localStorage.getItem('accessToken');
       if (!token) {
-        dispatch(logout());
+        dispatch(setLogout());
         setIsAuthChecked(true);
         return;
       }
 
       try {
         await auth();
-        const decoded: any = jwtDecode(token);
-        dispatch(setAccessToken(token));
-        dispatch(setNickname(decoded.nickname));
+        const decoded: IDecodedToken = jwtDecode(token);
+        console.log(decoded);
+        dispatch(setLogin({ accessToken: token, nickname: decoded.nickname, loginType: decoded.loginType, username: decoded.username }));
       } catch (error) {
         console.error('❌ 인증 실패:', error);
-        dispatch(logout());
+        dispatch(setLogout());
       } finally {
         setIsAuthChecked(true);
       }
     };
 
     verifyUser();
-  }, [dispatch]);
+  }, []);
 
   if (!isAuthChecked) return null; // 인증 검사 전에는 렌더링 보류
 
