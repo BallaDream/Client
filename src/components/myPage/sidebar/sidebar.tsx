@@ -63,7 +63,7 @@ function Sidebar() {
         <div>
           <S.MenuButtonText onClick={() => navigate('/')}>홈</S.MenuButtonText>
           <span>|&nbsp;&nbsp;</span>
-          <S.MenuButtonText onClick={() => navigate('/')}>회원탈퇴</S.MenuButtonText>
+          <S.MenuButtonText onClick={() => navigate('/leave')}>회원탈퇴</S.MenuButtonText>
         </div>
         <LogoEng />
       </section>

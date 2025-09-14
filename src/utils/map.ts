@@ -59,4 +59,13 @@ function getWorstStatusColor(areaStatus: Record<string, string>): string {
   return statusColorMap[worstStatus];
 }
 
-export { getLabel, getLoginTypeLabel, getStatus, getWorstStatusColor };
+function getStatusFromUnknown(value: unknown): string {
+  if (typeof value !== 'string') return '예방';
+  const trimmed = value.trim();
+  if (trimmed in valueStatusMap) {
+    return valueStatusMap[trimmed as STATUS];
+  }
+  return '예방';
+}
+
+export { getLabel, getLoginTypeLabel, getStatus, getStatusFromUnknown, getWorstStatusColor };
