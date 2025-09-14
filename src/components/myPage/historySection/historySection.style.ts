@@ -1,6 +1,10 @@
 // src/components/myPage/historySection/historySection.style.ts
 import styled from 'styled-components';
 
+interface IPageButtonProps {
+  $active?: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,7 +66,7 @@ export const Pagination = styled.div`
 
 export const PageButton = styled.button.attrs({
   type: 'button',
-})<PageButtonProps>`
+})<IPageButtonProps>`
   padding: 6px 12px;
   border: 1px solid #ccc;
   background-color: ${({ $active }) => ($active ? '#0f1f4b' : '#fff')};
