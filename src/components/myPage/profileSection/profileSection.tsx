@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { getLoginTypeLabel } from '@/utils/map';
 
 import { useResentDiagnose } from '@/hooks/useDiagnoseInfo';
+import { useDiagnosisHistory } from '@/hooks/useDiagnosisHistory';
 import { useEditNickname } from '@/hooks/useEditInfo';
 
 import SpinnerOverlay from '@/components/common/overlay/SpinnerOverlay';
@@ -15,14 +17,14 @@ import AvatarIcon from '@/assets/icons/avatar.svg?react';
 import LockIcon from '@/assets/icons/lock.svg?react';
 import ProfileIcon from '@/assets/icons/profileText.svg?react';
 import { useAppSelector } from '@/store/hooks';
-import { useNavigate } from 'react-router-dom';
 
 function ProfileSection() {
-  const { data: resentDiagnose, isLoading } = useResentDiagnose();
+  const { data: resentDiagnose, isLoading: isResentDiagnoseLoading } = useResentDiagnose();
   const nickname = useAppSelector((state) => state.auth.nickname);
   const loginType = useAppSelector((state) => state.auth.loginType);
   const username = useAppSelector((state) => state.auth.username);
   const navigate = useNavigate();
+  const { data: diagnoseHistory, isLoading: isDiagnoseHistoryLoading } = useDiagnosisHistory(0, 'latest');
 
   const [input, setInput] = useState({
     state: false,
@@ -41,7 +43,7 @@ function ProfileSection() {
   };
 
   const handleNavigate = () => {
-    navigate('/');
+    navigate(`/result/${diagnoseHistory.list[0].diagnoseId}`);
   };
 
   return (
@@ -79,7 +81,7 @@ function ProfileSection() {
 
       {/* 피부 상태 */}
       <S.Card>
-        {isLoading && <SpinnerOverlay text="로딩중" />}
+        {(isResentDiagnoseLoading ?? isDiagnoseHistoryLoading) && <SpinnerOverlay text="로딩중" />}
 
         <S.SectionHeader>
           <div style={{ display: 'flex', gap: 4, whiteSpace: 'nowrap', alignItems: 'center' }}>

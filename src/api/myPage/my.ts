@@ -40,6 +40,6 @@ export const getDiagnosisHistory = async (page: number, sort: 'latest' | 'oldest
       isLatest,
     },
   });
-
+  console.log('ddd', response.data.data[0].diagnoseId);
   return response.data;
 };
