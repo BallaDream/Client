@@ -7,6 +7,13 @@ import { auth } from '@/api/auth/auth';
 import router from '@/routes';
 import { setLogin, setLogout } from '@/slices/authSlice';
 
+interface IDecodedToken {
+  nickname: string;
+  loginType: string;
+  username: string;
+  exp: number;
+}
+
 function App() {
   const dispatch = useDispatch();
   const [isAuthChecked, setIsAuthChecked] = useState(false);
@@ -22,7 +29,7 @@ function App() {
 
       try {
         await auth();
-        const decoded: any = jwtDecode(token);
+        const decoded: IDecodedToken = jwtDecode(token);
         console.log(decoded);
         dispatch(setLogin({ accessToken: token, nickname: decoded.nickname, loginType: decoded.loginType, username: decoded.username }));
       } catch (error) {
@@ -34,7 +41,7 @@ function App() {
     };
 
     verifyUser();
-  }, [dispatch]);
+  }, []);
 
   if (!isAuthChecked) return null; // 인증 검사 전에는 렌더링 보류
 

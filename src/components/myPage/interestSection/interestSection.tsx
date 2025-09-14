@@ -53,7 +53,7 @@ export default function InterestSection() {
       ) : (
         <S.CardList>
           {allProducts.map((product) => (
-            <ProductCard key={product.productId} {...product} formulation="api가 없음" />
+            <ProductCard key={product.productId} {...product} />
           ))}
           <div ref={observerRef} style={{ height: 1 }} />
         </S.CardList>

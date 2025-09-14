@@ -63,6 +63,10 @@ export const NameText = styled.div`
   font-size: 20px;
   font-weight: bold;
 `;
+export const NameInput = styled.input`
+  font-size: 20px;
+  font-weight: bold;
+`;
 
 export const EmailText = styled.div`
   color: gray;

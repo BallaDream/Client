@@ -23,6 +23,13 @@ export const getInterestedProducts = async (page: number): Promise<TGetIntereste
   return data;
 };
 
+// 이름 수정
+export const putUserNickname = async (name: string) => {
+  const { data } = await axiosInstance.put(`/user`, { changeNickname: name });
+  console.log(data);
+  return data;
+};
+
 // 추천 이력
 export const getDiagnosisHistory = async (page: number, sort: 'latest' | 'oldest') => {
   const isLatest = sort === 'latest';
@@ -33,6 +40,6 @@ export const getDiagnosisHistory = async (page: number, sort: 'latest' | 'oldest
       isLatest,
     },
   });
-
+  console.log('ddd', response.data.data[0].diagnoseId);
   return response.data;
 };
