@@ -1,9 +1,12 @@
 // src/components/myPage/historySection/historyCard.tsx
 import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 
 import * as S from './historyCard.style';
 
 import deleteIcon from '@/assets/icons/delete_icon.svg';
+
+import { deleteDiagnosis } from '@/api/myPage/my';
 
 interface IDiagnosisStatus {
   name: string;
@@ -18,17 +21,27 @@ interface IHistoryCardProps {
 
 export default function HistoryCard({ date, statusList = [], diagnoseId }: IHistoryCardProps) {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const handleDelete = () => {
-    alert('삭제 기능은 추후 지원될 예정입니다.');
+  const handleDelete = async () => {
+    const confirmed = window.confirm('정말 해당 진단 기록을 삭제하시겠습니까?');
+    if (!confirmed) return;
+
+    try {
+      console.log('📡 DELETE 요청 전송:', diagnoseId);
+      await deleteDiagnosis(diagnoseId);
+      alert('✅ 진단 기록이 삭제되었습니다.');
+
+      queryClient.invalidateQueries({ queryKey: ['diagnosisHistory'] });
+    } catch (error) {
+      console.error('❌ 삭제 중 오류:', error);
+      alert('⚠️ 삭제에 실패했습니다. 다시 시도해주세요.');
+    }
   };
 
   const handleDetailClick = () => {
-    console.log('➡️ 자세히 보기 클릭 - diagnoseId:', diagnoseId);
     navigate(`/result/${diagnoseId}`);
   };
-
-  console.log('🟨 HistoryCard - statusList:', statusList);
 
   return (
     <S.Card>
