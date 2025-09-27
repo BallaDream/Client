@@ -31,15 +31,52 @@ function ProfileSection() {
     nickname: nickname || '',
   });
 
-  const { mutate } = useEditNickname(() => {
-    setInput(() => ({ ...input, state: false }));
+  const { mutate, isPending } = useEditNickname(() => {
+    setInput((prev) => ({ ...prev, state: false }));
   });
+
   const handleEdit = () => {
-    input.state ? mutate(input.nickname) : setInput({ ...input, state: !input.state });
+    if (input.state) {
+      // 저장 모드 - 입력값 검증
+      if (!input.nickname.trim()) {
+        alert('닉네임을 입력해주세요.');
+        return;
+      }
+
+      // 닉네임 길이 제한 (10자 이하)
+      if (input.nickname.trim().length > 10) {
+        alert('닉네임은 10자 이하로 입력해주세요.');
+        return;
+      }
+
+      // 닉네임이 기존과 같으면 그냥 편집 모드 종료
+      if (input.nickname.trim() === nickname) {
+        setInput((prev) => ({ ...prev, state: false }));
+        return;
+      }
+
+      // 로그아웃 안내 및 확인
+      const confirmed = window.confirm('닉네임을 변경하면 보안상 로그아웃됩니다.\n다시 로그인해야 하는데 계속하시겠습니까?');
+
+      if (confirmed) {
+        mutate(input.nickname.trim());
+      }
+    } else {
+      // 편집 모드 진입
+      setInput((prev) => ({ ...prev, state: true }));
+    }
+  };
+
+  const handleCancel = () => {
+    // 편집 취소 - 원래 닉네임으로 되돌리기
+    setInput({
+      state: false,
+      nickname: nickname || '',
+    });
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput({ ...input, nickname: e.target.value });
+    setInput((prev) => ({ ...prev, nickname: e.target.value }));
   };
 
   const handleNavigate = () => {
@@ -61,10 +98,27 @@ function ProfileSection() {
           <S.InfoContent>
             <AvatarIcon style={{ width: 100, height: 100, flexShrink: 0 }} />
             <div>
-              {input.state ? <S.NameInput type="text" value={input.nickname} onChange={onChange} /> : <S.NameText>{nickname}</S.NameText>}
+              {input.state ? (
+                <S.NameInput type="text" value={input.nickname} onChange={onChange} disabled={isPending} maxLength={10} placeholder="닉네임 (10자 이하)" />
+              ) : (
+                <S.NameText>{nickname}</S.NameText>
+              )}
               <S.EmailText>{username}</S.EmailText>
             </div>
-            {input.state ? <S.ActionButton onClick={handleEdit}>확인</S.ActionButton> : <S.ActionButton onClick={handleEdit}>정보 수정</S.ActionButton>}
+            <div style={{ display: 'flex', gap: '8px' }}>
+              {input.state ? (
+                <>
+                  <S.ActionButton onClick={handleEdit} disabled={isPending}>
+                    {isPending ? '변경 중...' : '확인'}
+                  </S.ActionButton>
+                  <S.ActionButton onClick={handleCancel} disabled={isPending}>
+                    취소
+                  </S.ActionButton>
+                </>
+              ) : (
+                <S.ActionButton onClick={handleEdit}>정보 수정</S.ActionButton>
+              )}
+            </div>
           </S.InfoContent>
           <S.InfoBoxFooter>
             <S.InfoBoxFooterText>
