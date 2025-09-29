@@ -1,3 +1,7 @@
+import { motion } from 'framer-motion';
+
+import { fadeInUp, staggerContainer } from '@/utils/animationVariants';
+
 import FaqItem from './fapItem';
 import * as S from './faqSection.style';
 
@@ -57,11 +61,16 @@ const faqData = [
 
 export default function FaqSection() {
   return (
-    <S.Section>
-      <S.Title>자주 묻는 질문</S.Title>
-      <S.List>
+    <S.Section as={motion.section} variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.3 }}>
+      <S.Title as={motion.h2} variants={fadeInUp}>
+        자주 묻는 질문
+      </S.Title>
+
+      <S.List as={motion.div}>
         {faqData.map((item, index) => (
-          <FaqItem key={index} question={item.question} answer={item.answer} />
+          <motion.div key={index} variants={fadeInUp}>
+            <FaqItem question={item.question} answer={item.answer} />
+          </motion.div>
         ))}
       </S.List>
     </S.Section>
