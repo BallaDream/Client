@@ -5,7 +5,7 @@ import LogoSvg from '@/assets/icons/logo_footer.svg?react';
 export const Container = styled.footer`
   background-color: #162a6c;
   width: 100%;
-  padding: 36px 16px;
+  padding: 40px 16px;
 `;
 
 export const Content = styled.div`
@@ -13,20 +13,58 @@ export const Content = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  gap: 40px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
 `;
 
 export const Logo = styled(LogoSvg)`
   width: 140px;
+  flex-shrink: 0;
 `;
 
 export const Info = styled.div`
-  color: #ffffff;
-  font-size: 12px;
-  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: right;
 
-  strong {
-    font-weight: bold;
-    font-size: 14px;
+  @media (max-width: 768px) {
+    text-align: center;
   }
+`;
+
+export const ContactRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+`;
+
+export const ContactTitle = styled.div`
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+`;
+
+export const Email = styled.p`
+  color: #c7d2fe;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+`;
+
+export const Copyright = styled.div`
+  color: #94a3b8;
+  font-size: 11px;
+  margin-top: 4px;
+  font-weight: 400;
 `;
