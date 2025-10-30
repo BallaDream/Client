@@ -10,6 +10,7 @@ import HomePage from '@/pages/homePage/homePage';
 import LeaveCompletePage from '@/pages/leaveCompletePage/leaveCompletePage';
 import LeavePage from '@/pages/leavePage/leavePage';
 import MyPage from '@/pages/myPage/myPage';
+import ResetPasswordPage from '@/pages/resetPasswordPage/resetPasswordPage';
 import ResultPage from '@/pages/resultPage/resultPage';
 import SignupPage from '@/pages/signupPage/signupPage';
 import UploadPage from '@/pages/uploadPage/uploadPage';
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: 'signup', element: <SignupPage /> },
+      {
+        path: '/reset-password',
+        element: <ResetPasswordPage />,
+      },
       // 인증이 필요한 라우트들
       {
         path: 'upload',
