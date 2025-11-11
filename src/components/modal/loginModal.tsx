@@ -53,6 +53,11 @@ export default function LoginModal() {
     navigate('/signup');
   };
 
+  const handleForgotPassword = () => {
+    dispatch(closeModal());
+    navigate('/reset-password');
+  };
+
   const onSubmit = (data: IFormValues) => {
     setErrorMessage('');
     loginMutate(data, {
@@ -99,7 +104,7 @@ export default function LoginModal() {
           <S.Input type="password" placeholder="비밀번호" {...register('password')} />
           {errors.password && <S.ErrorMessage>{errors.password.message}</S.ErrorMessage>}
           {errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
-          <S.ForgotPassword>비밀번호를 잊으셨나요?</S.ForgotPassword>
+          <S.ForgotPassword onClick={handleForgotPassword}>비밀번호를 잊으셨나요?</S.ForgotPassword>
           <S.LoginButton type="submit" disabled={isPending}>
             로그인
           </S.LoginButton>

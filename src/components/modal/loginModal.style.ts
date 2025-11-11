@@ -73,6 +73,7 @@ export const ForgotPassword = styled.div`
   color: #8c8c8c;
   font-size: 13px;
   margin-bottom: 28px;
+  cursor: pointer;
 `;
 
 export const LoginButton = styled.button`

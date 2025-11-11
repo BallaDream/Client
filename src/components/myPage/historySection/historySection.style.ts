@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const PageTitle = styled.h2`
-  font-size: 24px;
+  font-size: 24x;
   font-weight: bold;
   display: flex;
   align-items: center;

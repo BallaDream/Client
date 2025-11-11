@@ -14,7 +14,17 @@ export const axiosInstance = axios.create({
 // ✅ 요청 인터셉터: accessToken 자동 부착
 axiosInstance.interceptors.request.use((config) => {
   // accessToken을 붙이지 않아야 하는 예외 경로
-  const excludedPaths = ['/login', '/verify-email', '/join', '/join/auth-number/check', '/kakao/authenticate', '/logout'];
+  const excludedPaths = [
+    '/login',
+    '/verify-email',
+    '/join',
+    '/join/auth-number/check',
+    '/join/auth-number',
+    '/kakao/authenticate',
+    '/logout',
+    '/user/auth-number',
+    '/user/password',
+  ];
 
   const url = config.url ?? '';
   const urlPath = url.split('?')[0]; // 쿼리스트링 제거
@@ -47,7 +57,19 @@ axiosInstance.interceptors.response.use(
     const status = error?.response?.status;
     const path = originalRequest?.url?.split('?')[0] ?? '';
 
-    const excludedPaths = ['/login', '/verify-email', '/join', '/join/auth-number/check', '/kakao/authenticate', '/logout', '/user', '/reissue'];
+    const excludedPaths = [
+      '/login',
+      '/verify-email',
+      '/join',
+      '/join/auth-number',
+      '/join/auth-number/check',
+      '/kakao/authenticate',
+      '/logout',
+      '/user',
+      '/reissue',
+      '/user/auth-number',
+      '/user/password',
+    ];
     const isExcluded = excludedPaths.includes(path);
 
     // ✅ accessToken 만료 상태이며, 아직 재시도 전인 경우

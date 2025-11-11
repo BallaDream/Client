@@ -22,7 +22,15 @@ export default function HistorySection() {
   const historyList = Array.isArray(data?.list) ? data.list : [];
   const totalCount = data?.totalCount || 0;
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
-  const latestDate = historyList[0]?.diagnoseDate ?? '-';
+  // historyList의 모든 날짜에서 가장 최신 날짜 찾기
+  const latestDate =
+    historyList.length > 0
+      ? [...historyList]
+          .map((item) => new Date(item.diagnoseDate))
+          .reduce((a, b) => (a > b ? a : b)) // 가장 최근 날짜
+          .toISOString()
+          .split('T')[0] // yyyy-mm-dd만 남김
+      : '-';
 
   if (isLoading) return <SpinnerOverlay text={'로딩중'} />;
 
@@ -53,10 +61,11 @@ export default function HistorySection() {
 
   return (
     <S.Container>
-      <S.PageTitle>
+      {/* 타이틀 */}
+      <span style={{ fontSize: 30, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
         <FolderIcon />
-        추천이력
-      </S.PageTitle>
+        진단이력
+      </span>
 
       <S.SummaryBox>
         <PaperIcon />
