@@ -61,10 +61,11 @@ export default function HistorySection() {
 
   return (
     <S.Container>
-      <S.PageTitle>
+      {/* 타이틀 */}
+      <span style={{ fontSize: 30, fontWeight: 700, display: 'flex', alignItems: 'center', gap: 4 }}>
         <FolderIcon />
-        추천이력
-      </S.PageTitle>
+        진단이력
+      </span>
 
       <S.SummaryBox>
         <PaperIcon />
