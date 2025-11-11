@@ -6,11 +6,11 @@ export default function Footer() {
       <S.Content>
         <S.Logo />
         <S.Info>
-          <strong>고객 문의</strong>
-          <br />
-          개인정보 처리방침
-          <br />
-          서비스 이용약관
+          <S.ContactRow>
+            <S.ContactTitle>Contact</S.ContactTitle>
+            <S.Email>balladream25@gmail.com</S.Email>
+          </S.ContactRow>
+          <S.Copyright>© 2025 BallaDream. All rights reserved.</S.Copyright>
         </S.Info>
       </S.Content>
     </S.Container>
