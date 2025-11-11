@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import AiAnalysisSection from '@/components/homePage/aiAnalysisSection/aiAnalysisSection';
 import AiStepSection from '@/components/homePage/aiStepSection/aiStepSection';
 import AiValiditySection from '@/components/homePage/aiVailditySection/aiVailditySection';
@@ -13,7 +15,17 @@ export default function HomePage() {
   return (
     <S.Container>
       <HeroSection />
-      <S.ArrowWrapper>
+      <S.ArrowWrapper
+        as={motion.div}
+        variants={{
+          hidden: { opacity: 0, y: 0 },
+          visible: { opacity: 1, y: [0, 10, 0] },
+        }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.6 }}
+        transition={{ duration: 1 }}
+      >
         <ArrowDownIcon />
       </S.ArrowWrapper>
       <IntroSection />

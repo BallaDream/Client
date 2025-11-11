@@ -1,11 +1,13 @@
+import { fadeInUp, staggerContainer } from '@/utils/animationVariants';
+
 import * as S from './introSection.style';
 
 export default function IntroSection() {
   return (
-    <S.Container>
-      <S.LogoIcon />
-      <S.Title>피부 데이터 기반 맞춤 추천 플랫폼 입니다.</S.Title>
-      <S.Description>
+    <S.Container variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.3 }}>
+      <S.LogoIcon variants={fadeInUp} />
+      <S.Title variants={fadeInUp}>피부 데이터 기반 맞춤 추천 플랫폼 입니다.</S.Title>
+      <S.Description variants={fadeInUp}>
         피부 고민은 사람마다 다릅니다. <br />
         <strong>BALLADREAM</strong>은 사진 기반 AI 분석을 통해 <br />
         사용자의 주름, 탄력, 모공 등 다양한 피부 문제를 진단하고, <br />

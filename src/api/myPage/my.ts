@@ -43,3 +43,9 @@ export const getDiagnosisHistory = async (page: number, sort: 'latest' | 'oldest
   console.log('ddd', response.data.data[0].diagnoseId);
   return response.data;
 };
+
+// 진단기록 삭제
+export const deleteDiagnosis = async (diagnoseId: number) => {
+  const response = await axiosInstance.delete(`/diagnose/${diagnoseId}`);
+  return response.data;
+};
