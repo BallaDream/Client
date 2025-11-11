@@ -3,6 +3,8 @@ import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { useRequestAuthCode, useResetPassword, useVerifyAuthCode } from '@/hooks/useResetPassword';
+
 import SpinnerOverlay from '@/components/common/overlay/SpinnerOverlay';
 
 import { resetPasswordSchema } from './resetPasswordForm.schema';
@@ -31,33 +33,54 @@ export default function ResetPasswordForm() {
     mode: 'onChange',
   });
 
-  const handleRequestCode = () => {
+  const requestAuthCodeMutation = useRequestAuthCode();
+  const verifyAuthCodeMutation = useVerifyAuthCode();
+  const resetPasswordMutation = useResetPassword();
+
+  const handleRequestCode = async () => {
     const email = getValues('email');
     if (!email) return alert('이메일을 입력해주세요.');
     setIsLoading(true);
-    setTimeout(() => {
+    try {
+      await requestAuthCodeMutation.mutateAsync(email);
       alert('인증번호가 전송되었습니다.');
+    } catch (error: any) {
+      alert(error.response?.data?.message || '인증번호 전송에 실패했습니다.');
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
-  const handleCheckCode = () => {
+  const handleCheckCode = async () => {
     const { email, authNumber } = getValues();
     if (!email || !authNumber) return alert('이메일과 인증번호를 모두 입력해주세요.');
     setIsLoading(true);
-    setTimeout(() => {
+    try {
+      await verifyAuthCodeMutation.mutateAsync({ email, authNum: authNumber });
       alert('인증이 완료되었습니다.');
       setIsVerified(true);
+    } catch (error: any) {
+      alert(error.response?.data?.message || '인증번호 확인에 실패했습니다.');
+    } finally {
       setIsLoading(false);
-    }, 1000);
+    }
   };
 
-  const onSubmit: SubmitHandler<IFormValues> = (data) => {
+  const onSubmit: SubmitHandler<IFormValues> = async (data) => {
     setIsLoading(true);
-    setTimeout(() => {
+    try {
+      await resetPasswordMutation.mutateAsync({
+        username: data.email,
+        password: data.newPassword,
+        authNum: data.authNumber,
+      });
       alert('비밀번호가 재설정되었습니다.');
       navigate('/');
-    }, 1000);
+    } catch (error: any) {
+      alert(error.response?.data?.message || '비밀번호 재설정에 실패했습니다.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
