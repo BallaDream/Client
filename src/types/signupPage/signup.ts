@@ -1,6 +1,7 @@
 // 이메일 인증 요청
 export interface IEmailCodeRequest {
   username: string;
+  authNumberType: 'JOIN_NUMBER' | 'PASSWORD_CHANGE_NUMBER';
 }
 
 // 회원가입 요청
