@@ -11,6 +11,9 @@ export default function BottomActionBar() {
   const handleRedo = () => {
     navigate('/upload');
   };
+  const handleGogo = () => {
+    navigate('/my/2');
+  };
   return (
     <S.Container>
       <S.CustomButton $direction="left" onClick={handleRedo}>
@@ -21,7 +24,7 @@ export default function BottomActionBar() {
         <ShareIcon />
         공유하기
       </S.CustomButton>
-      <S.CustomButton $direction="right">
+      <S.CustomButton $direction="right" onClick={handleGogo}>
         <HeartIcon />
         관심제품 보러가기
       </S.CustomButton>
