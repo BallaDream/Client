@@ -48,7 +48,7 @@ export default function SignupForm() {
     }
 
     sendEmailCode(
-      { username: email },
+      { username: email, authNumberType: 'JOIN_NUMBER' },
       {
         onSuccess: (res) => {
           alert(res.message || '인증번호가 전송되었습니다.');
